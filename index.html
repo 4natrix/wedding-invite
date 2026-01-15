@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мадина & Анатолий | Свадьба 28.06.2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Приглашение на свадьбу Мадины и Анатолия">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #f5f1ea;
+            --accent: #c19a6b;
+            --accent-light: #e4d4c1;
+            --white: #ffffff;
+            --transition: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--primary);
+            background-color: #fefefe;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Hero section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
+                        /* ИЗМЕНИТЕ ЭТУ ССЫЛКУ НА ВАШЕ ФОТО */
+                        url('images/wedding-bg.jpg') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .invitation-content {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            color: var(--white);
+            padding: 60px 40px;
+            background: rgba(26, 26, 26, 0.75);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .date-display {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 1.2rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .date-display::before,
+        .date-display::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 1px;
+            background: var(--accent);
+            opacity: 0.5;
+        }
+
+        .date-display::before {
+            left: -50px;
+        }
+
+        .date-display::after {
+            right: -50px;
+        }
+
+        .names-display {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.1;
+            margin: 40px 0;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .names-display .ampersand {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin: 0 20px;
+            font-weight: 300;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .location {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .location i {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        .cta-button {
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            padding: 20px 45px;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s var(--transition);
+            border-radius: 50px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(193, 154, 107, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #b88c5a;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(193, 154, 107, 0.4);
+            padding-right: 50px;
+        }
+
+        .cta-button i {
+            transition: transform 0.3s var(--transition);
+        }
+
+        .cta-button:hover i {
+            transform: translateX(5px);
+        }
+
+        /* RSVP Section */
+        .rsvp-section {
+            min-height: 100vh;
+            padding: 100px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #faf9f7 0%, #f5f1ea 100%);
+        }
+
+        .rsvp-card {
+            width: 100%;
+            max-width: 520px;
+            padding: 60px 40px;
+            background: var(--white);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .rsvp-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--accent), var(--accent-light), transparent);
+            border-radius: 26px;
+            z-index: -1;
+            opacity: 0.3;
+            filter: blur(5px);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+            text-align: center;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .section-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 1.1rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--primary);
+            background: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            transition: all 0.3s var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(193, 154, 107, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #999;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 30px;
+            margin-top: 15px;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: 400;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: all 0.3s var(--transition);
+        }
+
+        .radio-label:hover {
+            background: rgba(193, 154, 107, 0.05);
+        }
+
+        .custom-radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            position: relative;
+            transition: all 0.3s var(--transition);
+        }
+
+        input[type="radio"]:checked + .custom-radio {
+            border-color: var(--accent);
+            background: var(--accent);
+        }
+
+        input[type="radio"]:checked + .custom-radio::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: var(--white);
+            border-radius: 50%;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        /* Checkbox Grid */
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s var(--transition);
+            background: #f9f9f9;
+        }
+
+        .checkbox-label:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .custom-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.3s var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        input[type="checkbox"]:checked + .checkbox-label .custom-checkbox {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        input[type="checkbox"]:checked + .checkbox-label .custom-checkbox::after {
+            content: '✓';
+            color: var(--white);
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        input[type="checkbox"]:checked + .checkbox-label {
+            background: rgba(193, 154, 107, 0.05);
+            border-color: var(--accent);
+        }
+
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s var(--transition);
+            margin-top: 40px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .submit-btn:hover {
+            background: #b88c5a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(193, 154, 107, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--white);
+            color: var(--primary);
+            padding: 20px 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            max-width: 400px;
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast-icon {
+            color: var(--accent);
+            font-size: 1.4rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .names-display {
+                font-size: 3.2rem;
+            }
+            
+            .names-display .ampersand {
+                font-size: 2.5rem;
+                margin: 0 10px;
+            }
+            
+            .invitation-content {
+                padding: 40px 25px;
+                margin: 0 20px;
+            }
+            
+            .location {
+                font-size: 1.1rem;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .section-title {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .names-display {
+                font-size: 2.5rem;
+            }
+            
+            .date-display {
+                font-size: 1rem;
+                letter-spacing: 0.3em;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .invitation-content,
+            .rsvp-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="invitation-content">
+            <div class="date-display">28 • 06 • 2026</div>
+            <h1 class="names-display">
+                Мадина<span class="ampersand">&</span>Анатолий
+            </h1>
+            <div class="location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Ресторан "DIONIS", г.Костанай, ул.Текстильщиков 12А</span>
+            </div>
+            <button class="cta-button" onclick="scrollToRSVP()">
+                Подтвердить участие
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="rsvp-section">
+        <div class="rsvp-card">
+            <h2 class="section-title">Подтверждение</h2>
+            <div class="section-subtitle">Мы будем рады видеть вас на нашей свадьбе.<br>Пожалуйста, ответьте до 1 июня 2026</div>
+            
+            <form id="rsvpForm">
+                <div class="form-group">
+                    <label class="form-label">Имя и фамилия</label>
+                    <input type="text" class="form-input" id="name" name="name" placeholder="Александр Иванов" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Вы придёте?</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="attendance" value="yes" required>
+                            <span class="custom-radio"></span>
+                            <span>Да, с радостью</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="attendance" value="no">
+                            <span class="custom-radio"></span>
+                            <span>К сожалению, нет</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div id="extra" class="hidden">
+                    <div class="form-group">
+                        <label class="form-label">Предпочтения по напиткам</label>
+                        <div class="checkbox-grid">
+                            <input type="checkbox" id="vodka" name="drinks" value="Водка">
+                            <label for="vodka" class="checkbox-label">
+                                <span class="custom-checkbox"></span>
+                                <span>Водка</span>
+                            </label>
+                            
+                            <input type="checkbox" id="wine" name="drinks" value="Вино">
+                            <label for="wine" class="checkbox-label">
+                                <span class="custom-checkbox"></span>
+                                <span>Вино</span>
+                            </label>
+                            
+                            <input type="checkbox" id="champagne" name="drinks" value="Шампанское">
+                            <label for="champagne" class="checkbox-label">
+                                <span class="custom-checkbox"></span>
+                                <span>Шампанское</span>
+                            </label>
+                            
+                            <input type="checkbox" id="whisky" name="drinks" value="Виски">
+                            <label for="whisky" class="checkbox-label">
+                                <span class="custom-checkbox"></span>
+                                <span>Виски</span>
+                            </label>
+                            
+                            <input type="checkbox" id="non-alcoholic" name="drinks" value="Безалкогольное">
+                            <label for="non-alcoholic" class="checkbox-label">
+                                <span class="custom-checkbox"></span>
+                                <span>Безалкогольное</span>
+                            </label>
+                            
+                            <input type="checkbox" id="all" name="drinks" value="Всё подряд">
+                            <label for="all" class="checkbox-label">
+                                <span class="custom-checkbox"></span>
+                                <span>Всё подряд</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Комментарии или пожелания</label>
+                        <input type="text" class="form-input" id="comment" name="comment" placeholder="Ваши пожелания...">
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    Отправить ответ
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <div class="toast-icon">✓</div>
+        <div class="toast-content">
+            <div class="toast-title">Спасибо!</div>
+            <div class="toast-message">Ваш ответ успешно сохранён.</div>
+        </div>
+    </div>
+
+    <script>
+        // ВАШ Google Apps Script URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzeqBk244PsOpZhUPE9kjcuaRHYjRGxFMJWcCYpSEU581oMfeeCcHi-EiFPnBtnyPp6/exec';
+        
+        const form = document.getElementById('rsvpForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const toast = document.getElementById('toast');
+        const extraSection = document.getElementById('extra');
+        
+        // Показ/скрытие дополнительных полей
+        document.querySelectorAll('input[name="attendance"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                extraSection.classList.toggle('hidden', e.target.value !== 'yes');
+            });
+        });
+        
+        // Плавная прокрутка к форме
+        function scrollToRSVP() {
+            const rsvpSection = document.getElementById('rsvp');
+            rsvpSection.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'center'
+            });
+            
+            // Фокус на поле имени
+            setTimeout(() => {
+                document.getElementById('name').focus();
+            }, 500);
+        }
+        
+        // Отправка формы
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const nameInput = document.getElementById('name');
+            if (!nameInput.value.trim()) {
+                showToast('Пожалуйста, введите имя', 'error');
+                nameInput.focus();
+                return;
+            }
+            
+            // Сбор данных формы
+            const formData = new FormData(form);
+            const data = {};
+            
+            // Собираем выбранные напитки
+            const drinkCheckboxes = document.querySelectorAll('input[name="drinks"]:checked');
+            const drinks = Array.from(drinkCheckboxes).map(cb => cb.value);
+            
+            data.name = formData.get('name');
+            data.attendance = formData.get('attendance');
+            data.drinks = drinks.length > 0 ? drinks.join(', ') : '';
+            data.comment = formData.get('comment') || '';
+            data.timestamp = new Date().toLocaleString('ru-RU');
+            
+            // Блокировка кнопки
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Отправка...';
+            
+            try {
+                // Отправка в Google Sheets
+                await fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                // Успешная отправка
+                showToast('Спасибо! Ответ сохранён.', 'success');
+                
+                // Сброс формы
+                setTimeout(() => {
+                    form.reset();
+                    extraSection.classList.add('hidden');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Отправить ответ';
+                }, 2000);
+                
+            } catch (error) {
+                // Ошибка
+                showToast('Ошибка отправки. Попробуйте снова.', 'error');
+                console.error('Error:', error);
+                
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Отправить ответ';
+            }
+        });
+        
+        // Функция показа уведомлений
+        function showToast(message, type = 'success') {
+            const toastIcon = toast.querySelector('.toast-icon');
+            const toastMessage = toast.querySelector('.toast-message');
+            
+            toastMessage.textContent = message;
+            
+            if (type === 'success') {
+                toastIcon.textContent = '✓';
+                toastIcon.style.color = '#4CAF50';
+                toast.style.borderLeftColor = '#4CAF50';
+            } else {
+                toastIcon.textContent = '!';
+                toastIcon.style.color = '#f44336';
+                toast.style.borderLeftColor = '#f44336';
+            }
+            
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
