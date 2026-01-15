@@ -47,7 +47,7 @@
             justify-content: center;
             padding: 20px;
             position: relative;
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
                         /* ИЗМЕНИТЕ ЭТУ ССЫЛКУ НА ВАШЕ ФОТО */
                         url('wedding-bg.jpg') no-repeat center center;
             background-size: cover;
@@ -60,12 +60,13 @@
             text-align: center;
             color: var(--white);
             padding: 60px 40px;
-            background: rgba(26, 26, 26, 0.75);
+            background: rgba(26, 26, 26, 0.8);
             backdrop-filter: blur(10px);
             border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             animation: fadeIn 1.2s ease-out;
+            margin: 0 20px;
         }
 
         @keyframes fadeIn {
@@ -80,7 +81,7 @@
             letter-spacing: 0.4em;
             text-transform: uppercase;
             color: var(--accent);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             position: relative;
             display: inline-block;
         }
@@ -104,16 +105,32 @@
             right: -50px;
         }
 
+        .time-display {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .time-display i {
+            color: var(--accent);
+        }
+
         .names-display {
             font-family: 'Cormorant Garamond', serif;
             font-size: 4.5rem;
             font-weight: 400;
             color: var(--white);
             line-height: 1.1;
-            margin: 40px 0;
+            margin: 30px 0;
             padding: 40px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .names-display .ampersand {
@@ -134,11 +151,12 @@
             font-weight: 300;
             font-size: 1.3rem;
             color: var(--white);
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
+            flex-wrap: wrap;
         }
 
         .location i {
@@ -180,14 +198,162 @@
             transform: translateX(5px);
         }
 
+        /* Details Section - НОВЫЙ РАЗДЕЛ */
+        .details-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #faf9f7 0%, #f5f1ea 100%);
+        }
+
+        .details-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .detail-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s var(--transition);
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .detail-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+
+        .detail-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .detail-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .dresscode-images {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .dresscode-image {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            object-fit: cover;
+            transition: transform 0.3s var(--transition);
+        }
+
+        .dresscode-image:hover {
+            transform: scale(1.05);
+        }
+
+        .dresscode-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .dresscode-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .dresscode-list li::before {
+            content: '•';
+            color: var(--accent);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-light);
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 3px var(--accent-light);
+        }
+
+        .timeline-time {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .timeline-event {
+            font-weight: 400;
+            color: var(--primary);
+        }
+
         /* RSVP Section */
         .rsvp-section {
-            min-height: 100vh;
             padding: 100px 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #faf9f7 0%, #f5f1ea 100%);
+            background: var(--white);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .rsvp-card {
@@ -199,6 +365,7 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
             position: relative;
             border: 1px solid rgba(0, 0, 0, 0.03);
+            margin: 0 20px;
         }
 
         .rsvp-card::before {
@@ -290,6 +457,8 @@
             display: flex;
             gap: 30px;
             margin-top: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .radio-label {
@@ -343,6 +512,12 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
             margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .checkbox-label {
@@ -443,6 +618,7 @@
             align-items: center;
             gap: 15px;
             max-width: 400px;
+            width: 90%;
             opacity: 0;
             transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
@@ -455,6 +631,31 @@
         .toast-icon {
             color: var(--accent);
             font-size: 1.4rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--primary);
+            color: var(--white);
+            font-size: 0.9rem;
+        }
+
+        .footer-text {
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .footer-heart {
+            color: #ff6b8b;
+            margin: 0 5px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
 
         .hidden {
@@ -474,26 +675,34 @@
             
             .invitation-content {
                 padding: 40px 25px;
-                margin: 0 20px;
             }
             
-            .location {
+            .location, .time-display {
                 font-size: 1.1rem;
                 flex-direction: column;
                 gap: 10px;
             }
             
-            .checkbox-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .radio-group {
                 flex-direction: column;
                 gap: 15px;
+                align-items: flex-start;
             }
             
             .section-title {
                 font-size: 2.4rem;
+            }
+            
+            .rsvp-card, .detail-card {
+                padding: 40px 25px;
+            }
+            
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dresscode-images {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -512,28 +721,179 @@
             }
             
             .invitation-content,
-            .rsvp-card {
+            .rsvp-card,
+            .detail-card {
                 padding: 30px 20px;
+            }
+            
+            .hero, .details-section, .rsvp-section {
+                padding: 60px 15px;
+            }
+        }
+
+        /* Navigation dots */
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(193, 154, 107, 0.3);
+            cursor: pointer;
+            transition: all 0.3s var(--transition);
+        }
+
+        .nav-dot.active {
+            background: var(--accent);
+            transform: scale(1.3);
+        }
+
+        @media (max-width: 768px) {
+            .nav-dots {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation dots -->
+    <div class="nav-dots">
+        <div class="nav-dot active" onclick="scrollToSection('hero')"></div>
+        <div class="nav-dot" onclick="scrollToSection('details')"></div>
+        <div class="nav-dot" onclick="scrollToSection('rsvp')"></div>
+    </div>
+
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="hero" class="hero">
         <div class="invitation-content">
-            <div class="date-display">28 • 06 • 2026</div>
+            <div class="date-display">28 ИЮНЯ 2026</div>
+            <div class="time-display">
+                <i class="far fa-clock"></i>
+                <span>Сбор гостей в 16:00</span>
+            </div>
             <h1 class="names-display">
                 Мадина<span class="ampersand">&</span>Анатолий
             </h1>
             <div class="location">
                 <i class="fas fa-map-marker-alt"></i>
-                <span>Ресторан "DIONIS", г.Костанай, ул.Текстильщиков 12А</span>
+                <span>Ресторан "DIONIS", г. Костанай, ул. Текстильщиков 12А</span>
             </div>
-            <button class="cta-button" onclick="scrollToRSVP()">
+            <button class="cta-button" onclick="scrollToSection('rsvp')">
                 Подтвердить участие
                 <i class="fas fa-arrow-right"></i>
             </button>
+        </div>
+    </section>
+
+    <!-- Details Section -->
+    <section id="details" class="details-section">
+        <div class="details-container">
+            <h2 class="section-title">Детали праздника</h2>
+            <p class="section-subtitle">Вся важная информация для наших гостей</p>
+            
+            <div class="details-grid">
+                <!-- Дресс-код -->
+                <div class="detail-card">
+                    <div class="detail-icon">👔</div>
+                    <h3 class="detail-title">Дресс-код</h3>
+                    <p>Мы будем рады видеть вас в элегантных нарядах, соответствующих торжеству.</p>
+                    
+                    <h4 style="margin-top: 20px; color: var(--accent); font-size: 1.1rem;">Для мужчин:</h4>
+                    <ul class="dresscode-list">
+                        <li>Костюм или рубашка с брюками</li>
+                        <li>Избегайте спортивной одежды</li>
+                        <li>Классическая обувь</li>
+                    </ul>
+                    
+                    <h4 style="margin-top: 15px; color: var(--accent); font-size: 1.1rem;">Для женщин:</h4>
+                    <ul class="dresscode-list">
+                        <li>Платья миди или макси</li>
+                        <li>Костюмы или юбка с блузой</li>
+                        <li>Элегантная обувь</li>
+                    </ul>
+                    
+                    <div class="dresscode-images">
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                             alt="Мужской костюм" class="dresscode-image">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                             alt="Женское платье" class="dresscode-image">
+                    </div>
+                </div>
+                
+                <!-- Программа -->
+                <div class="detail-card">
+                    <div class="detail-icon">⏰</div>
+                    <h3 class="detail-title">Программа дня</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">16:00 - 16:30</div>
+                            <div class="timeline-event">Сбор гостей, фуршет</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">16:30 - 17:30</div>
+                            <div class="timeline-event">Торжественная церемония</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">17:30 - 19:00</div>
+                            <div class="timeline-event">Поздравления, фотосессия</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">19:00 - 20:30</div>
+                            <div class="timeline-event">Банкет</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">20:30 - 23:00</div>
+                            <div class="timeline-event">Танцы и развлечения</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">23:00</div>
+                            <div class="timeline-event">Завершение праздника</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Важная информация -->
+                <div class="detail-card">
+                    <div class="detail-icon">💝</div>
+                    <h3 class="detail-title">Пожелания</h3>
+                    <ul class="dresscode-list">
+                        <li>Ваше присутствие — лучший подарок</li>
+                        <li>Если хотите поздравить финансово — конверт будет кстати</li>
+                        <li>Пожалуйста, подтвердите участие до 1 июня</li>
+                        <li>Сообщите о диетических ограничениях в комментариях</li>
+                    </ul>
+                    
+                    <div style="margin-top: 25px; padding: 15px; background: rgba(193, 154, 107, 0.05); border-radius: 10px;">
+                        <h4 style="color: var(--accent); margin-bottom: 10px;">Подарки:</h4>
+                        <p>Мы будем благодарны за конверт, который поможет нам в начале семейной жизни.</p>
+                    </div>
+                </div>
+                
+                <!-- Контакты -->
+                <div class="detail-card">
+                    <div class="detail-icon">📞</div>
+                    <h3 class="detail-title">Контакты</h3>
+                    <ul class="dresscode-list">
+                        <li><strong>Мадина:</strong> +7 (XXX) XXX-XX-XX</li>
+                        <li><strong>Анатолий:</strong> +7 (XXX) XXX-XX-XX</li>
+                        <li><strong>Ресторан:</strong> +7 (7142) XX-XX-XX</li>
+                    </ul>
+                    
+                    <div style="margin-top: 25px; padding: 15px; background: rgba(193, 154, 107, 0.05); border-radius: 10px;">
+                        <h4 style="color: var(--accent); margin-bottom: 10px;">Как добраться:</h4>
+                        <p>Ресторан "DIONIS" находится в центре города, есть парковка. Ближайшая остановка "Текстильщиков".</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -609,7 +969,8 @@
                     
                     <div class="form-group">
                         <label class="form-label">Комментарии или пожелания</label>
-                        <input type="text" class="form-input" id="comment" name="comment" placeholder="Ваши пожелания...">
+                        <input type="text" class="form-input" id="comment" name="comment" 
+                               placeholder="Диетические ограничения, музыкальные предпочтения...">
                     </div>
                 </div>
                 
@@ -619,6 +980,16 @@
             </form>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            С любовью, Мадина <span class="footer-heart">❤</span> Анатолий • 2026
+        </div>
+        <div class="footer-text">
+            Ответы сохраняются в Google Таблицу • Все данные конфиденциальны
+        </div>
+    </footer>
 
     <!-- Toast Notification -->
     <div id="toast" class="toast">
@@ -637,6 +1008,35 @@
         const submitBtn = document.getElementById('submitBtn');
         const toast = document.getElementById('toast');
         const extraSection = document.getElementById('extra');
+        const navDots = document.querySelectorAll('.nav-dot');
+        
+        // Навигация по точкам
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            // Обновляем активные точки
+            navDots.forEach(dot => dot.classList.remove('active'));
+            document.querySelector(`.nav-dot[onclick*="${sectionId}"]`).classList.add('active');
+        }
+        
+        // Следим за скроллом для обновления точек
+        window.addEventListener('scroll', () => {
+            const sections = ['hero', 'details', 'rsvp'];
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach((sectionId, index) => {
+                const section = document.getElementById(sectionId);
+                if (section.offsetTop <= scrollPosition && 
+                    section.offsetTop + section.offsetHeight > scrollPosition) {
+                    navDots.forEach(dot => dot.classList.remove('active'));
+                    navDots[index].classList.add('active');
+                }
+            });
+        });
         
         // Показ/скрытие дополнительных полей
         document.querySelectorAll('input[name="attendance"]').forEach(radio => {
@@ -644,20 +1044,6 @@
                 extraSection.classList.toggle('hidden', e.target.value !== 'yes');
             });
         });
-        
-        // Плавная прокрутка к форме
-        function scrollToRSVP() {
-            const rsvpSection = document.getElementById('rsvp');
-            rsvpSection.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'center'
-            });
-            
-            // Фокус на поле имени
-            setTimeout(() => {
-                document.getElementById('name').focus();
-            }, 500);
-        }
         
         // Отправка формы
         form.addEventListener('submit', async (e) => {
@@ -743,7 +1129,28 @@
                 toast.classList.remove('show');
             }, 4000);
         }
+        
+        // Анимация при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            // Плавное появление контента
+            const content = document.querySelector('.invitation-content');
+            content.style.opacity = '0';
+            content.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                content.style.transition = 'opacity 1s ease, transform 1s ease';
+                content.style.opacity = '1';
+                content.style.transform = 'translateY(0)';
+            }, 300);
+            
+            // Ленивая загрузка картинок
+            const images = document.querySelectorAll('.dresscode-image');
+            images.forEach(img => {
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                }
+            });
+        });
     </script>
 </body>
-
 </html>
