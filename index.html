@@ -2,29 +2,22 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Мадина & Анатолий | Свадьба 28.06.2026</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Приглашение на свадьбу Мадины и Анатолия">
-    
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Мадина & Анатолий | 2126.06.28</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Leaflet CSS для карты -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-          crossorigin=""/>
-    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <style>
         :root {
-            --primary: #1a1a1a; /* Черный для текста */
-            --secondary: #f5f1ea;
-            --accent: #2e7d32; /* Зеленый акцент */
-            --accent-light: #81c784; /* Светло-зеленый */
-            --accent-dark: #1b5e20; /* Темно-зеленый */
-            --white: #ffffff;
-            --light-bg: #f8f9fa;
-            --transition: cubic-bezier(0.4, 0, 0.2, 1);
+            --cyber-blue: #00f3ff;
+            --cyber-purple: #9d00ff;
+            --cyber-pink: #ff00ff;
+            --cyber-green: #00ff9d;
+            --dark-bg: #0a0a14;
+            --card-bg: rgba(20, 20, 40, 0.7);
+            --text-glow: 0 0 10px;
+            --neon-border: 1px solid;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -33,345 +26,400 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Inter', sans-serif;
-            color: var(--primary);
-            background: var(--white);
+            font-family: 'Exo 2', sans-serif;
+            background: var(--dark-bg);
+            color: white;
+            overflow-x: hidden;
             line-height: 1.6;
-            min-height: 100vh;
         }
 
-        /* Hero section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            position: relative;
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
-                        url('wedding-bg.jpg') no-repeat center center;
-            background-size: cover;
-            background-attachment: fixed;
-        }
-
-        .invitation-content {
-            max-width: 800px;
+        /* Кибер-сетка фона */
+        .cyber-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            text-align: center;
-            color: var(--primary); /* Черный текст */
-            padding: 60px 40px;
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.95) 0%,
-                rgba(255, 255, 255, 0.98) 50%,
-                rgba(240, 255, 240, 0.95) 100%); /* Бело-зеленый градиент */
-            border-radius: 24px;
-            border: 2px solid rgba(46, 125, 50, 0.2);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            animation: fadeIn 1.2s ease-out;
-            margin: 0 20px;
-            backdrop-filter: blur(10px);
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(25px, 25px); }
         }
 
-        .date-display {
-            font-family: 'Inter', sans-serif;
-            font-weight: 600; /* Более жирный для лучшей читаемости */
-            font-size: 1.2rem;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            color: var(--accent-dark); /* Темно-зеленый */
-            margin-bottom: 20px;
+        /* Плавающие голограммы */
+        .hologram {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .hologram-1 {
+            background: var(--cyber-blue);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .hologram-2 {
+            background: var(--cyber-purple);
+            top: 60%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+
+        .hologram-3 {
+            background: var(--cyber-pink);
+            bottom: 20%;
+            left: 30%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, -50px) scale(1.2); }
+        }
+
+        /* Кибер-линии */
+        .cyber-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--cyber-blue), transparent);
+            animation: scanLine 3s linear infinite;
+        }
+
+        @keyframes scanLine {
+            0% { top: 0; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100vh; opacity: 0; }
+        }
+
+        /* Основной контейнер */
+        .cyber-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
             position: relative;
-            display: inline-block;
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8); /* Легкая тень для контраста */
+            z-index: 2;
         }
 
-        .date-display::before,
-        .date-display::after {
+        /* Заголовок эры */
+        .era-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--cyber-green);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                text-shadow: var(--text-glow) var(--cyber-green),
+                           0 0 20px var(--cyber-green);
+            }
+            50% { 
+                text-shadow: var(--text-glow) var(--cyber-green),
+                           0 0 40px var(--cyber-green),
+                           0 0 60px var(--cyber-green);
+            }
+        }
+
+        /* Кибер-карта приглашения */
+        .cyber-card {
+            background: var(--card-bg);
+            border: var(--neon-border) var(--cyber-blue);
+            border-radius: 15px;
+            padding: 60px 40px;
+            margin: 40px 0;
+            position: relative;
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 0 30px rgba(0, 243, 255, 0.2),
+                inset 0 0 30px rgba(0, 243, 255, 0.1);
+            overflow: hidden;
+        }
+
+        .cyber-card::before {
             content: '';
             position: absolute;
-            top: 50%;
-            width: 40px;
-            height: 1px;
-            background: var(--accent-dark);
-            opacity: 0.7;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                var(--cyber-blue), 
+                var(--cyber-purple), 
+                var(--cyber-pink),
+                var(--cyber-green));
+            z-index: -1;
+            border-radius: 17px;
+            animation: borderGlow 3s linear infinite;
+            filter: blur(10px);
+            opacity: 0.5;
         }
 
-        .date-display::before {
-            left: -50px;
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
-        .date-display::after {
-            right: -50px;
+        /* Фотография в кибер-стиле */
+        .cyber-photo-frame {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 40px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid var(--cyber-blue);
+            box-shadow: 
+                0 0 20px var(--cyber-blue),
+                inset 0 0 20px var(--cyber-blue);
+            animation: photoFloat 6s ease-in-out infinite;
         }
 
-        .time-display {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            font-size: 1.3rem;
-            color: var(--primary); /* Черный */
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+        @keyframes photoFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
         }
 
-        .time-display i {
-            color: var(--accent-dark);
+        .cyber-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(0.3) contrast(1.2) saturate(1.5);
+            transition: var(--transition);
         }
 
-        .names-display {
-            font-family: 'Cormorant Garamond', serif;
+        .cyber-photo:hover {
+            filter: sepia(0) contrast(1.5) saturate(2);
+            transform: scale(1.1);
+        }
+
+        /* Имена в кибер-стиле */
+        .cyber-names {
+            font-family: 'Orbitron', monospace;
             font-size: 4.5rem;
-            font-weight: 500; /* Более жирный */
-            color: var(--primary); /* Черный */
-            line-height: 1.1;
-            margin: 30px 0;
-            padding: 40px 0;
-            border-top: 2px solid rgba(46, 125, 50, 0.3);
-            border-bottom: 2px solid rgba(46, 125, 50, 0.3);
-            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5); /* Тень для контраста */
-        }
-
-        .names-display .ampersand {
-            font-size: 3.5rem;
-            color: var(--accent-dark); /* Темно-зеленый */
-            margin: 0 20px;
-            font-weight: 400;
-        }
-
-        .location {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500; /* Более жирный */
-            font-size: 1.3rem;
-            color: var(--primary); /* Черный */
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .location i {
-            color: var(--accent-dark);
-            font-size: 1.2rem;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, var(--accent-dark), var(--accent));
-            color: var(--white);
-            border: none;
-            padding: 20px 45px;
-            font-size: 1rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s var(--transition);
-            border-radius: 50px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            margin-top: 20px;
-            box-shadow: 0 10px 30px rgba(46, 125, 50, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .cta-button:hover {
-            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(46, 125, 50, 0.4);
-            padding-right: 50px;
-        }
-
-        .cta-button i {
-            transition: transform 0.3s var(--transition);
-        }
-
-        .cta-button:hover i {
-            transform: translateX(5px);
-        }
-
-        /* Таймер обратного отсчета */
-        .countdown-container {
+            text-align: center;
             margin: 40px 0;
-            padding: 30px;
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.9) 0%,
-                rgba(240, 255, 240, 0.9) 100%);
-            border-radius: 20px;
-            border: 2px solid rgba(46, 125, 50, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, 
+                var(--cyber-blue), 
+                var(--cyber-purple),
+                var(--cyber-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 
+                var(--text-glow) rgba(0, 243, 255, 0.5),
+                0 0 20px rgba(157, 0, 255, 0.3);
+            position: relative;
+            animation: textGlitch 10s infinite;
         }
 
-        .countdown-title {
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 1.2rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--accent-dark);
-            margin-bottom: 25px;
+        @keyframes textGlitch {
+            0%, 100% { transform: translate(0); }
+            1% { transform: translate(-2px, 2px); }
+            2% { transform: translate(2px, -2px); }
+            3% { transform: translate(-2px, -2px); }
+            4% { transform: translate(2px, 2px); }
+            5% { transform: translate(0); }
         }
 
-        .countdown {
+        .cyber-names .ampersand {
+            font-size: 3rem;
+            color: var(--cyber-green);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Дата в кибер-стиле */
+        .cyber-date {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            text-align: center;
+            color: var(--cyber-blue);
+            margin: 30px 0;
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 20px;
             flex-wrap: wrap;
         }
 
-        .countdown-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 100px;
-        }
-
-        .countdown-value {
-            font-family: 'Inter', sans-serif;
-            font-weight: 700; /* Очень жирный */
-            font-size: 3.5rem;
-            color: var(--primary); /* Черный */
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
-        }
-
-        .countdown-label {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--accent-dark);
-            margin-top: 10px;
-        }
-
-        /* Progress bar */
-        .progress-container {
-            width: 100%;
-            max-width: 600px;
-            margin: 40px auto 0;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            border: 1px solid rgba(46, 125, 50, 0.2);
-        }
-
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-            color: var(--accent-dark);
-            font-weight: 500;
-        }
-
-        .progress-bar {
-            height: 8px;
-            background: rgba(46, 125, 50, 0.1);
-            border-radius: 4px;
+        .date-digit {
+            display: inline-block;
+            padding: 15px 25px;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--cyber-blue);
+            border-radius: 8px;
+            animation: digitPulse 2s infinite;
+            position: relative;
             overflow: hidden;
         }
 
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-light), var(--accent));
-            border-radius: 4px;
-            width: 0%;
-            transition: width 1s ease;
-        }
-
-        /* Rest of the CSS remains the same as before... */
-        /* Details Section */
-        .details-section {
-            padding: 100px 20px;
-            background: var(--light-bg);
-        }
-
-        .details-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .detail-card {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(46, 125, 50, 0.1);
-            transition: transform 0.3s var(--transition);
-        }
-
-        .detail-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(46, 125, 50, 0.1);
-            border-color: rgba(46, 125, 50, 0.2);
-        }
-
-        .detail-icon {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 25px;
-            display: inline-block;
-        }
-
-        .detail-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            font-weight: 500;
-            color: var(--primary);
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        .detail-title::after {
+        .date-digit::before {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background: var(--accent);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
         }
 
-        /* Стили для карты */
-        .map-container {
-            margin-top: 25px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            height: 300px;
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        @keyframes digitPulse {
+            0%, 100% { 
+                box-shadow: 0 0 10px var(--cyber-blue);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 30px var(--cyber-blue);
+                transform: scale(1.05);
+            }
+        }
+
+        /* Информационные блоки */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .info-card {
+            background: rgba(20, 20, 40, 0.5);
+            border: 1px solid var(--cyber-purple);
+            border-radius: 10px;
+            padding: 30px;
             position: relative;
-            border: 3px solid var(--white);
+            transition: var(--transition);
         }
 
-        #weddingMap {
+        .info-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--cyber-pink);
+            box-shadow: 0 10px 30px rgba(157, 0, 255, 0.3);
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                var(--cyber-purple),
+                var(--cyber-pink),
+                var(--cyber-purple));
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--cyber-green);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            color: var(--cyber-blue);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Таймер обратного отсчета */
+        .cyber-timer {
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .timer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .timer-unit {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid var(--cyber-blue);
+            border-radius: 10px;
+            padding: 25px 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timer-value {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            color: var(--cyber-blue);
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: var(--text-glow) var(--cyber-blue);
+        }
+
+        .timer-label {
+            font-size: 0.9rem;
+            color: var(--cyber-green);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Кибер-карта */
+        .cyber-map {
+            margin: 30px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid var(--cyber-blue);
+            box-shadow: 0 0 20px var(--cyber-blue);
+            height: 400px;
+            position: relative;
+        }
+
+        #futureMap {
             width: 100%;
             height: 100%;
-            z-index: 1;
+            filter: hue-rotate(180deg) contrast(1.2) saturate(1.5);
         }
 
         .map-overlay {
@@ -379,962 +427,607 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(10, 10, 20, 0.9);
             padding: 20px;
-            z-index: 2;
-            border-top: 2px solid var(--accent);
+            border-top: 2px solid var(--cyber-green);
+            backdrop-filter: blur(5px);
         }
 
-        .map-address {
-            font-weight: 500;
-            color: var(--primary);
-            margin-bottom: 5px;
+        /* Кибер-форма */
+        .cyber-form {
+            margin: 60px 0;
         }
 
-        .map-navigation {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-            flex-wrap: wrap;
-        }
-
-        .map-btn {
-            padding: 8px 16px;
-            background: var(--accent);
-            color: var(--white);
-            border: none;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s var(--transition);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .map-btn:hover {
-            background: var(--accent-dark);
-            transform: translateY(-2px);
-        }
-
-        .map-btn.secondary {
-            background: var(--primary);
-        }
-
-        .map-btn.secondary:hover {
-            background: #333;
-        }
-
-        .dresscode-images {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .dresscode-image {
-            width: 100%;
-            height: 150px;
-            border-radius: 10px;
-            object-fit: cover;
-            transition: transform 0.3s var(--transition);
-        }
-
-        .dresscode-image:hover {
-            transform: scale(1.05);
-        }
-
-        .dresscode-list {
-            list-style: none;
-            margin-top: 15px;
-        }
-
-        .dresscode-list li {
-            margin-bottom: 12px;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .dresscode-list li::before {
-            content: '•';
-            color: var(--accent);
-            font-size: 1.5rem;
-            position: absolute;
-            left: 0;
-            top: -5px;
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--accent-light);
-        }
-
-        .timeline-item {
-            margin-bottom: 30px;
-            position: relative;
-            padding-bottom: 20px;
-            border-bottom: 1px dashed #eee;
-        }
-
-        .timeline-item:last-child {
-            border-bottom: none;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -38px;
-            top: 5px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--accent);
-            border: 3px solid var(--white);
-            box-shadow: 0 0 0 3px var(--accent-light);
-        }
-
-        .timeline-time {
-            font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 5px;
-            font-size: 1.1rem;
-        }
-
-        .timeline-event {
-            font-weight: 400;
-            color: var(--primary);
-        }
-
-        /* RSVP Section */
-        .rsvp-section {
-            padding: 100px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--white);
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .rsvp-card {
-            width: 100%;
-            max-width: 520px;
-            padding: 60px 40px;
-            background: var(--white);
-            border-radius: 24px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
-            position: relative;
-            border: 1px solid rgba(46, 125, 50, 0.1);
-            margin: 0 20px;
-        }
-
-        .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.8rem;
-            font-weight: 500;
-            margin-bottom: 15px;
-            text-align: center;
-            color: var(--primary);
-            position: relative;
-            padding-bottom: 20px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 2px;
-            background: var(--accent);
-        }
-
-        .section-subtitle {
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-            font-size: 1.1rem;
-            color: #666;
-            text-align: center;
-            margin-bottom: 40px;
-            line-height: 1.8;
-        }
-
-        /* Form Styles */
         .form-group {
             margin-bottom: 30px;
         }
 
         .form-label {
             display: block;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            font-size: 0.95rem;
-            color: var(--primary);
-            margin-bottom: 12px;
-            letter-spacing: 0.05em;
+            font-family: 'Orbitron', monospace;
+            color: var(--cyber-blue);
+            margin-bottom: 10px;
             text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
         }
 
         .form-input {
             width: 100%;
-            padding: 16px 20px;
-            font-family: 'Inter', sans-serif;
+            padding: 15px 20px;
+            background: rgba(20, 20, 40, 0.7);
+            border: 1px solid var(--cyber-blue);
+            border-radius: 8px;
+            color: white;
+            font-family: 'Exo 2', sans-serif;
             font-size: 1rem;
-            color: var(--primary);
-            background: #f9f9f9;
-            border: 1px solid #eee;
-            border-radius: 12px;
-            transition: all 0.3s var(--transition);
+            transition: var(--transition);
         }
 
         .form-input:focus {
             outline: none;
-            border-color: var(--accent);
-            background: var(--white);
-            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+            border-color: var(--cyber-pink);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
         }
 
-        .form-input::placeholder {
-            color: #999;
-        }
-
-        .radio-group {
-            display: flex;
-            gap: 30px;
-            margin-top: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .radio-label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            font-weight: 400;
-            padding: 10px 20px;
-            border-radius: 10px;
-            transition: all 0.3s var(--transition);
-        }
-
-        .radio-label:hover {
-            background: rgba(46, 125, 50, 0.05);
-        }
-
-        .custom-radio {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #ddd;
-            border-radius: 50%;
-            position: relative;
-            transition: all 0.3s var(--transition);
-        }
-
-        input[type="radio"]:checked + .custom-radio {
-            border-color: var(--accent);
-            background: var(--accent);
-        }
-
-        input[type="radio"]:checked + .custom-radio::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 8px;
-            height: 8px;
-            background: var(--white);
-            border-radius: 50%;
-        }
-
-        input[type="radio"] {
-            display: none;
-        }
-
-        /* Checkbox Grid */
         .checkbox-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
             margin-top: 15px;
-        }
-
-        @media (max-width: 768px) {
-            .checkbox-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
         .checkbox-label {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 15px;
-            border: 1px solid #eee;
-            border-radius: 10px;
+            gap: 10px;
+            padding: 12px;
+            background: rgba(20, 20, 40, 0.5);
+            border: 1px solid var(--cyber-purple);
+            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.3s var(--transition);
-            background: #f9f9f9;
+            transition: var(--transition);
         }
 
         .checkbox-label:hover {
-            border-color: var(--accent);
+            border-color: var(--cyber-blue);
+            background: rgba(0, 243, 255, 0.1);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         .custom-checkbox {
             width: 20px;
             height: 20px;
-            border: 2px solid #ddd;
+            border: 2px solid var(--cyber-blue);
             border-radius: 4px;
             position: relative;
-            transition: all 0.3s var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transition: var(--transition);
         }
 
         input[type="checkbox"]:checked + .checkbox-label .custom-checkbox {
-            background: var(--accent);
-            border-color: var(--accent);
+            background: var(--cyber-blue);
+            box-shadow: 0 0 10px var(--cyber-blue);
         }
 
         input[type="checkbox"]:checked + .checkbox-label .custom-checkbox::after {
             content: '✓';
-            color: var(--white);
-            font-size: 12px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--dark-bg);
             font-weight: bold;
         }
 
-        input[type="checkbox"]:checked + .checkbox-label {
-            background: rgba(46, 125, 50, 0.05);
-            border-color: var(--accent);
-        }
-
-        input[type="checkbox"] {
-            display: none;
-        }
-
-        /* Submit Button */
-        .submit-btn {
-            width: 100%;
-            padding: 18px;
-            background: var(--accent);
-            color: var(--white);
+        /* Кибер-кнопка */
+        .cyber-btn {
+            background: linear-gradient(45deg, 
+                var(--cyber-blue), 
+                var(--cyber-purple));
+            color: white;
             border: none;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            letter-spacing: 0.1em;
+            padding: 20px 40px;
+            font-family: 'Orbitron', monospace;
+            font-size: 1.1rem;
             text-transform: uppercase;
+            letter-spacing: 3px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s var(--transition);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
             margin-top: 40px;
-            border-radius: 12px;
-            font-weight: 500;
+            width: 100%;
         }
 
-        .submit-btn:hover {
-            background: var(--accent-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(46, 125, 50, 0.3);
+        .cyber-btn::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                var(--cyber-blue), 
+                var(--cyber-purple),
+                var(--cyber-pink),
+                var(--cyber-green));
+            z-index: -1;
+            border-radius: 10px;
+            filter: blur(10px);
+            opacity: 0;
+            transition: var(--transition);
         }
 
-        .submit-btn:disabled {
+        .cyber-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3);
+        }
+
+        .cyber-btn:hover::before {
             opacity: 0.5;
-            cursor: not-allowed;
-            transform: none !important;
         }
 
-        /* Toast Notification */
-        .toast {
+        /* Кибер-футер */
+        .cyber-footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid var(--cyber-purple);
+            position: relative;
+        }
+
+        .footer-text {
+            color: var(--cyber-green);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .cyber-heart {
+            color: var(--cyber-pink);
+            animation: heartbeat 1.5s infinite;
+            margin: 0 5px;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        /* Кибер-нотификация */
+        .cyber-toast {
             position: fixed;
             bottom: 40px;
             left: 50%;
             transform: translateX(-50%) translateY(100px);
-            background: var(--white);
-            color: var(--primary);
+            background: rgba(20, 20, 40, 0.95);
+            color: var(--cyber-blue);
             padding: 20px 30px;
-            border-radius: 12px;
-            border-left: 4px solid var(--accent);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--cyber-blue);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            max-width: 400px;
-            width: 90%;
             opacity: 0;
             transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.2);
         }
 
-        .toast.show {
+        .cyber-toast.show {
             opacity: 1;
             transform: translateX(-50%) translateY(0);
         }
 
         .toast-icon {
-            color: var(--accent);
-            font-size: 1.4rem;
+            color: var(--cyber-green);
+            margin-right: 15px;
+            font-size: 1.5rem;
         }
 
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 40px 20px;
-            background: var(--accent-dark);
-            color: var(--white);
-            font-size: 0.9rem;
-        }
-
-        .footer-text {
-            opacity: 0.8;
-            margin-bottom: 10px;
-        }
-
-        .footer-heart {
-            color: #ff6b8b;
-            margin: 0 5px;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        /* Wedding Started Message */
-        .wedding-started {
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--accent);
-            text-align: center;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            border: 2px solid var(--accent-light);
-        }
-
-        /* Responsive */
+        /* Адаптивность */
         @media (max-width: 768px) {
-            .names-display {
-                font-size: 3.2rem;
+            .cyber-names {
+                font-size: 3rem;
             }
             
-            .names-display .ampersand {
-                font-size: 2.5rem;
-                margin: 0 10px;
+            .cyber-date {
+                font-size: 1.8rem;
             }
             
-            .invitation-content {
-                padding: 40px 25px;
+            .date-digit {
+                padding: 10px 15px;
             }
             
-            .location, .time-display {
-                font-size: 1.1rem;
-                flex-direction: column;
-                gap: 10px;
+            .cyber-card {
+                padding: 40px 20px;
             }
             
-            .radio-group {
-                flex-direction: column;
-                gap: 15px;
-                align-items: flex-start;
-            }
-            
-            .section-title {
-                font-size: 2.4rem;
-            }
-            
-            .rsvp-card, .detail-card {
-                padding: 40px 25px;
-            }
-            
-            .details-grid {
+            .info-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .dresscode-images {
-                grid-template-columns: 1fr;
-            }
-            
-            .map-container {
-                height: 250px;
-            }
-            
-            .map-navigation {
-                flex-direction: column;
-            }
-            
-            .countdown-value {
-                font-size: 2.5rem;
-                height: 50px;
-            }
-            
-            .countdown-item {
-                min-width: 70px;
             }
         }
 
         @media (max-width: 480px) {
-            .names-display {
-                font-size: 2.5rem;
+            .cyber-names {
+                font-size: 2.2rem;
             }
             
-            .date-display {
-                font-size: 1rem;
-                letter-spacing: 0.3em;
+            .cyber-date {
+                font-size: 1.5rem;
             }
             
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .invitation-content,
-            .rsvp-card,
-            .detail-card {
-                padding: 30px 20px;
-            }
-            
-            .hero, .details-section, .rsvp-section {
-                padding: 60px 15px;
-            }
-            
-            .map-container {
-                height: 200px;
-            }
-            
-            .countdown-value {
-                font-size: 2rem;
-                height: 40px;
-            }
-            
-            .countdown-item {
-                min-width: 60px;
-            }
-        }
-
-        /* Navigation dots */
-        .nav-dots {
-            position: fixed;
-            right: 30px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 100;
-        }
-
-        .nav-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(46, 125, 50, 0.3);
-            cursor: pointer;
-            transition: all 0.3s var(--transition);
-        }
-
-        .nav-dot.active {
-            background: var(--accent);
-            transform: scale(1.3);
-        }
-
-        @media (max-width: 768px) {
-            .nav-dots {
-                display: none;
+            .timer-value {
+                font-size: 2.2rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation dots -->
-    <div class="nav-dots">
-        <div class="nav-dot active" onclick="scrollToSection('hero')"></div>
-        <div class="nav-dot" onclick="scrollToSection('details')"></div>
-        <div class="nav-dot" onclick="scrollToSection('rsvp')"></div>
-    </div>
+    <!-- Кибер-фон -->
+    <div class="cyber-grid"></div>
+    <div class="hologram hologram-1"></div>
+    <div class="hologram hologram-2"></div>
+    <div class="hologram hologram-3"></div>
+    <div class="cyber-line" style="top: 20%; width: 80%; left: 10%; animation-delay: 0s;"></div>
+    <div class="cyber-line" style="top: 40%; width: 60%; left: 20%; animation-delay: -1s;"></div>
+    <div class="cyber-line" style="top: 60%; width: 70%; left: 15%; animation-delay: -2s;"></div>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="invitation-content">
-            <div class="date-display">28 ИЮНЯ 2026</div>
-            <div class="time-display">
-                <i class="far fa-clock"></i>
-                <span>Сбор гостей в 16:00</span>
+    <div class="cyber-container">
+        <!-- Заголовок эры -->
+        <div class="era-title">
+            <i class="fas fa-satellite"></i> ЭРА 2126 | КИБЕР-СОЮЗ <i class="fas fa-satellite"></i>
+        </div>
+
+        <!-- Основная карта приглашения -->
+        <div class="cyber-card">
+            <!-- Фотография -->
+            <div class="cyber-photo-frame">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                     alt="Мадина & Анатолий" class="cyber-photo">
             </div>
-            <h1 class="names-display">
-                Мадина<span class="ampersand">&</span>Анатолий
+
+            <!-- Имена -->
+            <h1 class="cyber-names">
+                MAD1N4<span class="ampersand">&</span>4N470L1Й
             </h1>
-            
+
+            <!-- Дата и время -->
+            <div class="cyber-date">
+                <span class="date-digit">2126</span>
+                <span class="date-digit">06</span>
+                <span class="date-digit">28</span>
+                <div style="width: 100%; margin-top: 20px;">
+                    <span style="color: var(--cyber-green); font-size: 1.5rem;">
+                        <i class="fas fa-clock"></i> ХРОНО-СБОР: 16:00
+                    </span>
+                </div>
+            </div>
+
+            <!-- Информационные блоки -->
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="card-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="card-title">Локация</h3>
+                    <p style="color: var(--cyber-green);">РЕСТОРАН "DIONIS"</p>
+                    <p>КОСТАНАЙ | СЕКТОР 7</p>
+                    <p>УЛ. ТЕКСТИЛЬЩИКОВ 12А</p>
+                    <div style="margin-top: 15px; padding: 10px; background: rgba(0, 243, 255, 0.1); border-radius: 5px;">
+                        <p><i class="fas fa-shield-alt"></i> КИБЕР-БЕЗОПАСНОСТЬ: УРОВЕНЬ АЛЬФА</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-icon">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <h3 class="card-title">Дресс-код</h3>
+                    <p>КОСМИЧЕСКИЙ ЭТИКЕТ</p>
+                    <ul style="margin-top: 15px; padding-left: 20px;">
+                        <li>КИБЕР-КОСТЮМЫ</li>
+                        <li>ГОЛОГРАММ-ПЛАТЬЯ</li>
+                        <li>НЕОНОВЫЕ АКЦЕНТЫ</li>
+                        <li>АНТИГРАВ-ОБУВЬ</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="card-title">Контакты</h3>
+                    <p style="margin: 10px 0;">
+                        <i class="fas fa-female"></i> MAD1N4<br>
+                        <span style="color: var(--cyber-green);">+7 (706) 612-08-45</span>
+                    </p>
+                    <p>
+                        <i class="fas fa-male"></i> 4N470L1Й<br>
+                        <span style="color: var(--cyber-green);">+7 (777) 900-67-56</span>
+                    </p>
+                    <div style="margin-top: 15px; padding: 10px; background: rgba(157, 0, 255, 0.1); border-radius: 5px;">
+                        <p><i class="fas fa-gift"></i> ЭНЕРГО-ПОДАРКИ ПРИВЕТСТВУЮТСЯ</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Таймер обратного отсчета -->
-            <div class="countdown-container">
-                <div class="countdown-title">До свадьбы осталось</div>
-                <div class="countdown">
-                    <div class="countdown-item">
-                        <div class="countdown-value" id="days">000</div>
-                        <div class="countdown-label">дней</div>
+            <div class="cyber-timer">
+                <h2 class="card-title" style="text-align: center; margin-bottom: 30px;">
+                    <i class="fas fa-hourglass-half"></i> ДО СИНХРОНИЗАЦИИ
+                </h2>
+                <div class="timer-grid">
+                    <div class="timer-unit">
+                        <div class="timer-value" id="cyber-days">000</div>
+                        <div class="timer-label">КИБЕР-ДНЕЙ</div>
                     </div>
-                    <div class="countdown-item">
-                        <div class="countdown-value" id="hours">00</div>
-                        <div class="countdown-label">часов</div>
+                    <div class="timer-unit">
+                        <div class="timer-value" id="cyber-hours">00</div>
+                        <div class="timer-label">ОРБИТ-ЧАСОВ</div>
                     </div>
-                    <div class="countdown-item">
-                        <div class="countdown-value" id="minutes">00</div>
-                        <div class="countdown-label">минут</div>
+                    <div class="timer-unit">
+                        <div class="timer-value" id="cyber-minutes">00</div>
+                        <div class="timer-label">НЕЙРО-МИНУТ</div>
                     </div>
-                    <div class="countdown-item">
-                        <div class="countdown-value" id="seconds">00</div>
-                        <div class="countdown-label">секунд</div>
+                    <div class="timer-unit">
+                        <div class="timer-value" id="cyber-seconds">00</div>
+                        <div class="timer-label">КВАНТ-СЕКУНД</div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Прогресс-бар -->
-            <div class="progress-container">
-                <div class="progress-label">
-                    <span>До свадьбы</span>
-                    <span id="progress-percent">0%</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progress-fill"></div>
-                </div>
-            </div>
-            
-            <div class="location">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Ресторан "DIONIS", г. Костанай, ул. Текстильщиков 12А</span>
-            </div>
-            <button class="cta-button" onclick="scrollToSection('rsvp')">
-                Подтвердить участие
-                <i class="fas fa-arrow-right"></i>
-            </button>
-        </div>
-    </section>
 
-    <!-- Details Section -->
-    <section id="details" class="details-section">
-        <div class="details-container">
-            <h2 class="section-title">Детали праздника</h2>
-            <p class="section-subtitle">Вся важная информация для наших гостей</p>
-            
-            <div class="details-grid">
-                <!-- Дресс-код -->
-                <div class="detail-card">
-                    <div class="detail-icon">👔</div>
-                    <h3 class="detail-title">Дресс-код</h3>
-                    <p>Мы будем рады видеть вас в элегантных нарядах, соответствующих торжеству.</p>
-                    
-                    <h4 style="margin-top: 20px; color: var(--accent); font-size: 1.1rem;">Для мужчин:</h4>
-                    <ul class="dresscode-list">
-                        <li>Костюм или рубашка с брюками</li>
-                        <li>Избегайте спортивной одежды</li>
-                        <li>Классическая обувь</li>
-                    </ul>
-                    
-                    <h4 style="margin-top: 15px; color: var(--accent); font-size: 1.1rem;">Для женщин:</h4>
-                    <ul class="dresscode-list">
-                        <li>Платья миди или макси</li>
-                        <li>Костюмы или юбка с блузой</li>
-                        <li>Элегантная обувь</li>
-                    </ul>
-                </div>
-                
-                <!-- Программа -->
-                <div class="detail-card">
-                    <div class="detail-icon">⏰</div>
-                    <h3 class="detail-title">Программа дня</h3>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-time">16:00 - 16:30</div>
-                            <div class="timeline-event">Сбор гостей, фуршет</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">16:30 - 17:30</div>
-                            <div class="timeline-event">Торжественная церемония</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">17:30 - 19:00</div>
-                            <div class="timeline-event">Поздравления, фотосессия</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">19:00 - 20:30</div>
-                            <div class="timeline-event">Банкет</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">20:30 - 22:00</div>
-                            <div class="timeline-event">Танцы и развлечения</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">22:00</div>
-                            <div class="timeline-event">Завершение праздника</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Карта -->
-                <div class="detail-card">
-                    <div class="detail-icon">📍</div>
-                    <h3 class="detail-title">Как добраться</h3>
-                    <p>Ресторан "DIONIS" находится в районе КСК. Есть парковка для гостей.</p>
-                    
-                    <div class="map-container">
-                        <div id="weddingMap"></div>
-                        <div class="map-overlay">
-                            <div class="map-address">
-                                <i class="fas fa-map-marker-alt" style="color: var(--accent);"></i>
-                                Ресторан "DIONIS", ул. Текстильщиков 12А, Костанай
-                            </div>
-                            <div class="map-navigation">
-                                <a href="https://yandex.ru/maps/?text=Ресторан DIONIS Костанай Текстильщиков 12А" 
-                                   target="_blank" class="map-btn">
-                                    <i class="fas fa-map"></i> Яндекс.Карты
-                                </a>
-                                <a href="https://www.google.com/maps/search/?api=1&query=Ресторан+DIONIS+Костанай+Текстильщиков+12А" 
-                                   target="_blank" class="map-btn secondary">
-                                    <i class="fab fa-google"></i> Google Карты
-                                </a>
-                                <button onclick="copyAddress()" class="map-btn" style="background: #666;">
-                                    <i class="far fa-copy"></i> Скопировать адрес
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div style="margin-top: 20px; padding: 15px; background: rgba(46, 125, 50, 0.05); border-radius: 10px;">
-                        <h4 style="color: var(--accent); margin-bottom: 10px; font-size: 1.1rem;">
-                            <i class="fas fa-car"></i> Парковка
-                        </h4>
-                        <p>Возле ресторана есть бесплатная парковка.</p>
-                    </div>
-                </div>
-                
-                <!-- Контакты и пожелания -->
-                <div class="detail-card">
-                    <div class="detail-icon">💝</div>
-                    <h3 class="detail-title">Контакты & Пожелания</h3>
-                    <ul class="dresscode-list">
-                        <li><strong>Мадина:</strong> +7 (706) 612-08-45</li>
-                        <li><strong>Анатолий:</strong> +7 (777) 900-67-56</li>
-                    </ul>
-                    
-                    <div style="margin-top: 25px; padding: 15px; background: rgba(46, 125, 50, 0.05); border-radius: 10px;">
-                        <h4 style="color: var(--accent); margin-bottom: 10px;">Подарки:</h4>
-                        <p>Ваше присутствие — лучший подарок! Если хотите поздравить финансово, конверт будет очень кстати.</p>
-                    </div>
-                    
-                    <div style="margin-top: 15px; padding: 15px; background: rgba(46, 125, 50, 0.05); border-radius: 10px;">
-                        <h4 style="color: var(--accent); margin-bottom: 10px;">Важно:</h4>
-                        <p>Пожалуйста, подтвердите участие до 1 июня.</p>
+            <!-- Кибер-карта -->
+            <div class="cyber-map">
+                <div id="futureMap"></div>
+                <div class="map-overlay">
+                    <h4 style="color: var(--cyber-blue); margin-bottom: 10px;">
+                        <i class="fas fa-map-marked-alt"></i> КООРДИНАТЫ ЛОКАЦИИ
+                    </h4>
+                    <p>53.2144°N, 63.6246°E</p>
+                    <div style="margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button onclick="teleportToLocation()" class="cyber-btn" style="padding: 10px 20px; font-size: 0.9rem; width: auto;">
+                            <i class="fas fa-teleporter"></i> ТЕЛЕПОРТАЦИЯ
+                        </button>
+                        <button onclick="copyCoordinates()" class="cyber-btn" style="padding: 10px 20px; font-size: 0.9rem; width: auto; background: linear-gradient(45deg, var(--cyber-purple), var(--cyber-pink));">
+                            <i class="fas fa-copy"></i> КОПИРОВАТЬ КООРДИНАТЫ
+                        </button>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- RSVP Section -->
-    <section id="rsvp" class="rsvp-section">
-        <div class="rsvp-card">
-            <h2 class="section-title">Подтверждение</h2>
-            <div class="section-subtitle">Мы будем рады видеть вас на нашей свадьбе.<br>Пожалуйста, ответьте до 1 июня 2026</div>
-            
-            <form id="rsvpForm">
-                <div class="form-group">
-                    <label class="form-label">Имя и фамилия</label>
-                    <input type="text" class="form-input" id="name" name="name" placeholder="Фамилия Имя" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Вы придёте?</label>
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="attendance" value="yes" required>
-                            <span class="custom-radio"></span>
-                            <span>Да, с радостью</span>
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="attendance" value="no">
-                            <span class="custom-radio"></span>
-                            <span>К сожалению, нет</span>
-                        </label>
+            <!-- Программа -->
+            <div style="margin: 60px 0;">
+                <h2 class="card-title" style="text-align: center; margin-bottom: 30px;">
+                    <i class="fas fa-list-alt"></i> ПРОГРАММА ДНЯ
+                </h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: rgba(0, 243, 255, 0.1); padding: 20px; border-radius: 8px; border-left: 4px solid var(--cyber-blue);">
+                        <h4 style="color: var(--cyber-blue);">16:00 - 16:30</h4>
+                        <p>КИБЕР-ФУРШЕТ</p>
+                        <p style="font-size: 0.9rem; color: var(--cyber-green); margin-top: 5px;">СБОР ГОСТЕЙ</p>
+                    </div>
+                    <div style="background: rgba(157, 0, 255, 0.1); padding: 20px; border-radius: 8px; border-left: 4px solid var(--cyber-purple);">
+                        <h4 style="color: var(--cyber-purple);">16:30 - 17:30</h4>
+                        <p>ЦЕРЕМОНИЯ СИНХРОНИЗАЦИИ</p>
+                        <p style="font-size: 0.9rem; color: var(--cyber-green); margin-top: 5px;">ОБМЕН КИБЕР-КОЛЬЦАМИ</p>
+                    </div>
+                    <div style="background: rgba(255, 0, 255, 0.1); padding: 20px; border-radius: 8px; border-left: 4px solid var(--cyber-pink);">
+                        <h4 style="color: var(--cyber-pink);">17:30 - 19:00</h4>
+                        <p>ГОЛОГРАММ-ФОТОСЕССИЯ</p>
+                        <p style="font-size: 0.9rem; color: var(--cyber-green); margin-top: 5px;">3D-СНИМКИ</p>
+                    </div>
+                    <div style="background: rgba(0, 255, 157, 0.1); padding: 20px; border-radius: 8px; border-left: 4px solid var(--cyber-green);">
+                        <h4 style="color: var(--cyber-green);">19:00 - 22:00</h4>
+                        <p>КИБЕР-БАНКЕТ</p>
+                        <p style="font-size: 0.9rem; color: var(--cyber-blue); margin-top: 5px;">ИСКУССТВЕННЫЕ ДЕЛИКАТЕСЫ</p>
                     </div>
                 </div>
+            </div>
+
+            <!-- Форма подтверждения -->
+            <div class="cyber-form">
+                <h2 class="card-title" style="text-align: center; margin-bottom: 40px;">
+                    <i class="fas fa-user-check"></i> ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ
+                </h2>
                 
-                <div id="extra" class="hidden">
+                <form id="cyberForm">
                     <div class="form-group">
-                        <label class="form-label">Предпочтения по напиткам</label>
-                        <div class="checkbox-grid">
-                            <input type="checkbox" id="vodka" name="drinks" value="Водка">
-                            <label for="vodka" class="checkbox-label">
-                                <span class="custom-checkbox"></span>
-                                <span>Водка</span>
-                            </label>
-                            
-                            <input type="checkbox" id="wine" name="drinks" value="Вино">
-                            <label for="wine" class="checkbox-label">
-                                <span class="custom-checkbox"></span>
-                                <span>Вино</span>
-                            </label>
-                            
-                            <input type="checkbox" id="champagne" name="drinks" value="Шампанское">
-                            <label for="champagne" class="checkbox-label">
-                                <span class="custom-checkbox"></span>
-                                <span>Шампанское</span>
-                            </label>
-                            
-                            <input type="checkbox" id="whisky" name="drinks" value="Виски">
-                            <label for="whisky" class="checkbox-label">
-                                <span class="custom-checkbox"></span>
-                                <span>Виски</span>
-                            </label>
-                            
-                            <input type="checkbox" id="non-alcoholic" name="drinks" value="Безалкогольное">
-                            <label for="non-alcoholic" class="checkbox-label">
-                                <span class="custom-checkbox"></span>
-                                <span>Безалкогольное</span>
-                            </label>
-                            
-                            <input type="checkbox" id="all" name="drinks" value="Всё подряд">
-                            <label for="all" class="checkbox-label">
-                                <span class="custom-checkbox"></span>
-                                <span>Всё подряд</span>
-                            </label>
-                        </div>
+                        <label class="form-label">ВАШ КИБЕР-ИДЕНТИФИКАТОР</label>
+                        <input type="text" class="form-input" id="cyberName" name="name" 
+                               placeholder="ВВЕДИТЕ ФАМИЛИЮ И ИМЯ" required>
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label">Комментарии или пожелания</label>
-                        <input type="text" class="form-input" id="comment" name="comment" 
-                               placeholder="Диетические ограничения, музыкальные предпочтения...">
+                        <label class="form-label">СТАТУС ПОДКЛЮЧЕНИЯ</label>
+                        <div style="display: flex; gap: 30px; margin-top: 15px; flex-wrap: wrap;">
+                            <label class="checkbox-label" style="flex: 1; min-width: 200px;">
+                                <input type="radio" name="attendance" value="yes" required style="display: none;">
+                                <div class="custom-checkbox" style="border-radius: 50%;"></div>
+                                <span>ПОДКЛЮЧАЮСЬ</span>
+                            </label>
+                            <label class="checkbox-label" style="flex: 1; min-width: 200px;">
+                                <input type="radio" name="attendance" value="no" style="display: none;">
+                                <div class="custom-checkbox" style="border-radius: 50%;"></div>
+                                <span>НЕТ СВЯЗИ</span>
+                            </label>
+                        </div>
                     </div>
-                </div>
-                
-                <button type="submit" class="submit-btn" id="submitBtn">
-                    Отправить ответ
-                </button>
-            </form>
+                    
+                    <div id="cyberExtra" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label">ПРЕДПОЧТЕНИЯ ПО ЭНЕРГО-НАПИТКАМ</label>
+                            <div class="checkbox-grid">
+                                <input type="checkbox" id="cyber-drink1" name="drinks" value="Квантовая водка" style="display: none;">
+                                <label for="cyber-drink1" class="checkbox-label">
+                                    <div class="custom-checkbox"></div>
+                                    <span>КВАНТОВАЯ ВОДКА</span>
+                                </label>
+                                
+                                <input type="checkbox" id="cyber-drink2" name="drinks" value="Нейро-вино" style="display: none;">
+                                <label for="cyber-drink2" class="checkbox-label">
+                                    <div class="custom-checkbox"></div>
+                                    <span>НЕЙРО-ВИНО</span>
+                                </label>
+                                
+                                <input type="checkbox" id="cyber-drink3" name="drinks" value="Ионное шампанское" style="display: none;">
+                                <label for="cyber-drink3" class="checkbox-label">
+                                    <div class="custom-checkbox"></div>
+                                    <span>ИОННОЕ ШАМПАНСКОЕ</span>
+                                </label>
+                                
+                                <input type="checkbox" id="cyber-drink4" name="drinks" value="Плазменный виски" style="display: none;">
+                                <label for="cyber-drink4" class="checkbox-label">
+                                    <div class="custom-checkbox"></div>
+                                    <span>ПЛАЗМЕННЫЙ ВИСКИ</span>
+                                </label>
+                                
+                                <input type="checkbox" id="cyber-drink5" name="drinks" value="Антигравитационное" style="display: none;">
+                                <label for="cyber-drink5" class="checkbox-label">
+                                    <div class="custom-checkbox"></div>
+                                    <span>АНТИГРАВИТАЦИОННОЕ</span>
+                                </label>
+                                
+                                <input type="checkbox" id="cyber-drink6" name="drinks" value="Все спектры" style="display: none;">
+                                <label for="cyber-drink6" class="checkbox-label">
+                                    <div class="custom-checkbox"></div>
+                                    <span>ВСЕ СПЕКТРЫ</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">СИСТЕМНЫЕ КОММЕНТАРИИ</label>
+                            <input type="text" class="form-input" id="cyberComment" name="comment" 
+                                   placeholder="ДИЕТИЧЕСКИЕ ОГРАНИЧЕНИЯ, МУЗЫКАЛЬНЫЕ ПРЕДПОЧТЕНИЯ...">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="cyber-btn" id="cyberSubmit">
+                        <i class="fas fa-paper-plane"></i> ОТПРАВИТЬ ОТВЕТ
+                    </button>
+                </form>
+            </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-text">
-            С любовью, Мадина <span class="footer-heart">❤</span> Анатолий • 2026
-        </div>
-        <div class="footer-text">
-            Ответы сохраняются в Google Таблицу • Все данные конфиденциальны
-        </div>
-    </footer>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="toast">
-        <div class="toast-icon">✓</div>
-        <div class="toast-content">
-            <div class="toast-title">Спасибо!</div>
-            <div class="toast-message">Ваш ответ успешно сохранён.</div>
+        <!-- Кибер-футер -->
+        <div class="cyber-footer">
+            <div class="footer-text">
+                <i class="fas fa-copyright"></i> 2126 | СИСТЕМА "КИБЕР-ЛЮБОВЬ"
+            </div>
+            <div class="footer-text">
+                С ЛЮБОВЬЮ, MAD1N4 <span class="cyber-heart">❤</span> 4N470L1Й
+            </div>
+            <div class="footer-text">
+                <i class="fas fa-shield-alt"></i> ВСЕ ДАННЫЕ ШИФРУЮТСЯ | ЗАЩИТА УРОВНЯ ОМЕГА
+            </div>
         </div>
     </div>
 
-    <!-- Leaflet JS для карты -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-            crossorigin=""></script>
+    <!-- Кибер-нотификация -->
+    <div id="cyberToast" class="cyber-toast">
+        <i class="fas fa-check-circle toast-icon"></i>
+        <div>
+            <div style="font-weight: bold; color: var(--cyber-green);">СИСТЕМНОЕ УВЕДОМЛЕНИЕ</div>
+            <div id="toastMessage">ОТВЕТ ПРИНЯТ В ОБРАБОТКУ</div>
+        </div>
+    </div>
 
+    <!-- Скрипты -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // ВАШ Google Apps Script URL
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzeqBk244PsOpZhUPE9kjcuaRHYjRGxFMJWcCYpSEU581oMfeeCcHi-EiFPnBtnyPp6/exec';
+        // Кибер-конфигурация
+        const CYBER_DATE = new Date('2126-06-28T16:00:00');
+        const RESTAURANT_COORDS = [53.2144, 63.6246];
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzeqBk244PsOpZhUPE9kjcuaRHYjRGxFMJWcCYpSEU581oMfeeCcHi-EiFPnBtnyPp6/exec';
         
-        const form = document.getElementById('rsvpForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const toast = document.getElementById('toast');
-        const extraSection = document.getElementById('extra');
-        const navDots = document.querySelectorAll('.nav-dot');
-        
-        // Координаты ресторана DIONIS в Костанае
-        const restaurantCoords = [53.2144, 63.6246];
-        let map = null;
-        let marker = null;
-
-        // Дата свадьбы (28 июня 2026, 16:00)
-        const weddingDate = new Date('2026-06-28T16:00:00');
+        let cyberMap = null;
         let countdownInterval = null;
 
-        // Инициализация карты
-        function initMap() {
-            map = L.map('weddingMap').setView(restaurantCoords, 15);
+        // Инициализация кибер-карты
+        function initCyberMap() {
+            cyberMap = L.map('futureMap').setView(RESTAURANT_COORDS, 15);
             
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors',
+            // Кибер-стиль для карты
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '© CyberCarto',
                 maxZoom: 19
-            }).addTo(map);
+            }).addTo(cyberMap);
             
-            const weddingIcon = L.divIcon({
-                className: 'wedding-marker',
+            // Кибер-маркер
+            const cyberIcon = L.divIcon({
+                className: 'cyber-marker',
                 html: `
                     <div style="
-                        background: var(--accent);
-                        width: 40px;
-                        height: 40px;
+                        width: 50px;
+                        height: 50px;
+                        background: radial-gradient(circle, 
+                            ${getComputedStyle(document.documentElement).getPropertyValue('--cyber-blue')}, 
+                            ${getComputedStyle(document.documentElement).getPropertyValue('--cyber-purple')});
+                        border: 2px solid ${getComputedStyle(document.documentElement).getPropertyValue('--cyber-green')};
                         border-radius: 50%;
-                        border: 3px solid white;
-                        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         color: white;
-                        font-size: 18px;
+                        font-size: 20px;
+                        box-shadow: 0 0 20px ${getComputedStyle(document.documentElement).getPropertyValue('--cyber-blue')};
+                        animation: pulse 2s infinite;
                     ">
                         <i class="fas fa-ring"></i>
                     </div>
                 `,
-                iconSize: [40, 40],
-                iconAnchor: [20, 40],
-                popupAnchor: [0, -40]
+                iconSize: [50, 50],
+                iconAnchor: [25, 50]
             });
             
-            marker = L.marker(restaurantCoords, { icon: weddingIcon })
-                .addTo(map)
+            L.marker(RESTAURANT_COORDS, { icon: cyberIcon })
+                .addTo(cyberMap)
                 .bindPopup(`
-                    <div style="padding: 10px; max-width: 250px;">
-                        <strong style="color: var(--accent);">Ресторан "DIONIS"</strong><br>
-                        <span>ул. Текстильщиков 12А, Костанай</span><br>
-                        <small>Свадьба Мадины и Анатолия • 28.06.2026 • 16:00</small>
+                    <div style="
+                        background: rgba(10, 10, 20, 0.9);
+                        padding: 15px;
+                        border: 1px solid ${getComputedStyle(document.documentElement).getPropertyValue('--cyber-blue')};
+                        border-radius: 8px;
+                        color: white;
+                        max-width: 250px;
+                    ">
+                        <strong style="color: ${getComputedStyle(document.documentElement).getPropertyValue('--cyber-blue')};">
+                            <i class="fas fa-utensils"></i> РЕСТОРАН "DIONIS"
+                        </strong><br>
+                        <span>СЕКТОР 7, КОСТАНАЙ</span><br>
+                        <small style="color: ${getComputedStyle(document.documentElement).getPropertyValue('--cyber-green')};">
+                            СВАДЬБА 2126.06.28 • 16:00
+                        </small>
                     </div>
                 `);
             
-            marker.on('click', function() {
-                map.setView(restaurantCoords, 17);
+            cyberMap.on('click', function() {
+                cyberMap.setView(RESTAURANT_COORDS, 18);
             });
-            
-            L.control.zoom({ position: 'topright' }).addTo(map);
-            setTimeout(() => map.invalidateSize(), 100);
         }
-        
-        // Таймер обратного отсчета
-        function initCountdown() {
+
+        // Кибер-таймер
+        function initCyberCountdown() {
             function updateCountdown() {
                 const now = new Date();
-                const timeLeft = weddingDate - now;
+                const timeLeft = CYBER_DATE - now;
                 
                 if (timeLeft <= 0) {
-                    // Свадьба началась
                     clearInterval(countdownInterval);
-                    document.querySelector('.countdown-container').innerHTML = `
-                        <div class="wedding-started">
-                            🎉 Свадьба началась! 🎉
+                    document.querySelector('.cyber-timer').innerHTML = `
+                        <h2 class="card-title" style="text-align: center;">
+                            <i class="fas fa-check-circle"></i> СИНХРОНИЗАЦИЯ НАЧАТА
+                        </h2>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <div style="
+                                font-size: 2rem;
+                                color: ${getComputedStyle(document.documentElement).getPropertyValue('--cyber-green')};
+                                text-shadow: 0 0 20px ${getComputedStyle(document.documentElement).getPropertyValue('--cyber-green')};
+                            ">
+                                🎉 КИБЕР-СВАДЬБА АКТИВИРОВАНА 🎉
+                            </div>
                         </div>
                     `;
-                    document.getElementById('progress-fill').style.width = '100%';
-                    document.getElementById('progress-percent').textContent = '100%';
                     return;
                 }
                 
@@ -1343,143 +1036,73 @@
                 const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
                 
-                // Обновление значений
-                document.getElementById('days').textContent = days.toString().padStart(3, '0');
-                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+                // Анимация изменения цифр
+                animateCyberDigit('cyber-days', days.toString().padStart(3, '0'));
+                animateCyberDigit('cyber-hours', hours.toString().padStart(2, '0'));
+                animateCyberDigit('cyber-minutes', minutes.toString().padStart(2, '0'));
+                animateCyberDigit('cyber-seconds', seconds.toString().padStart(2, '0'));
+            }
+            
+            function animateCyberDigit(elementId, newValue) {
+                const element = document.getElementById(elementId);
+                const oldValue = element.textContent;
                 
-                // Обновление прогресс-бара
-                const totalDays = 365 * 2;
-                const daysPassed = totalDays - days;
-                const progressPercent = Math.min((daysPassed / totalDays) * 100, 100);
-                
-                document.getElementById('progress-fill').style.width = `${progressPercent}%`;
-                document.getElementById('progress-percent').textContent = `${Math.round(progressPercent)}%`;
+                if (oldValue !== newValue) {
+                    element.style.transform = 'scale(1.2)';
+                    element.style.color = getComputedStyle(document.documentElement).getPropertyValue('--cyber-pink');
+                    
+                    setTimeout(() => {
+                        element.textContent = newValue;
+                        element.style.transform = 'scale(1)';
+                        element.style.color = getComputedStyle(document.documentElement).getPropertyValue('--cyber-blue');
+                    }, 150);
+                }
             }
             
             updateCountdown();
             countdownInterval = setInterval(updateCountdown, 1000);
         }
-        
-        // Копирование адреса в буфер обмена
-        function copyAddress() {
-            const address = 'Ресторан "DIONIS", ул. Текстильщиков 12А, Костанай';
-            navigator.clipboard.writeText(address).then(() => {
-                showToast('Адрес скопирован в буфер обмена', 'success');
+
+        // Кибер-функции
+        function teleportToLocation() {
+            showToast('ТЕЛЕПОРТАЦИЯ АКТИВИРОВАНА...', 'info');
+            setTimeout(() => {
+                window.open('https://yandex.ru/maps/?text=Ресторан DIONIS Костанай Текстильщиков 12А', '_blank');
+            }, 1000);
+        }
+
+        function copyCoordinates() {
+            const coords = '53.2144°N, 63.6246°E | Ресторан "DIONIS", ул. Текстильщиков 12А, Костанай';
+            navigator.clipboard.writeText(coords).then(() => {
+                showToast('КООРДИНАТЫ СКОПИРОВАНЫ В БУФЕР', 'success');
             }).catch(err => {
-                console.error('Ошибка копирования: ', err);
-                showToast('Не удалось скопировать адрес', 'error');
+                showToast('ОШИБКА КОПИРОВАНИЯ', 'error');
+                console.error('Кибер-ошибка:', err);
             });
         }
-        
-        // Навигация по точкам
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            section.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-            
-            navDots.forEach(dot => dot.classList.remove('active'));
-            document.querySelector(`.nav-dot[onclick*="${sectionId}"]`).classList.add('active');
-            
-            if (sectionId === 'details' && !map) {
-                setTimeout(initMap, 300);
-            }
-        }
-        
-        // Следим за скроллом для обновления точек
-        window.addEventListener('scroll', () => {
-            const sections = ['hero', 'details', 'rsvp'];
-            const scrollPosition = window.scrollY + 100;
-            
-            sections.forEach((sectionId, index) => {
-                const section = document.getElementById(sectionId);
-                if (section.offsetTop <= scrollPosition && 
-                    section.offsetTop + section.offsetHeight > scrollPosition) {
-                    navDots.forEach(dot => dot.classList.remove('active'));
-                    navDots[index].classList.add('active');
-                }
-            });
-        });
-        
-        // Показ/скрытие дополнительных полей
-        document.querySelectorAll('input[name="attendance"]').forEach(radio => {
-            radio.addEventListener('change', (e) => {
-                extraSection.classList.toggle('hidden', e.target.value !== 'yes');
-            });
-        });
-        
-        // Отправка формы
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const nameInput = document.getElementById('name');
-            if (!nameInput.value.trim()) {
-                showToast('Пожалуйста, введите имя', 'error');
-                nameInput.focus();
-                return;
-            }
-            
-            const formData = new FormData(form);
-            const data = {};
-            
-            const drinkCheckboxes = document.querySelectorAll('input[name="drinks"]:checked');
-            const drinks = Array.from(drinkCheckboxes).map(cb => cb.value);
-            
-            data.name = formData.get('name');
-            data.attendance = formData.get('attendance');
-            data.drinks = drinks.length > 0 ? drinks.join(', ') : '';
-            data.comment = formData.get('comment') || '';
-            data.timestamp = new Date().toLocaleString('ru-RU');
-            
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Отправка...';
-            
-            try {
-                await fetch(scriptURL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-                
-                showToast('Спасибо! Ответ сохранён.', 'success');
-                
-                setTimeout(() => {
-                    form.reset();
-                    extraSection.classList.add('hidden');
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Отправить ответ';
-                }, 2000);
-                
-            } catch (error) {
-                showToast('Ошибка отправки. Попробуйте снова.', 'error');
-                console.error('Error:', error);
-                
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Отправить ответ';
-            }
-        });
-        
-        // Функция показа уведомлений
-        function showToast(message, type = 'success') {
+
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('cyberToast');
+            const toastMessage = document.getElementById('toastMessage');
             const toastIcon = toast.querySelector('.toast-icon');
-            const toastMessage = toast.querySelector('.toast-message');
             
             toastMessage.textContent = message;
             
-            if (type === 'success') {
-                toastIcon.textContent = '✓';
-                toastIcon.style.color = '#4CAF50';
-                toast.style.borderLeftColor = '#4CAF50';
-            } else {
-                toastIcon.textContent = '!';
-                toastIcon.style.color = '#f44336';
-                toast.style.borderLeftColor = '#f44336';
+            switch(type) {
+                case 'success':
+                    toastIcon.className = 'fas fa-check-circle toast-icon';
+                    toastIcon.style.color = getComputedStyle(document.documentElement).getPropertyValue('--cyber-green');
+                    toast.style.borderColor = getComputedStyle(document.documentElement).getPropertyValue('--cyber-green');
+                    break;
+                case 'error':
+                    toastIcon.className = 'fas fa-exclamation-triangle toast-icon';
+                    toastIcon.style.color = getComputedStyle(document.documentElement).getPropertyValue('--cyber-pink');
+                    toast.style.borderColor = getComputedStyle(document.documentElement).getPropertyValue('--cyber-pink');
+                    break;
+                default:
+                    toastIcon.className = 'fas fa-info-circle toast-icon';
+                    toastIcon.style.color = getComputedStyle(document.documentElement).getPropertyValue('--cyber-blue');
+                    toast.style.borderColor = getComputedStyle(document.documentElement).getPropertyValue('--cyber-blue');
             }
             
             toast.classList.add('show');
@@ -1488,23 +1111,90 @@
                 toast.classList.remove('show');
             }, 4000);
         }
-        
-        // Инициализация при загрузке
+
+        // Кибер-форма
         document.addEventListener('DOMContentLoaded', () => {
-            // Инициализация таймера
-            initCountdown();
+            // Инициализация
+            initCyberMap();
+            initCyberCountdown();
             
-            // Инициализация карты с задержкой
-            setTimeout(() => {
-                if (document.getElementById('weddingMap')) {
-                    initMap();
+            // Показ/скрытие дополнительных полей
+            document.querySelectorAll('input[name="attendance"]').forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    const extraSection = document.getElementById('cyberExtra');
+                    extraSection.style.display = e.target.value === 'yes' ? 'block' : 'none';
+                });
+            });
+            
+            // Обработка формы
+            document.getElementById('cyberForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const nameInput = document.getElementById('cyberName');
+                if (!nameInput.value.trim()) {
+                    showToast('ВВЕДИТЕ КИБЕР-ИДЕНТИФИКАТОР', 'error');
+                    nameInput.focus();
+                    return;
                 }
-            }, 500);
+                
+                // Сбор данных
+                const formData = new FormData(e.target);
+                const data = {
+                    name: formData.get('name'),
+                    attendance: formData.get('attendance'),
+                    drinks: Array.from(document.querySelectorAll('input[name="drinks"]:checked'))
+                        .map(cb => cb.value).join(', '),
+                    comment: formData.get('comment') || '',
+                    timestamp: new Date().toLocaleString('ru-RU'),
+                    source: 'cyber-2126'
+                };
+                
+                // Анимация отправки
+                const submitBtn = document.getElementById('cyberSubmit');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ОТПРАВКА...';
+                submitBtn.disabled = true;
+                
+                try {
+                    // Отправка в Google Sheets
+                    await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                    
+                    showToast('ОТВЕТ ЗАГРУЖЕН В ОБЛАКО', 'success');
+                    
+                    // Сброс формы
+                    setTimeout(() => {
+                        e.target.reset();
+                        document.getElementById('cyberExtra').style.display = 'none';
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }, 2000);
+                    
+                } catch (error) {
+                    showToast('ОШИБКА ПЕРЕДАЧИ ДАННЫХ', 'error');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            });
             
-            // Адаптация карты при изменении размера окна
+            // Кибер-эффекты
+            document.querySelectorAll('.form-input, .checkbox-label').forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    element.style.transform = 'translateY(-2px)';
+                });
+                element.addEventListener('mouseleave', () => {
+                    element.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Адаптация карты при изменении размера
             window.addEventListener('resize', () => {
-                if (map) {
-                    setTimeout(() => map.invalidateSize(), 100);
+                if (cyberMap) {
+                    setTimeout(() => cyberMap.invalidateSize(), 100);
                 }
             });
         });
