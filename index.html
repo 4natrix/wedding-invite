@@ -17,13 +17,13 @@
     
     <style>
         :root {
-            --primary: #1a1a1a;
+            --primary: #1a1a1a; /* Черный для текста */
             --secondary: #f5f1ea;
-            --accent: #2e7d32; /* Зеленый вместо золотого */
+            --accent: #2e7d32; /* Зеленый акцент */
             --accent-light: #81c784; /* Светло-зеленый */
             --accent-dark: #1b5e20; /* Темно-зеленый */
             --white: #ffffff;
-            --light-bg: #f8f9fa; /* Светлый фон */
+            --light-bg: #f8f9fa;
             --transition: cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -53,7 +53,7 @@
             justify-content: center;
             padding: 20px;
             position: relative;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
                         url('wedding-bg.jpg') no-repeat center center;
             background-size: cover;
             background-attachment: fixed;
@@ -63,14 +63,18 @@
             max-width: 800px;
             width: 100%;
             text-align: center;
-            color: var(--white);
+            color: var(--primary); /* Черный текст */
             padding: 60px 40px;
-            background: rgba(46, 125, 50, 0.85); /* Зеленый фон */
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(255, 255, 255, 0.98) 50%,
+                rgba(240, 255, 240, 0.95) 100%); /* Бело-зеленый градиент */
             border-radius: 24px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(46, 125, 50, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             animation: fadeIn 1.2s ease-out;
             margin: 0 20px;
+            backdrop-filter: blur(10px);
         }
 
         @keyframes fadeIn {
@@ -80,14 +84,15 @@
 
         .date-display {
             font-family: 'Inter', sans-serif;
-            font-weight: 300;
+            font-weight: 600; /* Более жирный для лучшей читаемости */
             font-size: 1.2rem;
             letter-spacing: 0.4em;
             text-transform: uppercase;
-            color: var(--accent-light);
+            color: var(--accent-dark); /* Темно-зеленый */
             margin-bottom: 20px;
             position: relative;
             display: inline-block;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8); /* Легкая тень для контраста */
         }
 
         .date-display::before,
@@ -97,7 +102,7 @@
             top: 50%;
             width: 40px;
             height: 1px;
-            background: var(--accent-light);
+            background: var(--accent-dark);
             opacity: 0.7;
         }
 
@@ -111,9 +116,9 @@
 
         .time-display {
             font-family: 'Inter', sans-serif;
-            font-weight: 400;
+            font-weight: 500;
             font-size: 1.3rem;
-            color: var(--white);
+            color: var(--primary); /* Черный */
             margin-bottom: 40px;
             display: flex;
             align-items: center;
@@ -122,33 +127,34 @@
         }
 
         .time-display i {
-            color: var(--accent-light);
+            color: var(--accent-dark);
         }
 
         .names-display {
             font-family: 'Cormorant Garamond', serif;
             font-size: 4.5rem;
-            font-weight: 400;
-            color: var(--white);
+            font-weight: 500; /* Более жирный */
+            color: var(--primary); /* Черный */
             line-height: 1.1;
             margin: 30px 0;
             padding: 40px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-top: 2px solid rgba(46, 125, 50, 0.3);
+            border-bottom: 2px solid rgba(46, 125, 50, 0.3);
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5); /* Тень для контраста */
         }
 
         .names-display .ampersand {
             font-size: 3.5rem;
-            color: var(--accent-light);
+            color: var(--accent-dark); /* Темно-зеленый */
             margin: 0 20px;
-            font-weight: 300;
+            font-weight: 400;
         }
 
         .location {
             font-family: 'Inter', sans-serif;
-            font-weight: 300;
+            font-weight: 500; /* Более жирный */
             font-size: 1.3rem;
-            color: var(--white);
+            color: var(--primary); /* Черный */
             margin-bottom: 40px;
             display: flex;
             align-items: center;
@@ -158,12 +164,12 @@
         }
 
         .location i {
-            color: var(--accent-light);
+            color: var(--accent-dark);
             font-size: 1.2rem;
         }
 
         .cta-button {
-            background: var(--accent-dark);
+            background: linear-gradient(135deg, var(--accent-dark), var(--accent));
             color: var(--white);
             border: none;
             padding: 20px 45px;
@@ -179,10 +185,11 @@
             gap: 15px;
             margin-top: 20px;
             box-shadow: 0 10px 30px rgba(46, 125, 50, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
         .cta-button:hover {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(46, 125, 50, 0.4);
             padding-right: 50px;
@@ -200,18 +207,21 @@
         .countdown-container {
             margin: 40px 0;
             padding: 30px;
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.9) 0%,
+                rgba(240, 255, 240, 0.9) 100%);
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(46, 125, 50, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .countdown-title {
             font-family: 'Inter', sans-serif;
-            font-weight: 300;
+            font-weight: 600;
             font-size: 1.2rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: var(--accent-light);
+            color: var(--accent-dark);
             margin-bottom: 25px;
         }
 
@@ -231,23 +241,23 @@
 
         .countdown-value {
             font-family: 'Inter', sans-serif;
-            font-weight: 600;
+            font-weight: 700; /* Очень жирный */
             font-size: 3.5rem;
-            color: var(--white);
+            color: var(--primary); /* Черный */
             height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s var(--transition);
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
         }
 
         .countdown-label {
             font-family: 'Inter', sans-serif;
-            font-weight: 300;
+            font-weight: 500;
             font-size: 0.9rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--accent-light);
+            color: var(--accent-dark);
             margin-top: 10px;
         }
 
@@ -257,8 +267,9 @@
             max-width: 600px;
             margin: 40px auto 0;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
+            border: 1px solid rgba(46, 125, 50, 0.2);
         }
 
         .progress-label {
@@ -266,12 +277,13 @@
             justify-content: space-between;
             margin-bottom: 10px;
             font-size: 0.9rem;
-            color: var(--accent-light);
+            color: var(--accent-dark);
+            font-weight: 500;
         }
 
         .progress-bar {
             height: 8px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(46, 125, 50, 0.1);
             border-radius: 4px;
             overflow: hidden;
         }
@@ -284,6 +296,7 @@
             transition: width 1s ease;
         }
 
+        /* Rest of the CSS remains the same as before... */
         /* Details Section */
         .details-section {
             padding: 100px 20px;
@@ -528,7 +541,7 @@
         .section-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: 2.8rem;
-            font-weight: 400;
+            font-weight: 500;
             margin-bottom: 15px;
             text-align: center;
             color: var(--primary);
@@ -1330,14 +1343,14 @@
                 const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
                 
-                // Обновление значений без анимации
+                // Обновление значений
                 document.getElementById('days').textContent = days.toString().padStart(3, '0');
                 document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
                 document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
                 document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
                 
                 // Обновление прогресс-бара
-                const totalDays = 365 * 2; // Пример: 2 года до свадьбы
+                const totalDays = 365 * 2;
                 const daysPassed = totalDays - days;
                 const progressPercent = Math.min((daysPassed / totalDays) * 100, 100);
                 
@@ -1478,17 +1491,6 @@
         
         // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', () => {
-            // Анимация появления
-            const content = document.querySelector('.invitation-content');
-            content.style.opacity = '0';
-            content.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                content.style.transition = 'opacity 1s ease, transform 1s ease';
-                content.style.opacity = '1';
-                content.style.transform = 'translateY(0)';
-            }, 300);
-            
             // Инициализация таймера
             initCountdown();
             
