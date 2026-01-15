@@ -19,12 +19,11 @@
         :root {
             --primary: #1a1a1a;
             --secondary: #f5f1ea;
-            --accent: #c19a6b;
-            --accent-light: #e4d4c1;
-            --accent-gold: #ffd700;
-            --accent-pink: #ff6b8b;
-            --accent-rose: #e4a6a6;
+            --accent: #2e7d32; /* Зеленый вместо золотого */
+            --accent-light: #81c784; /* Светло-зеленый */
+            --accent-dark: #1b5e20; /* Темно-зеленый */
             --white: #ffffff;
+            --light-bg: #f8f9fa; /* Светлый фон */
             --transition: cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -41,37 +40,9 @@
         body {
             font-family: 'Inter', sans-serif;
             color: var(--primary);
-            background: linear-gradient(135deg, #fefefe 0%, #f9f5f0 100%);
+            background: var(--white);
             line-height: 1.6;
             min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Плавающие элементы */
-        .floating-element {
-            position: absolute;
-            z-index: 1;
-            opacity: 0.7;
-            pointer-events: none;
-        }
-
-        .floating-heart {
-            color: var(--accent-pink);
-            font-size: 24px;
-            animation: float 8s infinite ease-in-out;
-        }
-
-        .floating-ring {
-            color: var(--accent-gold);
-            font-size: 28px;
-            animation: float 10s infinite ease-in-out reverse;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(30px, -20px) rotate(120deg); }
-            66% { transform: translate(-20px, 20px) rotate(240deg); }
         }
 
         /* Hero section */
@@ -82,36 +53,10 @@
             justify-content: center;
             padding: 20px;
             position: relative;
-             background: /*linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)),
-                        /* ИЗМЕНИТЕ ЭТУ ССЫЛКУ НА ВАШЕ ФОТО */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
                         url('wedding-bg.jpg') no-repeat center center;
             background-size: cover;
             background-attachment: fixed;
-            overflow: hidden;
-        }
-
-        /* Анимированный градиентный фон */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            background: linear-gradient(45deg, 
-                rgba(193, 154, 107, 0.1) 0%,
-                rgba(255, 107, 139, 0.1) 25%,
-                rgba(228, 166, 166, 0.1) 50%,
-                rgba(255, 215, 0, 0.1) 75%,
-                rgba(193, 154, 107, 0.1) 100%);
-            background-size: 400% 400%;
-            animation: gradientMove 15s ease infinite;
-            z-index: 0;
-        }
-
-        @keyframes gradientMove {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
         }
 
         .invitation-content {
@@ -120,67 +65,144 @@
             text-align: center;
             color: var(--white);
             padding: 60px 40px;
-            background: rgba(26, 26, 26, 0.85);
-            backdrop-filter: blur(20px);
+            background: rgba(46, 125, 50, 0.85); /* Зеленый фон */
             border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                        0 0 0 1px rgba(255, 255, 255, 0.1);
-            animation: fadeInUp 1.2s ease-out;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.2s ease-out;
             margin: 0 20px;
-            position: relative;
-            z-index: 2;
         }
 
-        @keyframes fadeInUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(50px) scale(0.95); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0) scale(1); 
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .date-display {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 1.2rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .date-display::before,
+        .date-display::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 1px;
+            background: var(--accent-light);
+            opacity: 0.7;
+        }
+
+        .date-display::before {
+            left: -50px;
+        }
+
+        .date-display::after {
+            right: -50px;
+        }
+
+        .time-display {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .time-display i {
+            color: var(--accent-light);
+        }
+
+        .names-display {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.1;
+            margin: 30px 0;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .names-display .ampersand {
+            font-size: 3.5rem;
+            color: var(--accent-light);
+            margin: 0 20px;
+            font-weight: 300;
+        }
+
+        .location {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .location i {
+            color: var(--accent-light);
+            font-size: 1.2rem;
+        }
+
+        .cta-button {
+            background: var(--accent-dark);
+            color: var(--white);
+            border: none;
+            padding: 20px 45px;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s var(--transition);
+            border-radius: 50px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(46, 125, 50, 0.3);
+        }
+
+        .cta-button:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(46, 125, 50, 0.4);
+            padding-right: 50px;
+        }
+
+        .cta-button i {
+            transition: transform 0.3s var(--transition);
+        }
+
+        .cta-button:hover i {
+            transform: translateX(5px);
         }
 
         /* Таймер обратного отсчета */
         .countdown-container {
             margin: 40px 0;
             padding: 30px;
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.1) 0%,
-                rgba(255, 255, 255, 0.05) 100%);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .countdown-container::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, 
-                var(--accent-gold),
-                var(--accent-pink),
-                var(--accent),
-                var(--accent-rose),
-                var(--accent-gold));
-            background-size: 400% 400%;
-            border-radius: 22px;
-            z-index: -1;
-            animation: borderGlow 3s linear infinite;
-            filter: blur(10px);
-            opacity: 0.5;
-        }
-
-        @keyframes borderGlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
         .countdown-title {
@@ -212,47 +234,11 @@
             font-weight: 600;
             font-size: 3.5rem;
             color: var(--white);
-            background: linear-gradient(135deg, 
-                var(--accent-gold) 0%,
-                var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
             height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
             transition: all 0.3s var(--transition);
-        }
-
-        .countdown-value.changing {
-            animation: numberChange 0.5s ease;
-        }
-
-        @keyframes numberChange {
-            0% { transform: translateY(0) scale(1); }
-            50% { 
-                transform: translateY(-20px) scale(1.2); 
-                color: var(--accent-pink);
-            }
-            100% { transform: translateY(0) scale(1); }
-        }
-
-        .countdown-value.seconds {
-            animation: pulse 1s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { 
-                text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-                transform: scale(1);
-            }
-            50% { 
-                text-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
-                transform: scale(1.05);
-            }
         }
 
         .countdown-label {
@@ -265,210 +251,6 @@
             margin-top: 10px;
         }
 
-        .date-display {
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-            font-size: 1.2rem;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { text-shadow: 0 0 10px rgba(193, 154, 107, 0.3); }
-            50% { text-shadow: 0 0 20px rgba(193, 154, 107, 0.6); }
-            100% { text-shadow: 0 0 10px rgba(193, 154, 107, 0.3); }
-        }
-
-        .date-display::before,
-        .date-display::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 40px;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent,
-                var(--accent),
-                transparent);
-            opacity: 0.7;
-            animation: lineGrow 2s ease-in-out infinite;
-        }
-
-        @keyframes lineGrow {
-            0%, 100% { width: 40px; opacity: 0.5; }
-            50% { width: 60px; opacity: 1; }
-        }
-
-        .date-display::before {
-            left: -60px;
-        }
-
-        .date-display::after {
-            right: -60px;
-        }
-
-        .time-display {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            font-size: 1.3rem;
-            color: var(--white);
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            animation: fadeIn 2s ease;
-        }
-
-        .time-display i {
-            color: var(--accent);
-            animation: rotate 4s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .names-display {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 4.5rem;
-            font-weight: 400;
-            color: var(--white);
-            line-height: 1.1;
-            margin: 30px 0;
-            padding: 40px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-            position: relative;
-            animation: nameReveal 1.5s ease;
-        }
-
-        @keyframes nameReveal {
-            from { 
-                letter-spacing: 1em;
-                opacity: 0;
-            }
-            to { 
-                letter-spacing: normal;
-                opacity: 1;
-            }
-        }
-
-        .names-display .ampersand {
-            font-size: 3.5rem;
-            background: linear-gradient(135deg, 
-                var(--accent-gold),
-                var(--accent-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin: 0 20px;
-            font-weight: 300;
-            animation: pulse 2s infinite, float 3s ease-in-out infinite;
-        }
-
-        .location {
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-            font-size: 1.3rem;
-            color: var(--white);
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            animation: slideUp 1s ease;
-        }
-
-        @keyframes slideUp {
-            from { 
-                transform: translateY(20px);
-                opacity: 0;
-            }
-            to { 
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .location i {
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, var(--accent), var(--accent-pink));
-            color: var(--white);
-            border: none;
-            padding: 20px 45px;
-            font-size: 1rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s var(--transition);
-            border-radius: 50px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            margin-top: 20px;
-            box-shadow: 0 10px 30px rgba(193, 154, 107, 0.3),
-                       0 0 0 1px rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-            animation: buttonGlow 2s infinite;
-        }
-
-        @keyframes buttonGlow {
-            0%, 100% { 
-                box-shadow: 0 10px 30px rgba(193, 154, 107, 0.3),
-                          0 0 0 1px rgba(255, 255, 255, 0.1);
-            }
-            50% { 
-                box-shadow: 0 10px 40px rgba(193, 154, 107, 0.5),
-                          0 0 0 1px rgba(255, 255, 255, 0.2);
-            }
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent,
-                rgba(255, 255, 255, 0.2),
-                transparent);
-            transition: 0.5s;
-        }
-
-        .cta-button:hover {
-            background: linear-gradient(135deg, var(--accent-pink), var(--accent));
-            transform: translateY(-3px) scale(1.05);
-            padding-right: 50px;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        .cta-button i {
-            transition: transform 0.3s var(--transition);
-        }
-
-        .cta-button:hover i {
-            transform: translateX(5px) rotate(15deg);
-        }
-
         /* Progress bar */
         .progress-container {
             width: 100%;
@@ -477,7 +259,6 @@
             padding: 15px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            backdrop-filter: blur(10px);
         }
 
         .progress-label {
@@ -493,52 +274,25 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 4px;
             overflow: hidden;
-            position: relative;
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, 
-                var(--accent),
-                var(--accent-pink));
+            background: linear-gradient(90deg, var(--accent-light), var(--accent));
             border-radius: 4px;
             width: 0%;
             transition: width 1s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(90deg, 
-                transparent,
-                rgba(255, 255, 255, 0.3),
-                transparent);
-            animation: shimmerProgress 2s infinite;
-        }
-
-        @keyframes shimmerProgress {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
         }
 
         /* Details Section */
         .details-section {
             padding: 100px 20px;
-            background: linear-gradient(135deg, #faf9f7 0%, #f5f1ea 100%);
-            position: relative;
+            background: var(--light-bg);
         }
 
         .details-container {
             max-width: 1000px;
             margin: 0 auto;
-            position: relative;
-            z-index: 2;
         }
 
         .details-grid {
@@ -552,66 +306,22 @@
             background: var(--white);
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 
-                0 15px 35px rgba(0, 0, 0, 0.05),
-                0 0 0 1px rgba(0, 0, 0, 0.03),
-                inset 0 0 0 1px rgba(255, 255, 255, 0.8);
-            border: none;
-            transition: all 0.4s var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .detail-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, 
-                var(--accent),
-                var(--accent-pink),
-                var(--accent));
-            background-size: 200% 100%;
-            animation: gradientMove 3s linear infinite;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(46, 125, 50, 0.1);
+            transition: transform 0.3s var(--transition);
         }
 
         .detail-card:hover {
-            transform: translateY(-10px) rotateX(2deg) rotateY(2deg);
-            box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.1),
-                0 0 0 1px rgba(193, 154, 107, 0.2),
-                inset 0 0 20px rgba(255, 255, 255, 0.5);
-        }
-
-        .detail-card:nth-child(odd) {
-            animation: cardFloat 6s ease-in-out infinite;
-        }
-
-        .detail-card:nth-child(even) {
-            animation: cardFloat 6s ease-in-out infinite reverse;
-        }
-
-        @keyframes cardFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(46, 125, 50, 0.1);
+            border-color: rgba(46, 125, 50, 0.2);
         }
 
         .detail-icon {
             font-size: 2.5rem;
-            background: linear-gradient(135deg, var(--accent), var(--accent-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--accent);
             margin-bottom: 25px;
             display: inline-block;
-            animation: iconFloat 3s ease-in-out infinite;
-        }
-
-        @keyframes iconFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-5px) rotate(5deg); }
         }
 
         .detail-title {
@@ -631,12 +341,7 @@
             left: 0;
             width: 40px;
             height: 2px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-pink));
-            transition: width 0.3s var(--transition);
-        }
-
-        .detail-card:hover .detail-title::after {
-            width: 100px;
+            background: var(--accent);
         }
 
         /* Стили для карты */
@@ -648,12 +353,6 @@
             height: 300px;
             position: relative;
             border: 3px solid var(--white);
-            transition: all 0.3s var(--transition);
-        }
-
-        .map-container:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
         #weddingMap {
@@ -671,7 +370,6 @@
             padding: 20px;
             z-index: 2;
             border-top: 2px solid var(--accent);
-            backdrop-filter: blur(10px);
         }
 
         .map-address {
@@ -689,7 +387,7 @@
 
         .map-btn {
             padding: 8px 16px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-pink));
+            background: var(--accent);
             color: var(--white);
             border: none;
             border-radius: 6px;
@@ -700,20 +398,19 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 4px 15px rgba(193, 154, 107, 0.3);
         }
 
         .map-btn:hover {
+            background: var(--accent-dark);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(193, 154, 107, 0.4);
         }
 
         .map-btn.secondary {
-            background: linear-gradient(135deg, var(--primary), #333);
+            background: var(--primary);
         }
 
         .map-btn.secondary:hover {
-            background: linear-gradient(135deg, #333, #444);
+            background: #333;
         }
 
         .dresscode-images {
@@ -728,14 +425,11 @@
             height: 150px;
             border-radius: 10px;
             object-fit: cover;
-            transition: all 0.4s var(--transition);
-            filter: grayscale(30%);
+            transition: transform 0.3s var(--transition);
         }
 
         .dresscode-image:hover {
-            transform: scale(1.05) rotate(1deg);
-            filter: grayscale(0%);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
         }
 
         .dresscode-list {
@@ -747,25 +441,15 @@
             margin-bottom: 12px;
             padding-left: 25px;
             position: relative;
-            transition: transform 0.3s var(--transition);
-        }
-
-        .dresscode-list li:hover {
-            transform: translateX(5px);
         }
 
         .dresscode-list li::before {
-            content: '♥';
-            color: var(--accent-pink);
-            font-size: 1rem;
+            content: '•';
+            color: var(--accent);
+            font-size: 1.5rem;
             position: absolute;
             left: 0;
-            top: 2px;
-            transition: transform 0.3s var(--transition);
-        }
-
-        .dresscode-list li:hover::before {
-            transform: scale(1.3) rotate(15deg);
+            top: -5px;
         }
 
         .timeline {
@@ -780,10 +464,7 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background: linear-gradient(to bottom, 
-                var(--accent-light),
-                var(--accent-pink),
-                var(--accent-light));
+            background: var(--accent-light);
         }
 
         .timeline-item {
@@ -791,11 +472,6 @@
             position: relative;
             padding-bottom: 20px;
             border-bottom: 1px dashed #eee;
-            transition: all 0.3s var(--transition);
-        }
-
-        .timeline-item:hover {
-            transform: translateX(10px);
         }
 
         .timeline-item:last-child {
@@ -813,20 +489,11 @@
             background: var(--accent);
             border: 3px solid var(--white);
             box-shadow: 0 0 0 3px var(--accent-light);
-            transition: all 0.3s var(--transition);
-        }
-
-        .timeline-item:hover::before {
-            background: var(--accent-pink);
-            transform: scale(1.3);
         }
 
         .timeline-time {
             font-weight: 600;
-            background: linear-gradient(135deg, var(--accent), var(--accent-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--accent);
             margin-bottom: 5px;
             font-size: 1.1rem;
         }
@@ -842,9 +509,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #fff 0%, #f9f5f0 100%);
+            background: var(--white);
             border-top: 1px solid rgba(0, 0, 0, 0.05);
-            position: relative;
         }
 
         .rsvp-card {
@@ -853,45 +519,10 @@
             padding: 60px 40px;
             background: var(--white);
             border-radius: 24px;
-            box-shadow: 
-                0 25px 50px -12px rgba(0, 0, 0, 0.08),
-                inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
             position: relative;
-            border: none;
+            border: 1px solid rgba(46, 125, 50, 0.1);
             margin: 0 20px;
-            z-index: 2;
-            animation: cardReveal 1s ease;
-        }
-
-        @keyframes cardReveal {
-            from { 
-                opacity: 0;
-                transform: translateY(50px) rotateX(-20deg);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0) rotateX(0);
-            }
-        }
-
-        .rsvp-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, 
-                var(--accent),
-                var(--accent-pink),
-                var(--accent-gold),
-                var(--accent));
-            background-size: 400% 400%;
-            border-radius: 26px;
-            z-index: -1;
-            animation: gradientMove 3s linear infinite;
-            filter: blur(10px);
-            opacity: 0.5;
         }
 
         .section-title {
@@ -903,12 +534,6 @@
             color: var(--primary);
             position: relative;
             padding-bottom: 20px;
-            animation: titleGlow 3s infinite;
-        }
-
-        @keyframes titleGlow {
-            0%, 100% { text-shadow: 0 0 20px rgba(193, 154, 107, 0.1); }
-            50% { text-shadow: 0 0 30px rgba(193, 154, 107, 0.3); }
         }
 
         .section-title::after {
@@ -918,14 +543,8 @@
             left: 50%;
             transform: translateX(-50%);
             width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, 
-                transparent,
-                var(--accent),
-                var(--accent-pink),
-                var(--accent),
-                transparent);
-            animation: lineGrow 2s ease-in-out infinite;
+            height: 2px;
+            background: var(--accent);
         }
 
         .section-subtitle {
@@ -936,28 +555,12 @@
             text-align: center;
             margin-bottom: 40px;
             line-height: 1.8;
-            animation: fadeIn 2s ease;
         }
 
         /* Form Styles */
         .form-group {
             margin-bottom: 30px;
-            animation: formSlide 0.5s ease forwards;
-            opacity: 0;
-            transform: translateX(-20px);
         }
-
-        @keyframes formSlide {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .form-group:nth-child(1) { animation-delay: 0.1s; }
-        .form-group:nth-child(2) { animation-delay: 0.2s; }
-        .form-group:nth-child(3) { animation-delay: 0.3s; }
-        .form-group:nth-child(4) { animation-delay: 0.4s; }
 
         .form-label {
             display: block;
@@ -968,20 +571,6 @@
             margin-bottom: 12px;
             letter-spacing: 0.05em;
             text-transform: uppercase;
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .form-label::before {
-            content: '❯';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            transition: transform 0.3s var(--transition);
-        }
-
-        .form-group:focus-within .form-label::before {
-            transform: rotate(90deg);
         }
 
         .form-input {
@@ -994,26 +583,17 @@
             border: 1px solid #eee;
             border-radius: 12px;
             transition: all 0.3s var(--transition);
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
         .form-input:focus {
             outline: none;
             border-color: var(--accent);
             background: var(--white);
-            box-shadow: 
-                0 0 0 3px rgba(193, 154, 107, 0.1),
-                inset 0 2px 5px rgba(0, 0, 0, 0.05);
-            transform: translateY(-2px);
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
         }
 
         .form-input::placeholder {
             color: #999;
-            transition: color 0.3s var(--transition);
-        }
-
-        .form-input:focus::placeholder {
-            color: #ccc;
         }
 
         .radio-group {
@@ -1033,14 +613,10 @@
             padding: 10px 20px;
             border-radius: 10px;
             transition: all 0.3s var(--transition);
-            background: #f9f9f9;
-            border: 1px solid #eee;
         }
 
         .radio-label:hover {
-            background: linear-gradient(135deg, rgba(193, 154, 107, 0.1), rgba(255, 107, 139, 0.1));
-            border-color: var(--accent-light);
-            transform: translateY(-2px);
+            background: rgba(46, 125, 50, 0.05);
         }
 
         .custom-radio {
@@ -1054,14 +630,7 @@
 
         input[type="radio"]:checked + .custom-radio {
             border-color: var(--accent);
-            background: linear-gradient(135deg, var(--accent), var(--accent-pink));
-            animation: radioPulse 0.5s ease;
-        }
-
-        @keyframes radioPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+            background: var(--accent);
         }
 
         input[type="radio"]:checked + .custom-radio::after {
@@ -1108,9 +677,8 @@
 
         .checkbox-label:hover {
             border-color: var(--accent);
-            transform: translateY(-3px) rotate(1deg);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            background: linear-gradient(135deg, rgba(193, 154, 107, 0.05), rgba(255, 107, 139, 0.05));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         .custom-checkbox {
@@ -1126,15 +694,8 @@
         }
 
         input[type="checkbox"]:checked + .checkbox-label .custom-checkbox {
-            background: linear-gradient(135deg, var(--accent), var(--accent-pink));
+            background: var(--accent);
             border-color: var(--accent);
-            animation: checkboxCheck 0.3s ease;
-        }
-
-        @keyframes checkboxCheck {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
         }
 
         input[type="checkbox"]:checked + .checkbox-label .custom-checkbox::after {
@@ -1142,16 +703,10 @@
             color: var(--white);
             font-size: 12px;
             font-weight: bold;
-            animation: checkAppear 0.3s ease;
-        }
-
-        @keyframes checkAppear {
-            from { transform: scale(0); }
-            to { transform: scale(1); }
         }
 
         input[type="checkbox"]:checked + .checkbox-label {
-            background: rgba(193, 154, 107, 0.05);
+            background: rgba(46, 125, 50, 0.05);
             border-color: var(--accent);
         }
 
@@ -1163,7 +718,7 @@
         .submit-btn {
             width: 100%;
             padding: 18px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-pink));
+            background: var(--accent);
             color: var(--white);
             border: none;
             font-family: 'Inter', sans-serif;
@@ -1175,38 +730,12 @@
             margin-top: 40px;
             border-radius: 12px;
             font-weight: 500;
-            box-shadow: 0 10px 25px rgba(193, 154, 107, 0.3);
-            position: relative;
-            overflow: hidden;
-            animation: buttonFloat 2s ease-in-out infinite;
-        }
-
-        @keyframes buttonFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
-        }
-
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent,
-                rgba(255, 255, 255, 0.3),
-                transparent);
-            transition: 0.5s;
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(193, 154, 107, 0.4);
-        }
-
-        .submit-btn:hover::before {
-            left: 100%;
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(46, 125, 50, 0.3);
         }
 
         .submit-btn:disabled {
@@ -1235,7 +764,6 @@
             width: 90%;
             opacity: 0;
             transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            backdrop-filter: blur(10px);
         }
 
         .toast.show {
@@ -1246,59 +774,25 @@
         .toast-icon {
             color: var(--accent);
             font-size: 1.4rem;
-            animation: toastIcon 1s ease infinite;
-        }
-
-        @keyframes toastIcon {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
         }
 
         /* Footer */
         .footer {
             text-align: center;
             padding: 40px 20px;
-            background: linear-gradient(135deg, var(--primary), #111);
+            background: var(--accent-dark);
             color: var(--white);
             font-size: 0.9rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, 
-                var(--accent),
-                var(--accent-pink),
-                var(--accent-gold),
-                var(--accent));
-            background-size: 200% 100%;
-            animation: gradientMove 3s linear infinite;
         }
 
         .footer-text {
             opacity: 0.8;
             margin-bottom: 10px;
-            position: relative;
-            z-index: 2;
         }
 
         .footer-heart {
-            color: var(--accent-pink);
+            color: #ff6b8b;
             margin: 0 5px;
-            animation: heartbeat 1.5s infinite;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.2); }
-            50% { transform: scale(1); }
-            75% { transform: scale(1.1); }
         }
 
         .hidden {
@@ -1309,26 +803,12 @@
         .wedding-started {
             font-size: 2rem;
             font-weight: 600;
-            color: var(--accent-pink);
+            color: var(--accent);
             text-align: center;
             padding: 30px;
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.1),
-                rgba(255, 255, 255, 0.05));
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            border: 2px solid var(--accent);
-            animation: weddingGlow 2s infinite;
-        }
-
-        @keyframes weddingGlow {
-            0%, 100% { 
-                box-shadow: 0 0 30px rgba(255, 107, 139, 0.3);
-                transform: scale(1);
-            }
-            50% { 
-                box-shadow: 0 0 50px rgba(255, 107, 139, 0.6);
-                transform: scale(1.02);
-            }
+            border: 2px solid var(--accent-light);
         }
 
         /* Responsive */
@@ -1446,47 +926,14 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: rgba(193, 154, 107, 0.3);
+            background: rgba(46, 125, 50, 0.3);
             cursor: pointer;
             transition: all 0.3s var(--transition);
-            position: relative;
-        }
-
-        .nav-dot::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            transition: all 0.3s var(--transition);
-        }
-
-        .nav-dot:hover {
-            background: var(--accent);
-            transform: scale(1.3);
-        }
-
-        .nav-dot:hover::before {
-            border-color: var(--accent-light);
         }
 
         .nav-dot.active {
             background: var(--accent);
-            transform: scale(1.5);
-            box-shadow: 0 0 20px rgba(193, 154, 107, 0.5);
-        }
-
-        .nav-dot.active::before {
-            border-color: var(--accent);
-            animation: dotPulse 2s infinite;
-        }
-
-        @keyframes dotPulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.5; }
+            transform: scale(1.3);
         }
 
         @media (max-width: 768px) {
@@ -1497,16 +944,6 @@
     </style>
 </head>
 <body>
-    <!-- Плавающие элементы -->
-    <div class="floating-elements">
-        <div class="floating-element floating-heart" style="top: 10%; left: 5%;">♥</div>
-        <div class="floating-element floating-ring" style="top: 20%; right: 10%;">💍</div>
-        <div class="floating-element floating-heart" style="top: 40%; left: 15%;">♥</div>
-        <div class="floating-element floating-ring" style="bottom: 30%; right: 5%;">💍</div>
-        <div class="floating-element floating-heart" style="bottom: 20%; left: 10%;">♥</div>
-        <div class="floating-element floating-ring" style="top: 15%; right: 20%;">💍</div>
-    </div>
-
     <!-- Navigation dots -->
     <div class="nav-dots">
         <div class="nav-dot active" onclick="scrollToSection('hero')"></div>
@@ -1543,7 +980,7 @@
                         <div class="countdown-label">минут</div>
                     </div>
                     <div class="countdown-item">
-                        <div class="countdown-value seconds" id="seconds">00</div>
+                        <div class="countdown-value" id="seconds">00</div>
                         <div class="countdown-label">секунд</div>
                     </div>
                 </div>
@@ -1660,7 +1097,7 @@
                         </div>
                     </div>
                     
-                    <div style="margin-top: 20px; padding: 15px; background: rgba(193, 154, 107, 0.05); border-radius: 10px;">
+                    <div style="margin-top: 20px; padding: 15px; background: rgba(46, 125, 50, 0.05); border-radius: 10px;">
                         <h4 style="color: var(--accent); margin-bottom: 10px; font-size: 1.1rem;">
                             <i class="fas fa-car"></i> Парковка
                         </h4>
@@ -1677,12 +1114,12 @@
                         <li><strong>Анатолий:</strong> +7 (777) 900-67-56</li>
                     </ul>
                     
-                    <div style="margin-top: 25px; padding: 15px; background: rgba(193, 154, 107, 0.05); border-radius: 10px;">
+                    <div style="margin-top: 25px; padding: 15px; background: rgba(46, 125, 50, 0.05); border-radius: 10px;">
                         <h4 style="color: var(--accent); margin-bottom: 10px;">Подарки:</h4>
                         <p>Ваше присутствие — лучший подарок! Если хотите поздравить финансово, конверт будет очень кстати.</p>
                     </div>
                     
-                    <div style="margin-top: 15px; padding: 15px; background: rgba(193, 154, 107, 0.05); border-radius: 10px;">
+                    <div style="margin-top: 15px; padding: 15px; background: rgba(46, 125, 50, 0.05); border-radius: 10px;">
                         <h4 style="color: var(--accent); margin-bottom: 10px;">Важно:</h4>
                         <p>Пожалуйста, подтвердите участие до 1 июня.</p>
                     </div>
@@ -1831,7 +1268,7 @@
                 className: 'wedding-marker',
                 html: `
                     <div style="
-                        background: linear-gradient(135deg, var(--accent), var(--accent-pink));
+                        background: var(--accent);
                         width: 40px;
                         height: 40px;
                         border-radius: 50%;
@@ -1842,7 +1279,6 @@
                         justify-content: center;
                         color: white;
                         font-size: 18px;
-                        animation: pulse 2s infinite;
                     ">
                         <i class="fas fa-ring"></i>
                     </div>
@@ -1894,11 +1330,11 @@
                 const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
                 
-                // Анимация изменения цифр
-                animateNumberChange('days', days.toString().padStart(3, '0'));
-                animateNumberChange('hours', hours.toString().padStart(2, '0'));
-                animateNumberChange('minutes', minutes.toString().padStart(2, '0'));
-                animateNumberChange('seconds', seconds.toString().padStart(2, '0'));
+                // Обновление значений без анимации
+                document.getElementById('days').textContent = days.toString().padStart(3, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
                 
                 // Обновление прогресс-бара
                 const totalDays = 365 * 2; // Пример: 2 года до свадьбы
@@ -1907,19 +1343,6 @@
                 
                 document.getElementById('progress-fill').style.width = `${progressPercent}%`;
                 document.getElementById('progress-percent').textContent = `${Math.round(progressPercent)}%`;
-            }
-            
-            function animateNumberChange(elementId, newValue) {
-                const element = document.getElementById(elementId);
-                const oldValue = element.textContent;
-                
-                if (oldValue !== newValue) {
-                    element.classList.add('changing');
-                    setTimeout(() => {
-                        element.textContent = newValue;
-                        element.classList.remove('changing');
-                    }, 250);
-                }
             }
             
             updateCountdown();
@@ -2076,60 +1499,13 @@
                 }
             }, 500);
             
-            // Добавление параллакс-эффекта для фона
-         
-            
             // Адаптация карты при изменении размера окна
             window.addEventListener('resize', () => {
                 if (map) {
                     setTimeout(() => map.invalidateSize(), 100);
                 }
             });
-            
-            // Создание дополнительных плавающих элементов
-            function createFloatingElements() {
-                const container = document.querySelector('.floating-elements');
-                const emojis = ['♥', '💍', '✨', '🎉', '🌸', '💫'];
-                
-                for (let i = 0; i < 10; i++) {
-                    const element = document.createElement('div');
-                    const emoji = emojis[Math.floor(Math.random() * emojis.length)];
-                    
-                    element.className = Math.random() > 0.5 ? 'floating-element floating-heart' : 'floating-element floating-ring';
-                    element.textContent = emoji;
-                    element.style.cssText = `
-                        top: ${Math.random() * 100}%;
-                        left: ${Math.random() * 100}%;
-                        font-size: ${20 + Math.random() * 20}px;
-                        animation-duration: ${8 + Math.random() * 10}s;
-                        animation-delay: ${Math.random() * 5}s;
-                        opacity: ${0.3 + Math.random() * 0.5};
-                    `;
-                    
-                    container.appendChild(element);
-                }
-            }
-            
-            createFloatingElements();
-            
-            // Анимация при наведении на кнопки
-            const buttons = document.querySelectorAll('.map-btn, .submit-btn, .cta-button');
-            buttons.forEach(button => {
-                button.addEventListener('mouseenter', () => {
-                    button.style.transform = button.style.transform.replace(/scale\([^)]+\)/, 'scale(1.05)');
-                });
-                
-                button.addEventListener('mouseleave', () => {
-                    button.style.transform = button.style.transform.replace(/scale\([^)]+\)/, 'scale(1)');
-                });
-            });
         });
     </script>
 </body>
 </html>
-
-
-
-
-
-
