@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Мадина & Анатолий | Свадьба 28.06.2026</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Приглашение на свадьбу Анатолия и Мадины">
     
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- AOS Library for animations -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- Leaflet CSS для карты -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -33,8 +30,8 @@
             --gray-light: #f8fafc;
             --text-dark: #1e293b;
             --text-light: #64748b;
-            --shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-            --shadow-hover: 0 30px 80px rgba(22, 101, 52, 0.3);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --shadow-hover: 0 20px 50px rgba(22, 101, 52, 0.2);
             --transition: cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -42,6 +39,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html {
@@ -57,59 +55,6 @@
             overflow-x: hidden;
         }
 
-        /* Glitch effect for names */
-        .glitch-wrapper {
-            position: relative;
-            display: inline-block;
-        }
-
-        .glitch {
-            position: relative;
-            animation: glitch-anim 5s infinite;
-        }
-
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .glitch::before {
-            animation: glitch-anim-2 3s infinite;
-            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-            -webkit-clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-        }
-
-        .glitch::after {
-            animation: glitch-anim-3 2s infinite;
-            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
-            -webkit-clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
-        }
-
-        @keyframes glitch-anim {
-            0%, 100% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-        }
-
-        /* Floating elements */
-        .floating-element {
-            position: absolute;
-            animation: float 6s ease-in-out infinite;
-            z-index: 0;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-
         /* Hero section */
         .hero {
             min-height: 100vh;
@@ -120,30 +65,24 @@
             position: relative;
             background: linear-gradient(135deg, 
                 var(--primary-dark) 0%, 
-                var(--primary) 100%);
+                var(--primary) 100%),
+                url('https://raw.githubusercontent.com/4natrix/wedding-invite/main/1.jpg') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
             overflow: hidden;
         }
 
-        /* Animated background */
-        .hero-bg {
+        .hero::before {
+            content: '';
             position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .hero-bg div {
-            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: linear-gradient(45deg, 
-                transparent 30%, 
-                rgba(22, 101, 52, 0.1) 50%, 
-                transparent 70%);
-            animation: move-bg 20s linear infinite;
-        }
-
-        @keyframes move-bg {
-            0% { transform: translateX(-100%) translateY(-100%); }
-            100% { transform: translateX(100%) translateY(100%); }
+                rgba(10, 41, 26, 0.9) 0%, 
+                rgba(26, 71, 42, 0.8) 100%);
+            z-index: 1;
         }
 
         .invitation-content {
@@ -151,79 +90,75 @@
             width: 100%;
             text-align: center;
             color: var(--white);
-            padding: 60px 40px;
+            padding: 40px 20px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
+            border-radius: 20px;
             border: 2px solid rgba(212, 175, 55, 0.3);
             box-shadow: 
-                0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                0 0 60px rgba(22, 101, 52, 0.4),
+                0 20px 60px rgba(0, 0, 0, 0.3),
                 inset 0 0 60px rgba(255, 255, 255, 0.05);
-            animation: content-appear 1.5s ease-out;
-            margin: 0 20px;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             position: relative;
-            z-index: 10;
-        }
-
-        @keyframes content-appear {
-            0% { 
-                opacity: 0; 
-                transform: translateY(100px) scale(0.8); 
-            }
-            100% { 
-                opacity: 1; 
-                transform: translateY(0) scale(1); 
-            }
+            z-index: 2;
+            margin: 0 auto;
         }
 
         .date-display {
             font-family: 'Inter', sans-serif;
             font-weight: 600;
-            font-size: 1.2rem;
-            letter-spacing: 0.4em;
+            font-size: 1rem;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
             color: var(--gold-light);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             position: relative;
             display: inline-block;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-            animation: pulse 2s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+        @media (min-width: 768px) {
+            .date-display {
+                font-size: 1.2rem;
+                letter-spacing: 0.4em;
+            }
         }
 
         .time-display {
             font-family: 'Inter', sans-serif;
             font-weight: 500;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: var(--white);
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .time-display i {
             color: var(--gold);
-            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
         }
 
         .names-display {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 4.5rem;
+            font-size: 2.8rem;
             font-weight: 600;
             color: var(--white);
             line-height: 1.1;
-            margin: 30px 0;
-            padding: 40px 0;
+            margin: 25px 0;
+            padding: 30px 0;
             position: relative;
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        @media (min-width: 768px) {
+            .names-display {
+                font-size: 4rem;
+                margin: 30px 0;
+                padding: 40px 0;
+            }
         }
 
         .names-display::before,
@@ -232,12 +167,19 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            width: 200px;
-            height: 2px;
+            width: 150px;
+            height: 1px;
             background: linear-gradient(90deg, 
                 transparent, 
                 var(--gold), 
                 transparent);
+        }
+
+        @media (min-width: 768px) {
+            .names-display::before,
+            .names-display::after {
+                width: 200px;
+            }
         }
 
         .names-display::before {
@@ -250,53 +192,54 @@
 
         .names-display .ampersand {
             font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
+            font-size: 2.5rem;
             color: var(--gold-light);
-            margin: 0 20px;
+            margin: 0 15px;
             font-weight: 700;
-            animation: rotate 10s linear infinite;
             display: inline-block;
         }
 
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @media (min-width: 768px) {
+            .names-display .ampersand {
+                font-size: 3.5rem;
+                margin: 0 20px;
+            }
         }
 
         .location {
             font-family: 'Inter', sans-serif;
             font-weight: 500;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: var(--white);
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             flex-wrap: wrap;
+            padding: 0 10px;
         }
 
         .location i {
             color: var(--gold);
-            font-size: 1.2rem;
-            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
+            font-size: 1.1rem;
         }
 
         .cta-button {
             background: linear-gradient(135deg, var(--accent), var(--accent-dark));
             color: var(--white);
             border: none;
-            padding: 20px 45px;
+            padding: 18px 35px;
             font-size: 1rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             cursor: pointer;
-            transition: all 0.4s var(--transition);
+            transition: all 0.3s var(--transition);
             border-radius: 50px;
             font-weight: 500;
             display: inline-flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             margin-top: 20px;
             box-shadow: 
                 0 10px 30px rgba(22, 101, 52, 0.4),
@@ -316,7 +259,7 @@
             height: 100%;
             background: linear-gradient(90deg, 
                 transparent, 
-                rgba(255, 255, 255, 0.3), 
+                rgba(255, 255, 255, 0.2), 
                 transparent);
             transition: left 0.7s ease;
             z-index: -1;
@@ -324,11 +267,10 @@
 
         .cta-button:hover {
             background: linear-gradient(135deg, var(--accent-dark), var(--accent));
-            transform: translateY(-5px) scale(1.05);
+            transform: translateY(-3px);
             box-shadow: 
-                0 20px 50px rgba(22, 101, 52, 0.5),
-                0 0 40px rgba(212, 175, 55, 0.4);
-            padding-right: 50px;
+                0 15px 40px rgba(22, 101, 52, 0.5),
+                0 0 30px rgba(212, 175, 55, 0.4);
         }
 
         .cta-button:hover::before {
@@ -336,23 +278,20 @@
         }
 
         .cta-button i {
-            transition: transform 0.4s var(--transition);
+            transition: transform 0.3s var(--transition);
         }
 
         .cta-button:hover i {
-            transform: translateX(10px) rotate(180deg);
+            transform: translateX(5px);
         }
 
-        /* Таймер обратного отсчета */
+        /* Countdown timer */
         .countdown-container {
-            margin: 40px 0;
-            padding: 30px;
+            margin: 30px 0;
+            padding: 25px;
             background: rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            box-shadow: 
-                inset 0 0 30px rgba(0, 0, 0, 0.2),
-                0 0 40px rgba(22, 101, 52, 0.3);
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
             backdrop-filter: blur(15px);
             position: relative;
             overflow: hidden;
@@ -361,224 +300,272 @@
         .countdown-title {
             font-family: 'Inter', sans-serif;
             font-weight: 600;
-            font-size: 1.2rem;
+            font-size: 1rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--white);
-            margin-bottom: 25px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
         }
 
         .countdown {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
+        }
+
+        @media (min-width: 768px) {
+            .countdown {
+                gap: 20px;
+            }
         }
 
         .countdown-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 100px;
-            perspective: 500px;
+            min-width: 70px;
+        }
+
+        @media (min-width: 768px) {
+            .countdown-item {
+                min-width: 100px;
+            }
         }
 
         .countdown-value {
             font-family: 'Inter', sans-serif;
             font-weight: 700;
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             color: var(--white);
-            height: 70px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-            animation: flip 1s ease-in-out infinite;
-            position: relative;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
         }
 
-        @keyframes flip {
-            0%, 100% { transform: rotateX(0deg); }
-            50% { transform: rotateX(10deg); }
+        @media (min-width: 768px) {
+            .countdown-value {
+                font-size: 3.5rem;
+                height: 70px;
+            }
         }
 
         .countdown-label {
             font-family: 'Inter', sans-serif;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             color: var(--gold-light);
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
-        /* Wavy Timeline */
+        /* Timeline Accordion */
         .timeline-section {
-            padding: 100px 20px;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            position: relative;
-            overflow: hidden;
+            padding: 60px 20px;
+            background: var(--gray-light);
         }
 
-        .timeline-container {
-            max-width: 1200px;
+        @media (min-width: 768px) {
+            .timeline-section {
+                padding: 80px 20px;
+            }
+        }
+
+        .section-container {
+            max-width: 800px;
             margin: 0 auto;
-            position: relative;
         }
 
-        .timeline-wrapper {
-            position: relative;
-            height: 600px;
-            margin: 60px 0;
-        }
-
-        .wavy-line {
-            position: absolute;
-            width: 100%;
-            height: 400px;
-            top: 100px;
-            left: 0;
-            overflow: visible;
-        }
-
-        .wavy-line path {
-            fill: none;
-            stroke: var(--accent);
-            stroke-width: 4;
-            stroke-linecap: round;
-            stroke-dasharray: 10, 20;
-            animation: wave-move 20s linear infinite;
-        }
-
-        @keyframes wave-move {
-            0% { stroke-dashoffset: 0; }
-            100% { stroke-dashoffset: 1000; }
-        }
-
-        .timeline-point {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--white);
-            border: 4px solid var(--accent);
-            cursor: pointer;
-            transition: all 0.4s var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--accent);
-            z-index: 2;
-            box-shadow: 0 10px 30px rgba(22, 101, 52, 0.3);
-        }
-
-        .timeline-point:hover {
-            transform: scale(1.3) rotate(15deg);
-            background: var(--accent);
-            color: var(--white);
-            box-shadow: 
-                0 15px 40px rgba(22, 101, 52, 0.5),
-                0 0 30px rgba(212, 175, 55, 0.4);
-        }
-
-        .timeline-point.active {
-            transform: scale(1.4);
-            background: var(--accent);
-            color: var(--white);
-            border-color: var(--gold);
-            box-shadow: 
-                0 20px 50px rgba(22, 101, 52, 0.6),
-                0 0 40px rgba(212, 175, 55, 0.5);
-        }
-
-        .timeline-detail {
-            position: absolute;
-            top: 50%;
-            right: 0;
-            width: 45%;
-            background: var(--white);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: var(--shadow);
-            border: 2px solid var(--accent);
-            transform: translateY(-50%);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.5s var(--transition);
-            z-index: 3;
-        }
-
-        .timeline-detail.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(-50%) scale(1.05);
-        }
-
-        .timeline-detail h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            text-align: center;
             color: var(--accent-dark);
             margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid var(--gold);
         }
 
-        .timeline-detail p {
-            color: var(--text-dark);
-            font-size: 1.1rem;
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 3rem;
+            }
+        }
+
+        .section-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 1rem;
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 40px;
             line-height: 1.6;
-            margin-bottom: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+
+        .timeline-accordion {
+            margin-top: 30px;
+        }
+
+        .timeline-item {
+            background: var(--white);
+            border-radius: 15px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(22, 101, 52, 0.1);
+            transition: all 0.3s var(--transition);
+        }
+
+        .timeline-item:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .timeline-header {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            background: var(--white);
+            border-bottom: 1px solid rgba(22, 101, 52, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        .timeline-header:hover {
+            background: rgba(22, 101, 52, 0.05);
         }
 
         .timeline-time {
+            font-family: 'Inter', sans-serif;
             font-weight: 700;
+            font-size: 1.1rem;
             color: var(--accent);
-            font-size: 1.3rem;
-            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
+        .timeline-time i {
+            font-size: 1rem;
+        }
+
+        .timeline-event {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            flex-grow: 1;
+            margin-left: 15px;
+        }
+
+        .timeline-toggle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s var(--transition);
+        }
+
+        .timeline-item.active .timeline-toggle {
+            transform: rotate(180deg);
+            background: var(--accent-dark);
+        }
+
+        .timeline-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s var(--transition);
+            background: var(--white);
+        }
+
+        .timeline-item.active .timeline-content {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .timeline-detail {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.6;
+            padding-left: 15px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .timeline-detail p {
+            margin-bottom: 10px;
+        }
+
+        .timeline-detail p:last-child {
+            margin-bottom: 0;
+        }
+
         /* Photo Gallery */
         .gallery-section {
-            padding: 100px 20px;
+            padding: 60px 20px;
             background: var(--white);
-            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .gallery-section {
+                padding: 80px 20px;
+            }
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
         }
 
         .gallery-item {
             position: relative;
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
             cursor: pointer;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-            transition: transform 0.5s var(--transition);
+            transition: transform 0.3s var(--transition);
+            height: 250px;
+        }
+
+        @media (min-width: 768px) {
+            .gallery-item {
+                height: 300px;
+            }
         }
 
         .gallery-item:hover {
-            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            transform: translateY(-5px);
         }
 
         .gallery-item img {
             width: 100%;
-            height: 300px;
+            height: 100%;
             object-fit: cover;
-            transition: transform 0.8s var(--transition);
+            transition: transform 0.5s var(--transition);
         }
 
         .gallery-item:hover img {
-            transform: scale(1.1) rotate(2deg);
+            transform: scale(1.05);
         }
 
         .gallery-overlay {
@@ -587,278 +574,529 @@
             left: 0;
             right: 0;
             background: linear-gradient(transparent, rgba(10, 41, 26, 0.9));
-            padding: 30px;
+            padding: 20px;
             transform: translateY(100%);
-            transition: transform 0.5s var(--transition);
+            transition: transform 0.3s var(--transition);
+        }
+
+        @media (min-width: 768px) {
+            .gallery-overlay {
+                padding: 30px;
+            }
         }
 
         .gallery-item:hover .gallery-overlay {
             transform: translateY(0);
         }
 
+        .gallery-overlay h3 {
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .gallery-overlay p {
+            color: var(--gold-light);
+            font-size: 0.9rem;
+        }
+
         /* Map Section */
         .map-section {
-            padding: 100px 20px;
+            padding: 60px 20px;
             background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
         }
 
+        @media (min-width: 768px) {
+            .map-section {
+                padding: 80px 20px;
+            }
+        }
+
         .map-card {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
             background: var(--white);
-            border-radius: 25px;
+            border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow);
-            transform-style: preserve-3d;
-            perspective: 1000px;
         }
 
         #weddingMap {
-            height: 400px;
+            height: 300px;
             width: 100%;
             z-index: 1;
         }
 
+        @media (min-width: 768px) {
+            #weddingMap {
+                height: 400px;
+            }
+        }
+
+        .map-info {
+            padding: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .map-info {
+                padding: 30px;
+            }
+        }
+
+        .map-info h3 {
+            color: var(--accent-dark);
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .map-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .map-buttons {
+                flex-direction: row;
+                gap: 15px;
+            }
+        }
+
         /* RSVP Section */
         .rsvp-section {
-            padding: 100px 20px;
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            position: relative;
+            padding: 60px 20px;
+            background: var(--gray-light);
+        }
+
+        @media (min-width: 768px) {
+            .rsvp-section {
+                padding: 80px 20px;
+            }
         }
 
         .rsvp-form {
             max-width: 600px;
             margin: 0 auto;
             background: var(--white);
-            border-radius: 25px;
-            padding: 60px;
+            border-radius: 20px;
+            padding: 30px;
             box-shadow: var(--shadow);
-            border: 3px solid var(--accent);
-            position: relative;
-            overflow: hidden;
+            border: 2px solid var(--accent);
         }
 
-        .rsvp-form::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, 
-                transparent 30%, 
-                rgba(22, 101, 52, 0.1) 50%, 
-                transparent 70%);
-            animation: form-bg 10s linear infinite;
-            z-index: 0;
+        @media (min-width: 768px) {
+            .rsvp-form {
+                padding: 50px;
+            }
         }
 
-        @keyframes form-bg {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .form-group {
+            margin-bottom: 25px;
         }
 
-        .rsvp-form > * {
-            position: relative;
-            z-index: 1;
+        .form-label {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--accent-dark);
+            margin-bottom: 10px;
         }
 
-        /* Interactive Elements */
-        .interactive-card {
-            position: relative;
-            cursor: pointer;
-            transition: all 0.4s var(--transition);
-        }
-
-        .interactive-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, 
-                rgba(22, 101, 52, 0.1), 
-                rgba(212, 175, 55, 0.1));
-            border-radius: inherit;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .interactive-card:hover::after {
-            opacity: 1;
-        }
-
-        /* Particles */
-        #particles-js {
-            position: fixed;
+        .form-input {
             width: 100%;
-            height: 100%;
-            z-index: -1;
+            padding: 15px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--text-dark);
+            background: var(--gray-light);
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            transition: all 0.3s var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(22, 101, 52, 0.1);
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .radio-group {
+                flex-direction: row;
+                gap: 30px;
+            }
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            padding: 12px 20px;
+            border-radius: 10px;
+            transition: all 0.3s var(--transition);
+            background: var(--gray-light);
+            border: 2px solid transparent;
+        }
+
+        .radio-label:hover {
+            border-color: var(--accent);
+            background: rgba(22, 101, 52, 0.05);
+        }
+
+        .custom-radio {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            position: relative;
+            transition: all 0.3s var(--transition);
+        }
+
+        input[type="radio"]:checked + .radio-label .custom-radio {
+            border-color: var(--accent);
+            background: var(--accent);
+        }
+
+        input[type="radio"]:checked + .radio-label .custom-radio::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: var(--white);
+            border-radius: 50%;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .checkbox-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s var(--transition);
+            background: var(--gray-light);
+        }
+
+        .checkbox-label:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .custom-checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.3s var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        input[type="checkbox"]:checked + .checkbox-label .custom-checkbox {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        input[type="checkbox"]:checked + .checkbox-label .custom-checkbox::after {
+            content: '✓';
+            color: var(--white);
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        input[type="checkbox"]:checked + .checkbox-label {
+            background: rgba(22, 101, 52, 0.05);
+            border-color: var(--accent);
+        }
+
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 15px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--text-dark);
+            background: var(--gray-light);
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            min-height: 120px;
+            resize: vertical;
+            transition: all 0.3s var(--transition);
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(22, 101, 52, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: var(--white);
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s var(--transition);
+            margin-top: 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(22, 101, 52, 0.3);
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(22, 101, 52, 0.4);
         }
 
         /* Footer */
         .footer {
-            padding: 80px 20px;
+            padding: 50px 20px;
             background: var(--primary-dark);
             color: var(--white);
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
 
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, 
-                var(--accent-light), 
-                var(--gold), 
-                var(--accent-light));
-            animation: footer-line 3s ease-in-out infinite;
+        @media (min-width: 768px) {
+            .footer {
+                padding: 70px 20px;
+            }
         }
 
-        @keyframes footer-line {
-            0%, 100% { transform: translateX(-100%); }
-            50% { transform: translateX(100%); }
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        /* Navigation */
-        .nav-dots {
-            position: fixed;
-            right: 30px;
-            top: 50%;
-            transform: translateY(-50%);
+        .footer-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 30px;
+        }
+
+        .footer-info {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-info {
+                flex-direction: row;
+                justify-content: space-around;
+                gap: 20px;
+            }
+        }
+
+        .footer-block h3 {
+            color: var(--gold-light);
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-block p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .footer-heart {
+            color: var(--gold);
+            margin: 0 5px;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: var(--white);
+            color: var(--text-dark);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--accent);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.5s var(--transition);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .toast {
+                left: auto;
+                right: 30px;
+                bottom: 30px;
+                max-width: 400px;
+            }
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            background: var(--white);
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
             z-index: 100;
         }
 
-        .nav-dot {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all 0.3s var(--transition);
-            position: relative;
-        }
-
-        .nav-dot::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: -8px;
-            right: -8px;
-            bottom: -8px;
-            border: 2px solid var(--accent);
-            border-radius: 50%;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .nav-dot.active {
-            background: var(--accent);
-            transform: scale(1.5);
-            box-shadow: 0 0 20px rgba(22, 101, 52, 0.5);
-        }
-
-        .nav-dot.active::before {
-            opacity: 1;
-            animation: dot-pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes dot-pulse {
-            0%, 100% { transform: scale(1); opacity: 0.7; }
-            50% { transform: scale(1.2); opacity: 0.3; }
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .timeline-wrapper {
-                height: 500px;
-            }
-            
-            .timeline-detail {
-                width: 50%;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .names-display {
-                font-size: 3rem;
-            }
-            
-            .timeline-wrapper {
-                height: 400px;
-            }
-            
-            .timeline-detail {
-                width: 90%;
-                right: 5%;
-            }
-            
-            .nav-dots {
+        @media (min-width: 768px) {
+            .mobile-menu {
                 display: none;
             }
         }
 
-        @media (max-width: 480px) {
-            .names-display {
-                font-size: 2.5rem;
-            }
-            
-            .countdown-value {
-                font-size: 2.5rem;
-            }
-            
-            .timeline-wrapper {
-                height: 300px;
-            }
+        .menu-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .menu-btn:hover {
+            background: var(--accent-dark);
+            transform: scale(1.1);
+        }
+
+        /* Hide scrollbar for mobile */
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Loading animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--gold);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <!-- Particles Background -->
-    <div id="particles-js"></div>
-
-    <!-- Navigation Dots -->
-    <div class="nav-dots">
-        <div class="nav-dot active" onclick="scrollToSection('hero')"></div>
-        <div class="nav-dot" onclick="scrollToSection('timeline')"></div>
-        <div class="nav-dot" onclick="scrollToSection('gallery')"></div>
-        <div class="nav-dot" onclick="scrollToSection('map')"></div>
-        <div class="nav-dot" onclick="scrollToSection('rsvp')"></div>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
     </div>
 
     <!-- Hero Section -->
     <section id="hero" class="hero">
-        <div class="hero-bg">
-            <div style="width: 300px; height: 300px;"></div>
-            <div style="width: 200px; height: 200px; animation-delay: -5s;"></div>
-            <div style="width: 150px; height: 150px; animation-delay: -10s;"></div>
-        </div>
-
         <div class="invitation-content">
             <div class="date-display">28 ИЮНЯ 2026</div>
             <div class="time-display">
                 <i class="far fa-clock"></i>
-                <span>Сбор гостей в 15:30</span>
+                <span>Сбор гостей в 16:00</span>
             </div>
             
             <h1 class="names-display">
-                <span class="glitch-wrapper">
-                    <span class="glitch" data-text="Анатолий">Анатолий</span>
-                </span>
-                <span class="ampersand">&</span>
-                <span class="glitch-wrapper">
-                    <span class="glitch" data-text="Мадина">Мадина</span>
-                </span>
+                Анатолий<span class="ampersand">&</span>Мадина
             </h1>
             
             <!-- Таймер обратного отсчета -->
@@ -890,88 +1128,125 @@
             </div>
             <button class="cta-button" onclick="scrollToSection('rsvp')">
                 Подтвердить участие
-                <i class="fas fa-heart"></i>
+                <i class="fas fa-arrow-right"></i>
             </button>
         </div>
     </section>
 
-    <!-- Wavy Timeline Section -->
+    <!-- Timeline Section -->
     <section id="timeline" class="timeline-section">
-        <div class="timeline-container">
-            <h2 class="section-title" style="text-align: center; font-size: 3rem; color: var(--accent-dark); margin-bottom: 20px;">Программа дня</h2>
-            <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 60px;">Интерактивная временная шкала - нажмите на точки</p>
+        <div class="section-container">
+            <h2 class="section-title">Программа дня</h2>
+            <p class="section-subtitle">Нажмите на каждый этап, чтобы увидеть подробности</p>
             
-            <div class="timeline-wrapper">
-                <!-- Wavy SVG Line -->
-                <svg class="wavy-line" viewBox="0 0 1200 400" preserveAspectRatio="none">
-                    <path d="M0,200 Q150,100 300,200 T600,200 T900,200 T1200,200" />
-                </svg>
-                
-                <!-- Timeline Points -->
-                <div class="timeline-point" style="top: 180px; left: 10%;" data-index="0">
-                    <i class="fas fa-users"></i>
-                </div>
-                <div class="timeline-point" style="top: 150px; left: 30%;" data-index="1">
-                    <i class="fas fa-ring"></i>
-                </div>
-                <div class="timeline-point" style="top: 180px; left: 50%;" data-index="2">
-                    <i class="fas fa-camera"></i>
-                </div>
-                <div class="timeline-point" style="top: 150px; left: 70%;" data-index="3">
-                    <i class="fas fa-utensils"></i>
-                </div>
-                <div class="timeline-point" style="top: 180px; left: 90%;" data-index="4">
-                    <i class="fas fa-glass-cheers"></i>
-                </div>
-                
-                <!-- Timeline Details -->
-                <div class="timeline-detail" id="timeline-detail-0">
-                    <h3>Сбор гостей</h3>
-                    <div class="timeline-time">
-                        <i class="far fa-clock"></i>
-                        <span>15:30</span>
+            <div class="timeline-accordion">
+                <!-- Item 1 -->
+                <div class="timeline-item" data-index="0">
+                    <div class="timeline-header">
+                        <div class="timeline-time">
+                            <i class="far fa-clock"></i>
+                            <span>16:00</span>
+                        </div>
+                        <div class="timeline-event">Сбор гостей</div>
+                        <div class="timeline-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                     </div>
-                    <p>Дорогие гости, просим вас приехать пораньше. Начало в 15:30. Будет фуршет с легкими закусками и напитками.</p>
-                    <p><strong>Важно:</strong> Пожалуйста, приходите вовремя, чтобы не пропустить начало церемонии.</p>
+                    <div class="timeline-content">
+                        <div class="timeline-detail">
+                            <p><strong>Встреча гостей</strong></p>
+                            <p>Дорогие гости, добро пожаловать! Просим вас приехать к 16:00.</p>
+                            <p>Будет организован фуршет с легкими закусками и напитками.</p>
+                            <p><em>Место: Банкетный зал ресторана DIONIS</em></p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="timeline-detail" id="timeline-detail-1">
-                    <h3>Торжественная церемония</h3>
-                    <div class="timeline-time">
-                        <i class="far fa-clock"></i>
-                        <span>16:00</span>
+                <!-- Item 2 -->
+                <div class="timeline-item" data-index="1">
+                    <div class="timeline-header">
+                        <div class="timeline-time">
+                            <i class="far fa-clock"></i>
+                            <span>16:30</span>
+                        </div>
+                        <div class="timeline-event">Торжественная церемония</div>
+                        <div class="timeline-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                     </div>
-                    <p>Начало свадебной церемонии. Самое важное событие дня, где мы станем мужем и женой.</p>
-                    <p><strong>Место:</strong> Банкетный зал ресторана DIONIS.</p>
+                    <div class="timeline-content">
+                        <div class="timeline-detail">
+                            <p><strong>Свадебная церемония</strong></p>
+                            <p>Самое важное событие дня - мы станем мужем и женой!</p>
+                            <p>Церемония пройдет в романтической атмосфере с музыкальным сопровождением.</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="timeline-detail" id="timeline-detail-2">
-                    <h3>Фотосессия</h3>
-                    <div class="timeline-time">
-                        <i class="far fa-clock"></i>
-                        <span>17:00</span>
+                <!-- Item 3 -->
+                <div class="timeline-item" data-index="2">
+                    <div class="timeline-header">
+                        <div class="timeline-time">
+                            <i class="far fa-clock"></i>
+                            <span>17:30</span>
+                        </div>
+                        <div class="timeline-event">Поздравления и фотосессия</div>
+                        <div class="timeline-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                     </div>
-                    <p>Совместная фотосессия с гостями и профессиональным фотографом. Будем рады сделать памятные снимки с каждым из вас!</p>
+                    <div class="timeline-content">
+                        <div class="timeline-detail">
+                            <p><strong>Фотосессия с гостями</strong></p>
+                            <p>Совместная фотосессия с профессиональным фотографом.</p>
+                            <p>Будем рады сделать памятные снимки с каждым из вас!</p>
+                            <p><em>Фотограф: Алексей Профессионалов</em></p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="timeline-detail" id="timeline-detail-3">
-                    <h3>Банкет</h3>
-                    <div class="timeline-time">
-                        <i class="far fa-clock"></i>
-                        <span>18:00</span>
+                <!-- Item 4 -->
+                <div class="timeline-item" data-index="3">
+                    <div class="timeline-header">
+                        <div class="timeline-time">
+                            <i class="far fa-clock"></i>
+                            <span>19:00</span>
+                        </div>
+                        <div class="timeline-event">Банкет</div>
+                        <div class="timeline-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                     </div>
-                    <p>Праздничный ужин. Вас ждет изысканное меню от шеф-повара ресторана DIONIS.</p>
-                    <p><strong>Особенности:</strong> Вегетарианские и диетические блюда по предварительному запросу.</p>
+                    <div class="timeline-content">
+                        <div class="timeline-detail">
+                            <p><strong>Праздничный ужин</strong></p>
+                            <p>Изысканное меню от шеф-повара ресторана DIONIS.</p>
+                            <p>Широкий выбор блюд, включая вегетарианские и диетические опции.</p>
+                            <p><strong>Выбор алкоголя:</strong> водка, вино, шампанское, безалкогольные напитки.</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="timeline-detail" id="timeline-detail-4">
-                    <h3>Танцы и развлечения</h3>
-                    <div class="timeline-time">
-                        <i class="far fa-clock"></i>
-                        <span>20:00 - 22:00</span>
+                <!-- Item 5 -->
+                <div class="timeline-item" data-index="4">
+                    <div class="timeline-header">
+                        <div class="timeline-time">
+                            <i class="far fa-clock"></i>
+                            <span>20:30 - 22:00</span>
+                        </div>
+                        <div class="timeline-event">Танцы и развлечения</div>
+                        <div class="timeline-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
                     </div>
-                    <p>Танцевальная программа, конкурсы и развлечения до самого завершения праздника в 22:00.</p>
-                    <p><strong>Завершение:</strong> В 22:00 мы прощаемся с гостями.</p>
+                    <div class="timeline-content">
+                        <div class="timeline-detail">
+                            <p><strong>Вечерняя программа</strong></p>
+                            <p>Танцевальная программа с живой музыкой и DJ.</p>
+                            <p>Конкурсы, развлечения и много веселья!</p>
+                            <p><strong>Завершение:</strong> В 22:00 мы прощаемся с гостями.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -979,32 +1254,40 @@
 
     <!-- Photo Gallery -->
     <section id="gallery" class="gallery-section">
-        <div class="timeline-container">
-            <h2 class="section-title" style="text-align: center; font-size: 3rem; color: var(--accent-dark); margin-bottom: 20px;">Наши моменты</h2>
-            <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 60px;">Самые яркие воспоминания нашего пути</p>
+        <div class="section-container">
+            <h2 class="section-title">Наши фотографии</h2>
+            <p class="section-subtitle">Самые счастливые моменты нашего пути</p>
             
             <div class="gallery-grid">
-                <div class="gallery-item interactive-card">
-                    <img src="https://raw.githubusercontent.com/4natrix/wedding-invite/main/1.jpg" alt="Наше фото">
+                <div class="gallery-item">
+                    <img src="https://raw.githubusercontent.com/4natrix/wedding-invite/main/1.jpg" alt="Наша фотография 1">
                     <div class="gallery-overlay">
-                        <h3 style="color: white; margin-bottom: 10px;">Первый отпуск</h3>
-                        <p style="color: var(--gold-light);">Турция, 2024</p>
+                        <h3>Первый отпуск вместе</h3>
+                        <p>Турция, 2024</p>
                     </div>
                 </div>
                 
-                <div class="gallery-item interactive-card">
-                    <img src="https://raw.githubusercontent.com/4natrix/wedding-invite/main/2.jpg" alt="Наше фото">
+                <div class="gallery-item">
+                    <img src="https://raw.githubusercontent.com/4natrix/wedding-invite/main/2.jpg" alt="Наша фотография 2">
                     <div class="gallery-overlay">
-                        <h3 style="color: white; margin-bottom: 10px;">Предложение</h3>
-                        <p style="color: var(--gold-light);">Самый важный день</p>
+                        <h3>Свадебная фотосессия</h3>
+                        <p>Предварительные снимки</p>
                     </div>
                 </div>
                 
-                <div class="gallery-item interactive-card">
-                    <img src="https://raw.githubusercontent.com/4natrix/wedding-invite/main/3.jpg" alt="Наше фото">
+                <div class="gallery-item">
+                    <img src="https://raw.githubusercontent.com/4natrix/wedding-invite/main/3.jpg" alt="Наша фотография 3">
                     <div class="gallery-overlay">
-                        <h3 style="color: white; margin-bottom: 10px;">Ежедневные радости</h3>
-                        <p style="color: var(--gold-light);">Вместе всегда</p>
+                        <h3>Момент предложения</h3>
+                        <p>Самый важный день</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://raw.githubusercontent.com/4natrix/wedding-invite/main/4.jpg" alt="Наша фотография 4">
+                    <div class="gallery-overlay">
+                        <h3>Вместе всегда</h3>
+                        <p>Наши ежедневные радости</p>
                     </div>
                 </div>
             </div>
@@ -1013,24 +1296,26 @@
 
     <!-- Map Section -->
     <section id="map" class="map-section">
-        <div class="timeline-container">
-            <h2 class="section-title" style="text-align: center; font-size: 3rem; color: white; margin-bottom: 20px;">Локация</h2>
-            <p style="text-align: center; color: var(--gold-light); font-size: 1.2rem; margin-bottom: 60px;">Ресторан DIONIS, ул. Текстильщиков 12А</p>
+        <div class="section-container">
+            <h2 class="section-title" style="color: white;">Локация</h2>
+            <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.9);">Ресторан DIONIS, ул. Текстильщиков 12А</p>
             
-            <div class="map-card interactive-card">
+            <div class="map-card">
                 <div id="weddingMap"></div>
-                <div style="padding: 30px; background: white;">
-                    <h3 style="color: var(--accent-dark); margin-bottom: 15px;">Как добраться</h3>
-                    <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
+                <div class="map-info">
+                    <h3>Как добраться</h3>
+                    <p style="color: var(--text-light); margin-bottom: 15px;">Ресторан находится в районе КСК. Есть парковка для гостей.</p>
+                    
+                    <div class="map-buttons">
                         <a href="https://yandex.ru/maps/?text=Ресторан DIONIS Костанай Текстильщиков 12А" 
-                           target="_blank" class="cta-button" style="padding: 15px 30px; text-decoration: none;">
+                           target="_blank" class="cta-button" style="text-decoration: none; text-align: center; padding: 15px 20px;">
                             <i class="fas fa-map"></i> Яндекс.Карты
                         </a>
                         <a href="https://www.google.com/maps/search/?api=1&query=Ресторан+DIONIS+Костанай+Текстильщиков+12А" 
-                           target="_blank" class="cta-button" style="padding: 15px 30px; text-decoration: none; background: linear-gradient(135deg, #1e293b, #334155);">
+                           target="_blank" class="cta-button" style="text-decoration: none; text-align: center; padding: 15px 20px; background: linear-gradient(135deg, #1e293b, #334155);">
                             <i class="fab fa-google"></i> Google Карты
                         </a>
-                        <button onclick="copyAddress()" class="cta-button" style="padding: 15px 30px; background: linear-gradient(135deg, #64748b, #475569);">
+                        <button onclick="copyAddress()" class="cta-button" style="padding: 15px 20px; background: linear-gradient(135deg, #64748b, #475569);">
                             <i class="far fa-copy"></i> Скопировать адрес
                         </button>
                     </div>
@@ -1041,298 +1326,366 @@
 
     <!-- RSVP Section -->
     <section id="rsvp" class="rsvp-section">
-        <div class="rsvp-form interactive-card">
-            <h2 class="section-title" style="text-align: center; font-size: 2.5rem; color: var(--accent-dark); margin-bottom: 20px;">Подтвердите участие</h2>
-            <p style="text-align: center; color: var(--text-light); font-size: 1.1rem; margin-bottom: 40px;">Пожалуйста, ответьте до 1 июня 2026</p>
+        <div class="section-container">
+            <h2 class="section-title">Подтвердите участие</h2>
+            <p class="section-subtitle">Мы будем рады видеть вас на нашей свадьбе.<br>Пожалуйста, ответьте до 1 июня 2026</p>
             
-            <form id="rsvpForm" style="display: flex; flex-direction: column; gap: 25px;">
-                <div>
-                    <label style="display: block; margin-bottom: 10px; font-weight: 600; color: var(--accent-dark);">Имя и фамилия</label>
-                    <input type="text" id="name" name="name" placeholder="Фамилия Имя" required 
-                           style="width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 1rem; transition: all 0.3s ease;">
-                </div>
-                
-                <div>
-                    <label style="display: block; margin-bottom: 10px; font-weight: 600; color: var(--accent-dark);">Вы придёте?</label>
-                    <div style="display: flex; gap: 20px; margin-top: 10px;">
-                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                            <input type="radio" name="attendance" value="yes" required style="display: none;">
-                            <span style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center;"></span>
-                            <span>Да, с радостью</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                            <input type="radio" name="attendance" value="no" style="display: none;">
-                            <span style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center;"></span>
-                            <span>К сожалению, нет</span>
-                        </label>
+            <div class="rsvp-form">
+                <form id="rsvpForm">
+                    <div class="form-group">
+                        <label class="form-label">Имя и фамилия *</label>
+                        <input type="text" class="form-input" id="name" name="name" placeholder="Фамилия Имя" required>
                     </div>
-                </div>
-                
-                <div>
-                    <label style="display: block; margin-bottom: 10px; font-weight: 600; color: var(--accent-dark);">Предпочтения по напиткам</label>
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 10px;">
-                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 10px; border: 2px solid #e2e8f0; border-radius: 8px; transition: all 0.3s ease;">
-                            <input type="checkbox" name="drinks" value="Водка" style="display: none;">
-                            <span style="width: 20px; height: 20px; border: 2px solid var(--accent); border-radius: 4px; display: flex; align-items: center; justify-content: center;"></span>
-                            <span>Водка</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 10px; border: 2px solid #e2e8f0; border-radius: 8px; transition: all 0.3s ease;">
-                            <input type="checkbox" name="drinks" value="Вино" style="display: none;">
-                            <span style="width: 20px; height: 20px; border: 2px solid var(--accent); border-radius: 4px; display: flex; align-items: center; justify-content: center;"></span>
-                            <span>Вино</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 10px; border: 2px solid #e2e8f0; border-radius: 8px; transition: all 0.3s ease;">
-                            <input type="checkbox" name="drinks" value="Шампанское" style="display: none;">
-                            <span style="width: 20px; height: 20px; border: 2px solid var(--accent); border-radius: 4px; display: flex; align-items: center; justify-content: center;"></span>
-                            <span>Шампанское</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 10px; border: 2px solid #e2e8f0; border-radius: 8px; transition: all 0.3s ease;">
-                            <input type="checkbox" name="drinks" value="Безалкогольное" style="display: none;">
-                            <span style="width: 20px; height: 20px; border: 2px solid var(--accent); border-radius: 4px; display: flex; align-items: center; justify-content: center;"></span>
-                            <span>Безалкогольное</span>
-                        </label>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Вы придёте? *</label>
+                        <div class="radio-group">
+                            <input type="radio" id="attendance-yes" name="attendance" value="yes" required>
+                            <label for="attendance-yes" class="radio-label">
+                                <span class="custom-radio"></span>
+                                <span>Да, с радостью</span>
+                            </label>
+                            
+                            <input type="radio" id="attendance-no" name="attendance" value="no">
+                            <label for="attendance-no" class="radio-label">
+                                <span class="custom-radio"></span>
+                                <span>К сожалению, нет</span>
+                            </label>
+                        </div>
                     </div>
-                </div>
-                
-                <div>
-                    <label style="display: block; margin-bottom: 10px; font-weight: 600; color: var(--accent-dark);">Комментарии</label>
-                    <textarea name="comment" placeholder="Диетические ограничения, пожелания..." 
-                              style="width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 1rem; min-height: 100px; resize: vertical;"></textarea>
-                </div>
-                
-                <button type="submit" class="cta-button" style="margin-top: 20px; padding: 20px; font-size: 1.1rem;">
-                    <i class="fas fa-paper-plane"></i> Отправить ответ
-                </button>
-            </form>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Предпочтения по напиткам</label>
+                        <div class="checkbox-grid">
+                            <input type="checkbox" id="vodka" name="drinks" value="Водка">
+                            <label for="vodka" class="checkbox-label">
+                                <span class="custom-checkbox"></span>
+                                <span>Водка</span>
+                            </label>
+                            
+                            <input type="checkbox" id="wine" name="drinks" value="Вино">
+                            <label for="wine" class="checkbox-label">
+                                <span class="custom-checkbox"></span>
+                                <span>Вино</span>
+                            </label>
+                            
+                            <input type="checkbox" id="champagne" name="drinks" value="Шампанское">
+                            <label for="champagne" class="checkbox-label">
+                                <span class="custom-checkbox"></span>
+                                <span>Шампанское</span>
+                            </label>
+                            
+                            <input type="checkbox" id="whisky" name="drinks" value="Виски">
+                            <label for="whisky" class="checkbox-label">
+                                <span class="custom-checkbox"></span>
+                                <span>Виски</span>
+                            </label>
+                            
+                            <input type="checkbox" id="non-alcoholic" name="drinks" value="Безалкогольное">
+                            <label for="non-alcoholic" class="checkbox-label">
+                                <span class="custom-checkbox"></span>
+                                <span>Безалкогольное</span>
+                            </label>
+                            
+                            <input type="checkbox" id="all" name="drinks" value="Всё подряд">
+                            <label for="all" class="checkbox-label">
+                                <span class="custom-checkbox"></span>
+                                <span>Всё подряд</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Комментарии или пожелания</label>
+                        <textarea class="form-textarea" id="comment" name="comment" 
+                                  placeholder="Диетические ограничения, музыкальные предпочтения..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <i class="fas fa-paper-plane"></i> Отправить ответ
+                    </button>
+                </form>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="timeline-container">
-            <h2 style="font-size: 2rem; color: white; margin-bottom: 30px;">С любовью, Мадина и Анатолий</h2>
-            <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; flex-wrap: wrap;">
-                <div>
-                    <h3 style="color: var(--gold-light); margin-bottom: 10px;">Контакты</h3>
+        <div class="footer-content">
+            <h2 class="footer-title">Мадина <span class="footer-heart">❤</span> Анатолий</h2>
+            
+            <div class="footer-info">
+                <div class="footer-block">
+                    <h3>Контакты</h3>
                     <p>Мадина: +7 (706) 612-08-45</p>
                     <p>Анатолий: +7 (777) 900-67-56</p>
                 </div>
-                <div>
-                    <h3 style="color: var(--gold-light); margin-bottom: 10px;">Дата</h3>
+                
+                <div class="footer-block">
+                    <h3>Дата и время</h3>
                     <p>28 июня 2026</p>
-                    <p>Начало в 16:00</p>
+                    <p>Сбор гостей: 16:00</p>
                 </div>
-                <div>
-                    <h3 style="color: var(--gold-light); margin-bottom: 10px;">Локация</h3>
+                
+                <div class="footer-block">
+                    <h3>Локация</h3>
                     <p>Ресторан "DIONIS"</p>
                     <p>ул. Текстильщиков 12А</p>
+                    <p>г. Костанай</p>
                 </div>
             </div>
-            <p style="color: rgba(255, 255, 255, 0.7);">Создано с ❤️ для самого важного дня в нашей жизни</p>
+            
+            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin-top: 30px;">
+                Создано с любовью для самого важного дня в нашей жизни
+            </p>
         </div>
     </footer>
 
+    <!-- Mobile Navigation -->
+    <div class="mobile-menu">
+        <button class="menu-btn" onclick="scrollToSection('hero')">
+            <i class="fas fa-home"></i>
+        </button>
+        <button class="menu-btn" onclick="scrollToSection('timeline')">
+            <i class="fas fa-calendar-alt"></i>
+        </button>
+        <button class="menu-btn" onclick="scrollToSection('gallery')">
+            <i class="fas fa-images"></i>
+        </button>
+        <button class="menu-btn" onclick="scrollToSection('map')">
+            <i class="fas fa-map-marker-alt"></i>
+        </button>
+        <button class="menu-btn" onclick="scrollToSection('rsvp')">
+            <i class="fas fa-envelope"></i>
+        </button>
+    </div>
+
     <!-- Toast Notification -->
-    <div id="toast" style="position: fixed; bottom: 30px; right: 30px; background: white; padding: 20px 30px; border-radius: 15px; box-shadow: var(--shadow); border-left: 5px solid var(--accent); transform: translateX(150%); transition: transform 0.5s var(--transition); z-index: 1000;">
-        <div style="display: flex; align-items: center; gap: 15px;">
-            <i class="fas fa-check-circle" style="color: var(--accent); font-size: 1.5rem;"></i>
-            <div>
-                <strong style="color: var(--accent-dark);">Спасибо!</strong>
-                <p style="color: var(--text-light); margin-top: 5px;">Ваш ответ сохранён</p>
-            </div>
+    <div id="toast" class="toast">
+        <div class="toast-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="toast-content">
+            <div class="toast-title">Спасибо!</div>
+            <div class="toast-message">Ваш ответ успешно сохранён.</div>
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
-    
-    <!-- AOS Library -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
-
-        // Initialize Particles
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 100, density: { enable: true, value_area: 800 } },
-                color: { value: "#166534" },
-                shape: { type: "circle" },
-                opacity: { value: 0.3, random: true },
-                size: { value: 3, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: "#166534",
-                    opacity: 0.2,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 1,
-                    direction: "none",
-                    random: true,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: { enable: true, mode: "repulse" },
-                    onclick: { enable: true, mode: "push" }
-                }
-            }
-        });
-
-        // Wedding date countdown
+        // Google Apps Script URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzeqBk244PsOpZhUPE9kjcuaRHYjRGxFMJWcCYpSEU581oMfeeCcHi-EiFPnBtnyPp6/exec';
+        
+        // DOM Elements
+        const form = document.getElementById('rsvpForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const toast = document.getElementById('toast');
+        const loading = document.getElementById('loading');
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        // Wedding date
         const weddingDate = new Date('2026-06-28T16:00:00');
-        
-        function updateCountdown() {
-            const now = new Date();
-            const timeLeft = weddingDate - now;
-            
-            if (timeLeft <= 0) {
-                document.querySelector('.countdown-container').innerHTML = `
-                    <div class="countdown-title">🎉 Свадьба началась! 🎉</div>
-                `;
-                return;
+        let countdownInterval = null;
+        let map = null;
+
+        // Hide loading screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loading.classList.add('hidden');
+            }, 1000);
+        });
+
+        // Countdown timer
+        function initCountdown() {
+            function updateCountdown() {
+                const now = new Date();
+                const timeLeft = weddingDate - now;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    document.querySelector('.countdown-container').innerHTML = `
+                        <div style="text-align: center; padding: 20px;">
+                            <div style="font-size: 1.5rem; color: var(--gold); font-weight: 700; margin-bottom: 10px;">
+                                🎉 Свадьба началась! 🎉
+                            </div>
+                            <div style="color: var(--white);">
+                                Спасибо, что разделили с нами этот день!
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = days.toString().padStart(3, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
             }
             
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-            
-            document.getElementById('days').textContent = days.toString().padStart(3, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            updateCountdown();
+            countdownInterval = setInterval(updateCountdown, 1000);
         }
-        
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
 
-        // Timeline functionality
-        const timelinePoints = document.querySelectorAll('.timeline-point');
-        const timelineDetails = document.querySelectorAll('.timeline-detail');
-        
-        timelinePoints.forEach(point => {
-            point.addEventListener('click', function() {
-                const index = this.getAttribute('data-index');
+        // Timeline accordion
+        function initTimeline() {
+            timelineItems.forEach(item => {
+                const header = item.querySelector('.timeline-header');
+                const toggle = item.querySelector('.timeline-toggle');
                 
-                // Remove active class from all points and details
-                timelinePoints.forEach(p => p.classList.remove('active'));
-                timelineDetails.forEach(d => d.classList.remove('active'));
+                function toggleItem() {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all items
+                    timelineItems.forEach(i => i.classList.remove('active'));
+                    
+                    // If clicked item was not active, open it
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                }
                 
-                // Add active class to clicked point and corresponding detail
-                this.classList.add('active');
-                document.getElementById(`timeline-detail-${index}`).classList.add('active');
-                
-                // Add animation
-                this.style.animation = 'none';
-                setTimeout(() => {
-                    this.style.animation = '';
-                }, 10);
+                header.addEventListener('click', toggleItem);
+                toggle.addEventListener('click', toggleItem);
             });
-        });
+        }
 
         // Initialize map
-        let map = null;
         function initMap() {
             if (map) return;
             
-            map = L.map('weddingMap').setView([53.2144, 63.6246], 15);
+            map = L.map('weddingMap').setView([53.2144, 63.6246], 16);
             
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 19
             }).addTo(map);
             
+            // Custom wedding marker
             const weddingIcon = L.divIcon({
                 className: 'wedding-marker',
                 html: `
                     <div style="
                         background: var(--accent);
-                        width: 60px;
-                        height: 60px;
+                        width: 50px;
+                        height: 50px;
                         border-radius: 50%;
                         border: 3px solid white;
-                        box-shadow: 0 5px 20px rgba(0,0,0,0.3),
-                                    0 0 30px rgba(22, 101, 52, 0.5);
+                        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         color: white;
-                        font-size: 24px;
-                        animation: pulse 2s ease-in-out infinite;
+                        font-size: 20px;
                     ">
                         <i class="fas fa-heart"></i>
                     </div>
                 `,
-                iconSize: [60, 60],
-                iconAnchor: [30, 60]
+                iconSize: [50, 50],
+                iconAnchor: [25, 50]
             });
             
             L.marker([53.2144, 63.6246], { icon: weddingIcon })
                 .addTo(map)
                 .bindPopup(`
-                    <div style="padding: 15px;">
-                        <strong style="color: var(--accent);">Ресторан "DIONIS"</strong><br>
-                        ул. Текстильщиков 12А, Костанай
+                    <div style="padding: 10px; max-width: 250px;">
+                        <strong style="color: var(--accent); font-size: 1.1rem;">Ресторан "DIONIS"</strong><br>
+                        <span>ул. Текстильщиков 12А, Костанай</span><br>
+                        <small style="color: #666;">Свадьба Мадины и Анатолия</small>
                     </div>
                 `);
+            
+            // Adjust map on resize
+            setTimeout(() => map.invalidateSize(), 100);
         }
 
-        // Copy address function
+        // Copy address to clipboard
         function copyAddress() {
             const address = 'Ресторан "DIONIS", ул. Текстильщиков 12А, г. Костанай';
             navigator.clipboard.writeText(address).then(() => {
                 showToast('Адрес скопирован в буфер обмена');
+            }).catch(err => {
+                console.error('Ошибка копирования:', err);
+                showToast('Не удалось скопировать адрес');
             });
         }
 
-        // Show toast function
+        // Show toast notification
         function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMessage = toast.querySelector('p');
+            const toastMessage = toast.querySelector('.toast-message');
             toastMessage.textContent = message;
             
-            toast.style.transform = 'translateX(0)';
+            toast.classList.add('show');
             
             setTimeout(() => {
-                toast.style.transform = 'translateX(150%)';
-            }, 3000);
+                toast.classList.remove('show');
+            }, 4000);
         }
 
-        // RSVP form submission
-        const form = document.getElementById('rsvpForm');
+        // Scroll to section
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+            
+            // Initialize map if scrolling to map section
+            if (sectionId === 'map' && !map) {
+                setTimeout(initMap, 300);
+            }
+        }
+
+        // Form submission
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            const formData = new FormData(form);
-            const data = {
-                name: formData.get('name'),
-                attendance: formData.get('attendance'),
-                drinks: Array.from(form.querySelectorAll('input[name="drinks"]:checked')).map(cb => cb.value),
-                comment: formData.get('comment'),
-                timestamp: new Date().toLocaleString()
-            };
+            // Validate form
+            const nameInput = document.getElementById('name');
+            const attendanceYes = document.getElementById('attendance-yes');
+            const attendanceNo = document.getElementById('attendance-no');
             
-            // Google Apps Script URL
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbzeqBk244PsOpZhUPE9kjcuaRHYjRGxFMJWcCYpSEU581oMfeeCcHi-EiFPnBtnyPp6/exec';
+            if (!nameInput.value.trim()) {
+                showToast('Пожалуйста, введите имя и фамилию');
+                nameInput.focus();
+                return;
+            }
+            
+            if (!attendanceYes.checked && !attendanceNo.checked) {
+                showToast('Пожалуйста, выберите, придете ли вы');
+                return;
+            }
+            
+            // Prepare data
+            const formData = new FormData(form);
+            const data = {};
+            
+            // Get selected drinks
+            const drinkCheckboxes = document.querySelectorAll('input[name="drinks"]:checked');
+            const drinks = Array.from(drinkCheckboxes).map(cb => cb.value);
+            
+            data.name = formData.get('name');
+            data.attendance = formData.get('attendance');
+            data.drinks = drinks.length > 0 ? drinks.join(', ') : '';
+            data.comment = formData.get('comment') || '';
+            data.timestamp = new Date().toLocaleString('ru-RU');
+            
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
             
             try {
+                // Send to Google Sheets
                 await fetch(scriptURL, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -1342,161 +1695,75 @@
                     body: JSON.stringify(data)
                 });
                 
+                // Show success message
                 showToast('Спасибо! Ваш ответ сохранён.');
-                form.reset();
                 
-                // Add confetti effect
-                createConfetti();
+                // Reset form after delay
+                setTimeout(() => {
+                    form.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить ответ';
+                }, 2000);
                 
             } catch (error) {
-                showToast('Ошибка отправки. Попробуйте снова.');
                 console.error('Error:', error);
+                showToast('Ошибка отправки. Попробуйте снова.');
+                
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить ответ';
             }
         });
 
-        // Confetti effect
-        function createConfetti() {
-            const colors = ['#166534', '#22c55e', '#d4af37', '#1a472a'];
-            const confettiCount = 100;
+        // Initialize all features
+        document.addEventListener('DOMContentLoaded', () => {
+            initCountdown();
+            initTimeline();
             
-            for (let i = 0; i < confettiCount; i++) {
-                const confetti = document.createElement('div');
-                confetti.style.cssText = `
-                    position: fixed;
-                    width: 10px;
-                    height: 10px;
-                    background: ${colors[Math.floor(Math.random() * colors.length)]};
-                    border-radius: 2px;
-                    z-index: 9999;
-                    top: -10px;
-                    left: ${Math.random() * 100}vw;
-                    animation: confetti-fall ${Math.random() * 3 + 2}s linear forwards;
-                `;
-                
-                document.body.appendChild(confetti);
-                
-                setTimeout(() => confetti.remove(), 5000);
-            }
-            
-            // Add CSS for animation
-            if (!document.querySelector('#confetti-style')) {
-                const style = document.createElement('style');
-                style.id = 'confetti-style';
-                style.textContent = `
-                    @keyframes confetti-fall {
-                        0% {
-                            transform: translateY(0) rotate(0deg);
-                            opacity: 1;
-                        }
-                        100% {
-                            transform: translateY(100vh) rotate(${Math.random() * 360}deg);
-                            opacity: 0;
-                        }
+            // Lazy load map when visible
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !map) {
+                        initMap();
                     }
-                `;
-                document.head.appendChild(style);
-            }
-        }
-
-        // Scroll to section
-        function scrollToSection(sectionId) {
-            document.getElementById(sectionId).scrollIntoView({
-                behavior: 'smooth'
+                });
             });
             
-            // Update nav dots
-            document.querySelectorAll('.nav-dot').forEach(dot => dot.classList.remove('active'));
-            const dotIndex = Array.from(document.querySelectorAll('.nav-dot')).findIndex(dot => 
-                dot.onclick.toString().includes(sectionId)
-            );
-            if (dotIndex !== -1) {
-                document.querySelectorAll('.nav-dot')[dotIndex].classList.add('active');
+            const mapSection = document.getElementById('map');
+            if (mapSection) {
+                observer.observe(mapSection);
             }
-        }
-
-        // Initialize on scroll
-        window.addEventListener('scroll', () => {
-            const sections = ['hero', 'timeline', 'gallery', 'map', 'rsvp'];
-            const scrollPos = window.scrollY + 100;
             
-            sections.forEach((section, index) => {
-                const el = document.getElementById(section);
-                if (el.offsetTop <= scrollPos && el.offsetTop + el.offsetHeight > scrollPos) {
-                    document.querySelectorAll('.nav-dot').forEach(dot => dot.classList.remove('active'));
-                    document.querySelectorAll('.nav-dot')[index].classList.add('active');
+            // Fix map on resize
+            window.addEventListener('resize', () => {
+                if (map) {
+                    setTimeout(() => map.invalidateSize(), 100);
                 }
             });
             
-            // Initialize map when visible
-            const mapSection = document.getElementById('map');
-            const rect = mapSection.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom >= 0) {
-                initMap();
-            }
-        });
-
-        // Initialize map on load if visible
-        window.addEventListener('load', () => {
-            const mapSection = document.getElementById('map');
-            const rect = mapSection.getBoundingClientRect();
-            if (rect.top < window.innerHeight) {
-                initMap();
-            }
-        });
-
-        // Add hover effects to interactive cards
-        document.querySelectorAll('.interactive-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateY = ((x - centerX) / centerX) * 5;
-                const rotateX = ((centerY - y) / centerY) * 5;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            // Add click handlers for checkboxes and radio buttons
+            document.querySelectorAll('.checkbox-label, .radio-label').forEach(label => {
+                label.addEventListener('click', function(e) {
+                    // Prevent double triggering
+                    if (e.target.type === 'checkbox' || e.target.type === 'radio') return;
+                    
+                    const input = this.querySelector('input');
+                    if (input) {
+                        if (input.type === 'checkbox') {
+                            input.checked = !input.checked;
+                        } else {
+                            input.checked = true;
+                        }
+                        
+                        // Trigger change event
+                        input.dispatchEvent(new Event('change'));
+                    }
+                });
             });
         });
 
-        // Add glitch effect on hover to names
-        document.querySelectorAll('.glitch').forEach(glitch => {
-            glitch.addEventListener('mouseenter', () => {
-                glitch.style.animation = 'glitch-anim 0.3s infinite';
-            });
-            
-            glitch.addEventListener('mouseleave', () => {
-                glitch.style.animation = 'glitch-anim 5s infinite';
-            });
-        });
-
-        // Create floating elements
-        function createFloatingElements() {
-            const hero = document.querySelector('.hero');
-            const symbols = ['❖', '✦', '❈', '✧', '❀', '✿'];
-            
-            for (let i = 0; i < 15; i++) {
-                const element = document.createElement('div');
-                element.className = 'floating-element';
-                element.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-                element.style.cssText = `
-                    color: rgba(212, 175, 55, ${Math.random() * 0.3 + 0.1});
-                    font-size: ${Math.random() * 20 + 15}px;
-                    left: ${Math.random() * 100}%;
-                    top: ${Math.random() * 100}%;
-                    animation-delay: ${Math.random() * 6}s;
-                `;
-                hero.appendChild(element);
-            }
-        }
-        
-        createFloatingElements();
+        // Add touch support for mobile
+        document.addEventListener('touchstart', function() {}, {passive: true});
     </script>
 </body>
 </html>
