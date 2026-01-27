@@ -1260,7 +1260,8 @@
             <!-- Прогресс-бар -->
             <div class="progress-container">
                 <div class="progress-label">
-                   
+                    <span>До свадьбы</span>
+                    <span id="progress-percent">0%</span>
                 </div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progress-fill"></div>
@@ -1527,13 +1528,13 @@
                     <div class="detail-icon">💝</div>
                     <h3 class="detail-title">Контакты & Пожелания</h3>
                     <ul class="dresscode-list">
-                        <li><strong>Мадина:</strong> +7 (706) 612-08-45</li>
-                        <li><strong>Анатолий:</strong> +7 (777) 900-67-56</li>
+                        <li><strong>Мадина:</strong> +7 (706) 612-08-45 — <a href="https://wa.me/77066120845" target="_blank" style="color:var(--accent); text-decoration:none;"><i class="fab fa-whatsapp"></i> Написать в WhatsApp</a></li>
+                        <li><strong>Анатолий:</strong> +7 (777) 900-67-56 — <a href="https://wa.me/7779006756" target="_blank" style="color:var(--accent); text-decoration:none;"><i class="fab fa-whatsapp"></i> Написать в WhatsApp</a></li>
                     </ul>
                     
                     <div style="margin-top: 25px; padding: 15px; background: rgba(46, 125, 50, 0.05); border-radius: 10px;">
                         <h4 style="color: var(--accent); margin-bottom: 10px;">Подарки:</h4>
-                        <p>Ваше присутствие — лучший подарок! Если хотите поздравить финансово, конверт будет очень кстати.</p>
+                        <p>Ваше присутствие — лучший подарок!Подарки всегда приятны, но для нас главное — ваше присутствие. Если всё же хотите сделать что-то особенное, мы будем признательны за финансовую поддержку, которая поможет нам приблизиться к нашим мечтам.</p>
                     </div>
                     
                     <div style="margin-top: 15px; padding: 15px; background: rgba(46, 125, 50, 0.05); border-radius: 10px;">
@@ -1553,7 +1554,7 @@
             
             <form id="rsvpForm">
                 <div class="form-group">
-                    <label class="form-label">Имя и фамилия</label>
+                    <label class="form-label">Введите фамилию и имя</label>
                     <input type="text" class="form-input" id="name" name="name" placeholder="Фамилия Имя" required>
                 </div>
                 
@@ -1595,16 +1596,16 @@
                                 <span>Шампанское</span>
                             </label>
                             
-                            <input type="checkbox" id="whisky" name="drinks" value="Виски">
+                            <input type="checkbox" id="whisky" name="drinks" value="Коньяк">
                             <label for="whisky" class="checkbox-label">
                                 <span class="custom-checkbox"></span>
-                                <span>Виски</span>
+                                <span>Коньяк</span>
                             </label>
                             
                             <input type="checkbox" id="non-alcoholic" name="drinks" value="Безалкогольное">
                             <label for="non-alcoholic" class="checkbox-label">
                                 <span class="custom-checkbox"></span>
-                                <span>Безалкогольное</span>
+                                <span>Безалкогольное(соки)</span>
                             </label>
                             
                             <input type="checkbox" id="all" name="drinks" value="Всё подряд">
@@ -1616,7 +1617,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label">Комментарии или пожелания</label>
+                        <label class="form-label">Комментарии</label>
                         <input type="text" class="form-input" id="comment" name="comment" 
                                placeholder="Диетические ограничения, музыкальные предпочтения...">
                     </div>
@@ -1635,7 +1636,7 @@
             С любовью, Мадина <span class="footer-heart">❤</span> Анатолий • 2026
         </div>
         <div class="footer-text">
-            Ответы сохраняются в Google Таблицу • Все данные конфиденциальны
+           Ваши ответы будут учтены
         </div>
     </footer>
 
