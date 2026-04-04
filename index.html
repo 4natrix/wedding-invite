@@ -111,7 +111,7 @@
         .hero {
             min-height: 100vh;
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), 
-                        url('https://raw.githubusercontent.com/4natrix/wedding-invite/main/1.jpg') no-repeat center center/cover;
+                        url('https://raw.githubusercontent.com/4natrix/wedding-invite/main/4.jpg') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -445,7 +445,7 @@
         
         .map-buttons {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             justify-content: center;
             margin-top: 20px;
             flex-wrap: wrap;
@@ -453,7 +453,7 @@
         
         .map-btn {
             background: var(--emerald);
-            padding: 10px 22px;
+            padding: 10px 20px;
             border-radius: 40px;
             color: white;
             text-decoration: none;
@@ -719,7 +719,7 @@
     </div>
     
     <audio id="bgMusic" loop preload="auto">
-        <source src="https://drive.google.com/uc?export=download&id=1msWg4QJwWGlp5T4nXtMMN_H3F7CYRGYg" type="audio/mpeg">
+        <source src="https://na-zvonochek.ru/_ld/4/435_mot-svadebnaja.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Hero -->
@@ -842,8 +842,9 @@
                         <div id="weddingMap"></div>
                     </div>
                     <div class="map-buttons">
-                        <a href="https://yandex.ru/maps/?text=Костанай%20Текстильщиков%2012А" target="_blank" class="map-btn"><i class="fab fa-yandex"></i> Яндекс.Карты</a>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Костанай+Текстильщиков+12А" target="_blank" class="map-btn"><i class="fab fa-google"></i> Google Маршрут</a>
+                        <a href="https://yandex.ru/maps/?text=Костанай%20Текстильщиков%2012А" target="_blank" class="map-btn"><i class="fab fa-yandex"></i> Яндекс</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Костанай+Текстильщиков+12А" target="_blank" class="map-btn"><i class="fab fa-google"></i> Google</a>
+                        <a href="https://2gis.kz/kostanay/search/Текстильщиков%2012А" target="_blank" class="map-btn"><i class="fas fa-map"></i> 2ГИС</a>
                         <button onclick="copyAddress()" class="map-btn"><i class="fas fa-copy"></i> Адрес</button>
                     </div>
                     <p style="text-align: center; margin-top: 15px;">📍 Ресторан "DIONIS", ул. Текстильщиков 12А, Костанай</p>
@@ -996,11 +997,10 @@
         }
         buildCalendar();
         
-        // Карта с правильными координатами Костаная, Текстильщиков 12А
+        // Карта
         let map = null;
         let mapInitialized = false;
         
-        // Координаты ресторана DIONIS в Костанае (примерные, уточните при необходимости)
         const restaurantLat = 53.2144;
         const restaurantLng = 63.6246;
         
