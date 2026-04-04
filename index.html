@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <meta name="theme-color" content="#0B3B24">
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
@@ -26,6 +26,7 @@
             --silver-light: #E8E8E8;
             --white: #FFFFFF;
             --dark: #1A1A1A;
+            --black: #222222;
         }
         
         body {
@@ -34,11 +35,6 @@
             color: var(--dark);
             line-height: 1.5;
             overflow-x: hidden;
-        }
-        
-        .cursive {
-            font-family: 'Great Vibes', cursive;
-            font-weight: 400;
         }
         
         /* Музыкальный плеер */
@@ -111,7 +107,8 @@
         .hero {
             min-height: 100vh;
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), 
-                        url('https://raw.githubusercontent.com/4natrix/wedding-invite/main/4.jpg') no-repeat center center/cover;
+                        url('5.jpeg') no-repeat center center/cover;
+            background-size: cover;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -142,12 +139,14 @@
             margin-bottom: 20px;
         }
         
+        /* Более разборчивый шрифт для имён */
         .names-hero {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 400;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 10vw, 5.5rem);
+            font-weight: 600;
             color: var(--white);
             margin: 20px 0;
+            letter-spacing: 2px;
         }
         
         .names-hero span {
@@ -233,12 +232,12 @@
         }
         
         .section-title {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
             text-align: center;
             color: var(--emerald);
             margin-bottom: 50px;
-            font-weight: 400;
+            font-weight: 600;
         }
         
         /* Программа дня */
@@ -355,18 +354,21 @@
             }
         }
         
-        /* Дресс-код */
+        /* Дресс-код - симметрично */
         .dresscode-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 40px;
             margin-top: 30px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .dresscode-card {
             background: white;
             border-radius: 24px;
-            padding: 30px;
+            padding: 35px 30px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             border: 1px solid var(--silver);
@@ -379,16 +381,16 @@
         
         .dresscode-card h3 {
             color: var(--emerald);
-            margin-bottom: 20px;
-            font-size: 1.5rem;
+            margin-bottom: 25px;
+            font-size: 1.6rem;
         }
         
         .color-circles {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
             flex-wrap: wrap;
-            margin: 20px 0;
+            margin: 25px 0;
         }
         
         .color-circle {
@@ -407,10 +409,10 @@
         }
         
         .circle {
-            width: 60px;
-            height: 60px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             border: 2px solid var(--gold);
             transition: transform 0.3s;
         }
@@ -422,6 +424,22 @@
         .circle-label {
             font-size: 0.8rem;
             color: #555;
+            font-weight: 500;
+        }
+        
+        .dresscode-note {
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: #555;
+        }
+        
+        @media (max-width: 768px) {
+            .dresscode-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         /* Карта и календарь */
@@ -485,7 +503,7 @@
             font-weight: 600;
             color: var(--emerald);
             margin-bottom: 25px;
-            font-family: 'Great Vibes', cursive;
+            font-family: 'Cormorant Garamond', serif;
         }
         
         .calendar-weekdays {
@@ -516,6 +534,7 @@
             background: white;
             transition: all 0.3s;
             cursor: default;
+            position: relative;
         }
         
         .cal-day:hover {
@@ -529,6 +548,14 @@
             font-weight: bold;
             position: relative;
             animation: pulse 1s ease infinite;
+        }
+        
+        .cal-day.highlight::after {
+            content: '❤️';
+            position: absolute;
+            top: -8px;
+            right: -5px;
+            font-size: 12px;
         }
         
         @keyframes pulse {
@@ -654,6 +681,7 @@
         .drink-checkbox i {
             font-size: 1.1rem;
             color: var(--gold);
+            width: 20px;
         }
         
         .drink-checkbox span {
@@ -823,12 +851,15 @@
                         <div class="color-circle"><div class="circle" style="background: #0B3B24;"></div><div class="circle-label">Изумрудный</div></div>
                         <div class="color-circle"><div class="circle" style="background: #2F4F4F;"></div><div class="circle-label">Тёмно-зелёный</div></div>
                         <div class="color-circle"><div class="circle" style="background: #808080;"></div><div class="circle-label">Серый</div></div>
-                        <div class="color-circle"><div class="circle" style="background: #D4AF37;"></div><div class="circle-label">Золотой аксессуар</div></div>
+                        <div class="color-circle"><div class="circle" style="background: #222222;"></div><div class="circle-label">Чёрный</div></div>
                     </div>
                     <p>Костюмы, пиджаки, галстуки или бабочки в указанных тонах. Белая рубашка приветствуется.</p>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 20px; color: #666;"><i class="fas fa-info-circle"></i> Пожалуйста, избегайте белого цвета — он только для невесты.</p>
+            <div class="dresscode-note" style="max-width: 600px; margin: 25px auto 0; text-align: center;">
+                <i class="fas fa-ban" style="color: var(--gold); margin-right: 8px;"></i>
+                <strong>Пожалуйста, воздержитесь от спортивного стиля (джинсы, кеды, футболки).</strong> Белый цвет — только для невесты.
+            </div>
         </div>
     </section>
 
@@ -891,8 +922,8 @@
                             <label class="drink-checkbox"><input type="checkbox" value="Водка"> <i class="fas fa-wine-bottle"></i> <span>Водка</span></label>
                             <label class="drink-checkbox"><input type="checkbox" value="Вино"> <i class="fas fa-wine-glass-alt"></i> <span>Вино</span></label>
                             <label class="drink-checkbox"><input type="checkbox" value="Шампанское"> <i class="fas fa-champagne-glasses"></i> <span>Шампанское</span></label>
-                            <label class="drink-checkbox"><input type="checkbox" value="Коньяк"> <i class="fas fa-brandy"></i> <span>Коньяк</span></label>
-                            <label class="drink-checkbox"><input type="checkbox" value="Безалкогольное"> <i class="fas fa-juice"></i> <span>Безалкогольное</span></label>
+                            <label class="drink-checkbox"><input type="checkbox" value="Коньяк"> <i class="fas fa-glass-cheers"></i> <span>Коньяк</span></label>
+                            <label class="drink-checkbox"><input type="checkbox" value="Безалкогольное"> <i class="fas fa-apple-alt"></i> <span>Безалкогольное</span></label>
                         </div>
                         <div class="drink-note"><i class="fas fa-info-circle"></i> Вы можете отметить несколько вариантов</div>
                         <input type="text" id="comment" class="form-input" placeholder="Пожелания, аллергии или особые предпочтения...">
@@ -929,7 +960,7 @@
         setInterval(updateTimer, 1000);
         updateTimer();
         
-        // Музыка
+        // Музыка с плавным нарастанием за 5 секунд и остановкой при уходе со страницы
         const music = document.getElementById('bgMusic');
         const playBtn = document.getElementById('playPauseBtn');
         const playerDiv = document.getElementById('musicPlayer');
@@ -942,15 +973,17 @@
             if (fadeInterval) clearInterval(fadeInterval);
             let vol = 0;
             music.volume = 0;
+            // 5 секунд = 5000мс / 100мс = 50 шагов по 0.02 = от 0 до 0.7
             fadeInterval = setInterval(() => {
-                if (vol < 0.65) {
-                    vol += 0.05;
+                if (vol < 0.68) {
+                    vol += 0.02;
                     music.volume = vol;
                 } else {
+                    music.volume = 0.7;
                     clearInterval(fadeInterval);
                     fadeInterval = null;
                 }
-            }, 150);
+            }, 100);
         }
         
         function startMusic() {
@@ -962,22 +995,51 @@
             }).catch(e => console.log('Автозапуск заблокирован'));
         }
         
-        playBtn.addEventListener('click', () => {
+        function stopMusic() {
             if (isPlaying) {
                 music.pause();
                 isPlaying = false;
                 playBtn.innerHTML = '<i class="fas fa-play"></i>';
                 playerDiv.classList.add('paused');
                 if (fadeInterval) clearInterval(fadeInterval);
+                music.volume = 0;
+            }
+        }
+        
+        playBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                stopMusic();
             } else {
                 startMusic();
             }
         });
         
+        // Автозапуск при первом касании/клике
         document.body.addEventListener('touchstart', () => { if (!isPlaying) startMusic(); }, { once: true });
         document.body.addEventListener('click', () => { if (!isPlaying) startMusic(); }, { once: true });
         
-        // Календарь
+        // Остановка музыки когда вкладка не активна или пользователь уходит
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                if (isPlaying) {
+                    music.pause();
+                }
+            } else {
+                if (isPlaying) {
+                    music.play().catch(e => console.log('Не удалось возобновить'));
+                }
+            }
+        });
+        
+        // Полная остановка при закрытии страницы
+        window.addEventListener('beforeunload', function() {
+            if (music) {
+                music.pause();
+                music.currentTime = 0;
+            }
+        });
+        
+        // Календарь с сердечком
         function buildCalendar() {
             const firstDay = new Date(2026, 5, 1);
             let startOffset = firstDay.getDay();
