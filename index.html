@@ -36,7 +36,6 @@
             overflow-x: hidden;
         }
         
-        /* Курсивный шрифт для заголовков */
         .cursive {
             font-family: 'Great Vibes', cursive;
             font-weight: 400;
@@ -108,7 +107,7 @@
             height: 8px;
         }
         
-        /* Hero секция - без зелёной плёнки, только тёмный градиент */
+        /* Hero секция */
         .hero {
             min-height: 100vh;
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), 
@@ -615,7 +614,6 @@
             cursor: pointer;
         }
         
-        /* Чекбоксы для напитков с иконками */
         .drinks-title {
             margin: 15px 0 10px;
             font-weight: 600;
@@ -698,7 +696,6 @@
         
         .hidden { display: none; }
         
-        /* Анимация для элементов при скролле */
         .animate-on-scroll {
             opacity: 0;
             transform: translateY(30px);
@@ -845,8 +842,8 @@
                         <div id="weddingMap"></div>
                     </div>
                     <div class="map-buttons">
-                        <a href="https://yandex.ru/maps/?rtext=~53.2144,63.6246" target="_blank" class="map-btn"><i class="fab fa-yandex"></i> Яндекс.Карты</a>
-                        <a href="https://www.google.com/maps/dir//53.2144,63.6246" target="_blank" class="map-btn"><i class="fab fa-google"></i> Google Маршрут</a>
+                        <a href="https://yandex.ru/maps/?text=Костанай%20Текстильщиков%2012А" target="_blank" class="map-btn"><i class="fab fa-yandex"></i> Яндекс.Карты</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Костанай+Текстильщиков+12А" target="_blank" class="map-btn"><i class="fab fa-google"></i> Google Маршрут</a>
                         <button onclick="copyAddress()" class="map-btn"><i class="fas fa-copy"></i> Адрес</button>
                     </div>
                     <p style="text-align: center; margin-top: 15px;">📍 Ресторан "DIONIS", ул. Текстильщиков 12А, Костанай</p>
@@ -999,22 +996,25 @@
         }
         buildCalendar();
         
-        // Карта с фиксом для листания
+        // Карта с правильными координатами Костаная, Текстильщиков 12А
         let map = null;
         let mapInitialized = false;
+        
+        // Координаты ресторана DIONIS в Костанае (примерные, уточните при необходимости)
+        const restaurantLat = 53.2144;
+        const restaurantLng = 63.6246;
         
         function initMap() {
             if (mapInitialized) return;
             mapInitialized = true;
-            map = L.map('weddingMap').setView([53.2144, 63.6246], 16);
+            map = L.map('weddingMap').setView([restaurantLat, restaurantLng], 16);
             L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
             }).addTo(map);
-            L.marker([53.2144, 63.6246]).addTo(map).bindPopup('Ресторан "DIONIS"').openPopup();
+            L.marker([restaurantLat, restaurantLng]).addTo(map).bindPopup('Ресторан "DIONIS"<br>ул. Текстильщиков 12А, Костанай').openPopup();
             setTimeout(() => { map.invalidateSize(); }, 100);
         }
         
-        // Наблюдатель за картой - инициализируем когда видна
         const mapWrapper = document.getElementById('mapWrapper');
         const mapObserver = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting && !mapInitialized) {
@@ -1024,7 +1024,6 @@
         }, { threshold: 0.1 });
         mapObserver.observe(mapWrapper);
         
-        // Если карта всё же не инициализировалась через 2 секунды (запасной вариант)
         setTimeout(() => {
             if (!mapInitialized) initMap();
         }, 2000);
@@ -1065,7 +1064,6 @@
             if (!name) return alert('Введите имя');
             const attendance = document.querySelector('input[name="attendance"]:checked')?.value;
             
-            // Собираем выбранные напитки из чекбоксов
             const selectedDrinks = [];
             document.querySelectorAll('#drinksGrid input[type="checkbox"]:checked').forEach(cb => {
                 selectedDrinks.push(cb.value);
