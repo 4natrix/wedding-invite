@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <meta name="theme-color" content="#0B3B24">
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
@@ -21,6 +21,7 @@
             --emerald: #0B3B24;
             --emerald-light: #1A5D3E;
             --gold: #D4AF37;
+            --gold-light: #F2D06B;
             --silver: #C0C0C0;
             --silver-light: #E8E8E8;
             --white: #FFFFFF;
@@ -32,6 +33,13 @@
             background: var(--white);
             color: var(--dark);
             line-height: 1.5;
+            overflow-x: hidden;
+        }
+        
+        /* Курсивный шрифт для заголовков */
+        .cursive {
+            font-family: 'Great Vibes', cursive;
+            font-weight: 400;
         }
         
         /* Музыкальный плеер */
@@ -49,6 +57,7 @@
             gap: 12px;
             border: 1px solid var(--gold);
             cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
         
         .play-pause-btn {
@@ -63,6 +72,11 @@
             cursor: pointer;
             color: var(--emerald);
             font-size: 1rem;
+            transition: transform 0.2s;
+        }
+        
+        .play-pause-btn:hover {
+            transform: scale(1.05);
         }
         
         .music-bars {
@@ -94,10 +108,10 @@
             height: 8px;
         }
         
-        /* Hero секция - фоновая картинка */
+        /* Hero секция - без зелёной плёнки, только тёмный градиент */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(11, 59, 36, 0.6)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), 
                         url('https://raw.githubusercontent.com/4natrix/wedding-invite/main/1.jpg') no-repeat center center/cover;
             display: flex;
             align-items: center;
@@ -107,13 +121,19 @@
         }
         
         .hero-content {
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(3px);
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(2px);
             padding: 50px 40px;
             border-radius: 30px;
             border: 2px solid var(--gold);
             max-width: 750px;
             width: 100%;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .hero-label {
@@ -124,9 +144,9 @@
         }
         
         .names-hero {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.8rem, 9vw, 5.5rem);
-            font-weight: 600;
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 400;
             color: var(--white);
             margin: 20px 0;
         }
@@ -134,6 +154,7 @@
         .names-hero span {
             color: var(--gold);
             margin: 0 15px;
+            font-family: 'Inter', sans-serif;
         }
         
         .date-hero {
@@ -195,6 +216,7 @@
         .btn-gold:hover {
             background: var(--gold);
             color: var(--emerald);
+            transform: translateY(-2px);
         }
         
         /* Секции */
@@ -203,7 +225,7 @@
         }
         
         .bg-light {
-            background: #F5F5F5;
+            background: #F8F8F8;
         }
         
         .container {
@@ -212,24 +234,15 @@
         }
         
         .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
             text-align: center;
             color: var(--emerald);
             margin-bottom: 50px;
-            position: relative;
+            font-weight: 400;
         }
         
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--gold);
-            margin: 15px auto 0;
-        }
-        
-        /* Программа дня - строгое чередование */
+        /* Программа дня */
         .timeline-program {
             position: relative;
             max-width: 800px;
@@ -274,6 +287,7 @@
             border: 3px solid var(--emerald);
             border-radius: 50%;
             z-index: 2;
+            transition: transform 0.3s;
         }
         
         .program-item:nth-child(odd) .program-dot {
@@ -291,6 +305,12 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             border-left: 4px solid var(--gold);
             cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
         }
         
         .program-time {
@@ -336,7 +356,7 @@
             }
         }
         
-        /* Дресс-код с кружками */
+        /* Дресс-код */
         .dresscode-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -351,6 +371,11 @@
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             border: 1px solid var(--silver);
+            transition: transform 0.3s;
+        }
+        
+        .dresscode-card:hover {
+            transform: translateY(-5px);
         }
         
         .dresscode-card h3 {
@@ -369,6 +394,17 @@
         
         .color-circle {
             text-align: center;
+            animation: fadeInScale 0.5s ease backwards;
+        }
+        
+        .color-circle:nth-child(1) { animation-delay: 0.1s; }
+        .color-circle:nth-child(2) { animation-delay: 0.2s; }
+        .color-circle:nth-child(3) { animation-delay: 0.3s; }
+        .color-circle:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
         }
         
         .circle {
@@ -377,6 +413,11 @@
             border-radius: 50%;
             margin-bottom: 8px;
             border: 2px solid var(--gold);
+            transition: transform 0.3s;
+        }
+        
+        .circle:hover {
+            transform: scale(1.1);
         }
         
         .circle-label {
@@ -384,64 +425,18 @@
             color: #555;
         }
         
-        /* Календарь */
-        .calendar-modern {
-            background: white;
-            border-radius: 24px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            max-width: 450px;
-            margin: 0 auto;
-        }
-        
-        .calendar-month {
-            text-align: center;
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--emerald);
-            margin-bottom: 20px;
-        }
-        
-        .calendar-weekdays {
+        /* Карта и календарь */
+        .info-grid {
             display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            text-align: center;
-            margin-bottom: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
         }
         
-        .calendar-weekdays div {
-            font-weight: 600;
-            color: var(--gold);
-            font-size: 0.8rem;
-            padding: 8px;
-        }
-        
-        .calendar-days {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 6px;
-        }
-        
-        .cal-day {
-            text-align: center;
-            padding: 10px 6px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            background: #F9F9F9;
-        }
-        
-        .cal-day.highlight {
-            background: var(--gold);
-            color: var(--emerald);
-            font-weight: bold;
-            position: relative;
-        }
-        
-        /* Карта */
         .map-wrapper {
             border-radius: 24px;
             overflow: hidden;
             border: 2px solid var(--gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
         #weddingMap {
@@ -467,6 +462,79 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .map-btn:hover {
+            background: var(--gold);
+            color: var(--emerald);
+            transform: translateY(-2px);
+        }
+        
+        /* Красивый календарь */
+        .calendar-modern {
+            background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
+            border-radius: 28px;
+            padding: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border: 1px solid var(--silver);
+        }
+        
+        .calendar-month {
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--emerald);
+            margin-bottom: 25px;
+            font-family: 'Great Vibes', cursive;
+        }
+        
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .calendar-weekdays div {
+            font-weight: 600;
+            color: var(--gold);
+            font-size: 0.85rem;
+            padding: 8px;
+        }
+        
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+        
+        .cal-day {
+            text-align: center;
+            padding: 12px 6px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            background: white;
+            transition: all 0.3s;
+            cursor: default;
+        }
+        
+        .cal-day:hover {
+            transform: scale(1.05);
+            background: var(--silver-light);
+        }
+        
+        .cal-day.highlight {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--emerald);
+            font-weight: bold;
+            position: relative;
+            animation: pulse 1s ease infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
         }
         
         /* WhatsApp */
@@ -489,17 +557,28 @@
             color: var(--emerald);
             font-weight: 600;
             border: 1px solid var(--silver);
-            transition: 0.2s;
+            transition: all 0.3s;
+        }
+        
+        .wa-button:hover {
+            background: #25D366;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .wa-button:hover i {
+            color: white;
         }
         
         .wa-button i {
             font-size: 1.6rem;
             color: #25D366;
+            transition: 0.3s;
         }
         
         /* RSVP форма */
         .rsvp-card {
-            max-width: 550px;
+            max-width: 600px;
             margin: 0 auto;
             background: white;
             padding: 45px;
@@ -514,12 +593,80 @@
             border: 1px solid #ddd;
             border-radius: 16px;
             font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
         }
         
         .radio-group {
             display: flex;
             gap: 25px;
             margin: 15px 0;
+        }
+        
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        /* Чекбоксы для напитков с иконками */
+        .drinks-title {
+            margin: 15px 0 10px;
+            font-weight: 600;
+            color: var(--emerald);
+        }
+        
+        .drinks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin: 10px 0;
+        }
+        
+        .drink-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background: #f5f5f5;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+        
+        .drink-checkbox:hover {
+            background: #e8e8e8;
+            transform: translateX(3px);
+        }
+        
+        .drink-checkbox input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--gold);
+        }
+        
+        .drink-checkbox i {
+            font-size: 1.1rem;
+            color: var(--gold);
+        }
+        
+        .drink-checkbox span {
+            flex: 1;
+        }
+        
+        .drink-note {
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 5px;
+            font-style: italic;
         }
         
         .submit-btn {
@@ -532,7 +679,14 @@
             font-weight: 700;
             font-size: 1rem;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 25px;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: var(--gold);
+            color: var(--emerald);
+            transform: translateY(-2px);
         }
         
         footer {
@@ -543,6 +697,18 @@
         }
         
         .hidden { display: none; }
+        
+        /* Анимация для элементов при скролле */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -582,12 +748,12 @@
         </div>
     </section>
 
-    <!-- Программа дня (чередование: слева, справа, слева...) -->
+    <!-- Программа дня -->
     <section class="section bg-light">
         <div class="container">
             <h2 class="section-title">Программа дня</h2>
             <div class="timeline-program">
-                <div class="program-item" onclick="toggleProgram(this)">
+                <div class="program-item animate-on-scroll" onclick="toggleProgram(this)">
                     <div class="program-dot"></div>
                     <div class="program-card">
                         <div class="program-time">16:00 - 16:30</div>
@@ -595,7 +761,7 @@
                         <div class="program-desc">Встреча гостей, welcome-фуршет, живая музыка</div>
                     </div>
                 </div>
-                <div class="program-item" onclick="toggleProgram(this)">
+                <div class="program-item animate-on-scroll" onclick="toggleProgram(this)">
                     <div class="program-dot"></div>
                     <div class="program-card">
                         <div class="program-time">16:30 - 17:30</div>
@@ -603,7 +769,7 @@
                         <div class="program-desc">Выкуп невесты, обмен клятвами и кольцами</div>
                     </div>
                 </div>
-                <div class="program-item" onclick="toggleProgram(this)">
+                <div class="program-item animate-on-scroll" onclick="toggleProgram(this)">
                     <div class="program-dot"></div>
                     <div class="program-card">
                         <div class="program-time">17:30 - 19:00</div>
@@ -611,7 +777,7 @@
                         <div class="program-desc">Поздравления от гостей, общая фотосессия</div>
                     </div>
                 </div>
-                <div class="program-item" onclick="toggleProgram(this)">
+                <div class="program-item animate-on-scroll" onclick="toggleProgram(this)">
                     <div class="program-dot"></div>
                     <div class="program-card">
                         <div class="program-time">19:00 - 20:30</div>
@@ -619,7 +785,7 @@
                         <div class="program-desc">Первый тост, праздничный ужин, каравай</div>
                     </div>
                 </div>
-                <div class="program-item" onclick="toggleProgram(this)">
+                <div class="program-item animate-on-scroll" onclick="toggleProgram(this)">
                     <div class="program-dot"></div>
                     <div class="program-card">
                         <div class="program-time">20:30 - 22:00</div>
@@ -627,7 +793,7 @@
                         <div class="program-desc">Первый танец молодоженов, дискотека, конкурсы</div>
                     </div>
                 </div>
-                <div class="program-item" onclick="toggleProgram(this)">
+                <div class="program-item animate-on-scroll" onclick="toggleProgram(this)">
                     <div class="program-dot"></div>
                     <div class="program-card">
                         <div class="program-time">22:00</div>
@@ -639,12 +805,12 @@
         </div>
     </section>
 
-    <!-- Дресс-код (мужчины и женщины отдельно с кружками) -->
+    <!-- Дресс-код -->
     <section class="section">
         <div class="container">
             <h2 class="section-title">Дресс-код</h2>
             <div class="dresscode-grid">
-                <div class="dresscode-card">
+                <div class="dresscode-card animate-on-scroll">
                     <h3><i class="fas fa-venus"></i> Для женщин</h3>
                     <div class="color-circles">
                         <div class="color-circle"><div class="circle" style="background: #0B3B24;"></div><div class="circle-label">Изумрудный</div></div>
@@ -654,7 +820,7 @@
                     </div>
                     <p>Вечерние платья, элегантные костюмы. Туфли на каблуке или изящные балетки.</p>
                 </div>
-                <div class="dresscode-card">
+                <div class="dresscode-card animate-on-scroll">
                     <h3><i class="fas fa-mars"></i> Для мужчин</h3>
                     <div class="color-circles">
                         <div class="color-circle"><div class="circle" style="background: #0B3B24;"></div><div class="circle-label">Изумрудный</div></div>
@@ -672,10 +838,10 @@
     <!-- Карта и Календарь -->
     <section class="section bg-light">
         <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px;">
-                <div>
+            <div class="info-grid">
+                <div class="animate-on-scroll">
                     <h3 style="text-align: center; color: var(--emerald); margin-bottom: 20px;"><i class="fas fa-map-marker-alt"></i> Как добраться</h3>
-                    <div class="map-wrapper">
+                    <div class="map-wrapper" id="mapWrapper">
                         <div id="weddingMap"></div>
                     </div>
                     <div class="map-buttons">
@@ -685,7 +851,7 @@
                     </div>
                     <p style="text-align: center; margin-top: 15px;">📍 Ресторан "DIONIS", ул. Текстильщиков 12А, Костанай</p>
                 </div>
-                <div>
+                <div class="animate-on-scroll">
                     <h3 style="text-align: center; color: var(--emerald); margin-bottom: 20px;"><i class="fas fa-calendar-alt"></i> Календарь</h3>
                     <div class="calendar-modern">
                         <div class="calendar-month">Июнь 2026</div>
@@ -713,8 +879,8 @@
     <!-- RSVP -->
     <section id="rsvp" class="section bg-light">
         <div class="container">
-            <div class="rsvp-card">
-                <h2 class="section-title" style="font-size: 2rem;">Подтверждение участия</h2>
+            <div class="rsvp-card animate-on-scroll">
+                <h2 class="section-title" style="font-size: 2.5rem;">Подтверждение участия</h2>
                 <form id="rsvpForm">
                     <input type="text" id="name" class="form-input" placeholder="Ваше имя и фамилия *" required>
                     <div class="radio-group">
@@ -722,11 +888,16 @@
                         <label><input type="radio" name="attendance" value="no"> ❌ Не смогу</label>
                     </div>
                     <div id="extraFields" style="display: none;">
-                        <select id="drinks" class="form-input">
-                            <option value="">🍸 Предпочитаемый напиток</option>
-                            <option>Водка</option><option>Вино</option><option>Шампанское</option><option>Безалкогольное</option>
-                        </select>
-                        <input type="text" id="comment" class="form-input" placeholder="Пожелания / аллергии">
+                        <div class="drinks-title"><i class="fas fa-glass-cheers"></i> Предпочитаемые напитки (можно выбрать несколько)</div>
+                        <div class="drinks-grid" id="drinksGrid">
+                            <label class="drink-checkbox"><input type="checkbox" value="Водка"> <i class="fas fa-wine-bottle"></i> <span>Водка</span></label>
+                            <label class="drink-checkbox"><input type="checkbox" value="Вино"> <i class="fas fa-wine-glass-alt"></i> <span>Вино</span></label>
+                            <label class="drink-checkbox"><input type="checkbox" value="Шампанское"> <i class="fas fa-champagne-glasses"></i> <span>Шампанское</span></label>
+                            <label class="drink-checkbox"><input type="checkbox" value="Коньяк"> <i class="fas fa-brandy"></i> <span>Коньяк</span></label>
+                            <label class="drink-checkbox"><input type="checkbox" value="Безалкогольное"> <i class="fas fa-juice"></i> <span>Безалкогольное</span></label>
+                        </div>
+                        <div class="drink-note"><i class="fas fa-info-circle"></i> Вы можете отметить несколько вариантов</div>
+                        <input type="text" id="comment" class="form-input" placeholder="Пожелания, аллергии или особые предпочтения...">
                     </div>
                     <button type="submit" class="submit-btn">ОТПРАВИТЬ</button>
                 </form>
@@ -760,7 +931,7 @@
         setInterval(updateTimer, 1000);
         updateTimer();
         
-        // Музыка с плавным нарастанием за 3 секунды
+        // Музыка
         const music = document.getElementById('bgMusic');
         const playBtn = document.getElementById('playPauseBtn');
         const playerDiv = document.getElementById('musicPlayer');
@@ -828,17 +999,35 @@
         }
         buildCalendar();
         
-        // Карта
+        // Карта с фиксом для листания
         let map = null;
+        let mapInitialized = false;
+        
         function initMap() {
-            if (map) return;
+            if (mapInitialized) return;
+            mapInitialized = true;
             map = L.map('weddingMap').setView([53.2144, 63.6246], 16);
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
-            L.marker([53.2144, 63.6246]).addTo(map).bindPopup('Ресторан "DIONIS"');
-            map.invalidateSize();
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
+            }).addTo(map);
+            L.marker([53.2144, 63.6246]).addTo(map).bindPopup('Ресторан "DIONIS"').openPopup();
+            setTimeout(() => { map.invalidateSize(); }, 100);
         }
-        const mapObs = new IntersectionObserver((e) => { if (e[0].isIntersecting) { initMap(); mapObs.disconnect(); } });
-        mapObs.observe(document.getElementById('weddingMap'));
+        
+        // Наблюдатель за картой - инициализируем когда видна
+        const mapWrapper = document.getElementById('mapWrapper');
+        const mapObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !mapInitialized) {
+                initMap();
+                mapObserver.disconnect();
+            }
+        }, { threshold: 0.1 });
+        mapObserver.observe(mapWrapper);
+        
+        // Если карта всё же не инициализировалась через 2 секунды (запасной вариант)
+        setTimeout(() => {
+            if (!mapInitialized) initMap();
+        }, 2000);
         
         function copyAddress() {
             navigator.clipboard.writeText('Ресторан "DIONIS", ул. Текстильщиков 12А, Костанай');
@@ -849,6 +1038,17 @@
         window.toggleProgram = function(el) {
             el.classList.toggle('active');
         };
+        
+        // Анимация при скролле
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        animateElements.forEach(el => observer.observe(el));
         
         // RSVP форма
         const rsvpForm = document.getElementById('rsvpForm');
@@ -864,15 +1064,25 @@
             const name = document.getElementById('name').value.trim();
             if (!name) return alert('Введите имя');
             const attendance = document.querySelector('input[name="attendance"]:checked')?.value;
-            const drinks = document.getElementById('drinks').value;
+            
+            // Собираем выбранные напитки из чекбоксов
+            const selectedDrinks = [];
+            document.querySelectorAll('#drinksGrid input[type="checkbox"]:checked').forEach(cb => {
+                selectedDrinks.push(cb.value);
+            });
+            const drinksText = selectedDrinks.join(', ');
+            
             const comment = document.getElementById('comment').value;
-            const data = { name, attendance, drinks, comment, timestamp: new Date().toISOString() };
+            const data = { name, attendance, drinks: drinksText, comment, timestamp: new Date().toISOString() };
+            
             const btn = rsvpForm.querySelector('.submit-btn');
             btn.disabled = true;
             btn.innerText = 'Отправка...';
+            
             await fetch('https://script.google.com/macros/s/AKfycbzeqBk244PsOpZhUPE9kjcuaRHYjRGxFMJWcCYpSEU581oMfeeCcHi-EiFPnBtnyPp6/exec', {
                 method: 'POST', mode: 'no-cors', body: JSON.stringify(data)
             });
+            
             alert('Спасибо! Ответ сохранён.');
             rsvpForm.reset();
             extraDiv.style.display = 'none';
