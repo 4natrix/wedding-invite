@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <meta name="theme-color" content="#0B3B24">
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
@@ -139,20 +139,21 @@
             margin-bottom: 20px;
         }
         
-        /* Более разборчивый шрифт для имён */
+        /* Красивый курсивный шрифт для имён */
         .names-hero {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3rem, 10vw, 5.5rem);
-            font-weight: 600;
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3.5rem, 12vw, 6.5rem);
+            font-weight: 400;
             color: var(--white);
             margin: 20px 0;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
         
         .names-hero span {
             color: var(--gold);
             margin: 0 15px;
             font-family: 'Inter', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 4rem);
         }
         
         .date-hero {
@@ -161,13 +162,11 @@
             font-size: 1.1rem;
         }
         
-        /* Таймер */
+        /* Таймер - убрал лишний фон */
         .timer-wrapper {
             margin: 30px auto;
             display: inline-block;
-            background: rgba(0,0,0,0.5);
-            border-radius: 60px;
-            padding: 15px 25px;
+            padding: 10px 0;
         }
         
         .countdown {
@@ -187,7 +186,7 @@
             font-weight: 700;
             color: var(--gold);
             font-family: monospace;
-            background: rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.4);
             padding: 8px 12px;
             border-radius: 15px;
         }
@@ -232,12 +231,12 @@
         }
         
         .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.8rem;
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
             text-align: center;
             color: var(--emerald);
             margin-bottom: 50px;
-            font-weight: 600;
+            font-weight: 400;
         }
         
         /* Программа дня */
@@ -354,7 +353,7 @@
             }
         }
         
-        /* Дресс-код - симметрично */
+        /* Дресс-код */
         .dresscode-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -383,6 +382,26 @@
             color: var(--emerald);
             margin-bottom: 25px;
             font-size: 1.6rem;
+        }
+        
+        /* Специальная сетка для мужчин: 3 сверху, 1 снизу */
+        .color-circles-men {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin: 25px 0;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .men-top-row {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            width: 100%;
+            margin-bottom: 25px;
         }
         
         .color-circles {
@@ -503,7 +522,7 @@
             font-weight: 600;
             color: var(--emerald);
             margin-bottom: 25px;
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Great Vibes', cursive;
         }
         
         .calendar-weekdays {
@@ -847,10 +866,12 @@
                 </div>
                 <div class="dresscode-card animate-on-scroll">
                     <h3><i class="fas fa-mars"></i> Для мужчин</h3>
-                    <div class="color-circles">
-                        <div class="color-circle"><div class="circle" style="background: #0B3B24;"></div><div class="circle-label">Изумрудный</div></div>
-                        <div class="color-circle"><div class="circle" style="background: #2F4F4F;"></div><div class="circle-label">Тёмно-зелёный</div></div>
-                        <div class="color-circle"><div class="circle" style="background: #808080;"></div><div class="circle-label">Серый</div></div>
+                    <div class="color-circles-men">
+                        <div class="men-top-row">
+                            <div class="color-circle"><div class="circle" style="background: #0B3B24;"></div><div class="circle-label">Изумрудный</div></div>
+                            <div class="color-circle"><div class="circle" style="background: #2F4F4F;"></div><div class="circle-label">Тёмно-зелёный</div></div>
+                            <div class="color-circle"><div class="circle" style="background: #808080;"></div><div class="circle-label">Серый</div></div>
+                        </div>
                         <div class="color-circle"><div class="circle" style="background: #222222;"></div><div class="circle-label">Чёрный</div></div>
                     </div>
                     <p>Костюмы, пиджаки, галстуки или бабочки в указанных тонах. Белая рубашка приветствуется.</p>
@@ -960,7 +981,7 @@
         setInterval(updateTimer, 1000);
         updateTimer();
         
-        // Музыка с плавным нарастанием за 5 секунд и остановкой при уходе со страницы
+        // Музыка с плавным нарастанием и АВТОМАТИЧЕСКИМ запуском
         const music = document.getElementById('bgMusic');
         const playBtn = document.getElementById('playPauseBtn');
         const playerDiv = document.getElementById('musicPlayer');
@@ -973,7 +994,6 @@
             if (fadeInterval) clearInterval(fadeInterval);
             let vol = 0;
             music.volume = 0;
-            // 5 секунд = 5000мс / 100мс = 50 шагов по 0.02 = от 0 до 0.7
             fadeInterval = setInterval(() => {
                 if (vol < 0.68) {
                     vol += 0.02;
@@ -992,10 +1012,13 @@
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 playerDiv.classList.remove('paused');
                 fadeIn();
-            }).catch(e => console.log('Автозапуск заблокирован'));
+            }).catch(e => {
+                console.log('Автозапуск заблокирован, нужен клик');
+                // Показываем кнопку, но музыка запустится при клике
+            });
         }
         
-        function stopMusic() {
+        playBtn.addEventListener('click', () => {
             if (isPlaying) {
                 music.pause();
                 isPlaying = false;
@@ -1003,22 +1026,28 @@
                 playerDiv.classList.add('paused');
                 if (fadeInterval) clearInterval(fadeInterval);
                 music.volume = 0;
-            }
-        }
-        
-        playBtn.addEventListener('click', () => {
-            if (isPlaying) {
-                stopMusic();
             } else {
                 startMusic();
             }
         });
         
-        // Автозапуск при первом касании/клике
-        document.body.addEventListener('touchstart', () => { if (!isPlaying) startMusic(); }, { once: true });
-        document.body.addEventListener('click', () => { if (!isPlaying) startMusic(); }, { once: true });
+        // АВТОМАТИЧЕСКИЙ ЗАПУСК при загрузке страницы (если браузер разрешит)
+        window.addEventListener('load', () => {
+            startMusic();
+        });
         
-        // Остановка музыки когда вкладка не активна или пользователь уходит
+        // Если автозапуск не сработал (из-за политики браузера), запускаем при первом любом касании
+        const autoStartOnce = () => {
+            if (!isPlaying) {
+                startMusic();
+            }
+            document.body.removeEventListener('touchstart', autoStartOnce);
+            document.body.removeEventListener('click', autoStartOnce);
+        };
+        document.body.addEventListener('touchstart', autoStartOnce);
+        document.body.addEventListener('click', autoStartOnce);
+        
+        // Остановка музыки когда вкладка не активна
         document.addEventListener('visibilitychange', function() {
             if (document.hidden) {
                 if (isPlaying) {
@@ -1031,7 +1060,6 @@
             }
         });
         
-        // Полная остановка при закрытии страницы
         window.addEventListener('beforeunload', function() {
             if (music) {
                 music.pause();
