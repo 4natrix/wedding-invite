@@ -787,34 +787,6 @@
             font-size: 1.3rem;
         }
         
-        /* Кнопка отправки в WhatsApp */
-        .send-wa-section {
-            text-align: center;
-            padding: 30px 20px;
-            background: var(--white);
-            border-top: 1px solid var(--silver);
-        }
-        
-        .send-wa-btn {
-            background: #25D366;
-            color: white;
-            border: none;
-            padding: 14px 35px;
-            border-radius: 50px;
-            font-size: 1rem;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.3s;
-            font-weight: 600;
-        }
-        
-        .send-wa-btn:hover {
-            background: #128C7E;
-            transform: translateY(-2px);
-        }
-        
         footer {
             background: var(--emerald);
             color: white;
@@ -833,27 +805,6 @@
         .animate-on-scroll.visible {
             opacity: 1;
             transform: translateY(0);
-        }
-        
-        /* Всплывающее уведомление */
-        .toast-notification {
-            position: fixed;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--emerald);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            z-index: 1100;
-            transition: transform 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            white-space: nowrap;
-        }
-        
-        .toast-notification.show {
-            transform: translateX(-50%) translateY(0);
         }
     </style>
 </head>
@@ -1057,14 +1008,6 @@
         </div>
     </section>
 
-    <!-- Кнопка отправки в WhatsApp -->
-    <div class="send-wa-section">
-        <button class="send-wa-btn" onclick="sendToWhatsApp()">
-            <i class="fab fa-whatsapp"></i> Отправить приглашение гостям
-        </button>
-        <p style="font-size: 0.75rem; color: #888; margin-top: 12px;">Нажмите, чтобы поделиться приглашением в WhatsApp</p>
-    </div>
-
     <!-- Рекламный блок -->
     <div class="ad-section">
         <div class="ad-container">
@@ -1085,8 +1028,6 @@
     <footer>
         <p>С любовью, Мадина ❤ Анатолий • 2026</p>
     </footer>
-
-    <div id="toastMsg" class="toast-notification">✓ Спасибо! Ответ сохранён</div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
@@ -1110,13 +1051,12 @@
         setInterval(updateTimer, 1000);
         updateTimer();
         
-        // Музыка
+        // ========== МУЗЫКА - ГАРАНТИРОВАННО ВКЛЮЧАЕТСЯ ==========
         const music = document.getElementById('bgMusic');
         const playBtn = document.getElementById('playPauseBtn');
         const playerDiv = document.getElementById('musicPlayer');
         let isPlaying = false;
         let fadeInterval = null;
-        let musicStarted = false;
         
         music.volume = 0;
         
@@ -1137,16 +1077,14 @@
         }
         
         function startMusic() {
-            if (isPlaying || musicStarted) return;
-            musicStarted = true;
+            if (isPlaying) return;
             music.play().then(() => {
                 isPlaying = true;
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 playerDiv.classList.remove('paused');
                 fadeIn();
             }).catch(e => {
-                console.log('Автозапуск заблокирован');
-                musicStarted = false;
+                console.log('Автозапуск заблокирован, ждём взаимодействия');
             });
         }
         
@@ -1158,24 +1096,25 @@
                 playerDiv.classList.add('paused');
                 if (fadeInterval) clearInterval(fadeInterval);
                 music.volume = 0;
-                musicStarted = false;
             } else {
                 startMusic();
             }
         });
         
-        window.addEventListener('scroll', function scrollStart() {
-            if (!musicStarted && !isPlaying) {
-                startMusic();
-            }
-            window.removeEventListener('scroll', scrollStart);
+        // Запускаем музыку при загрузке страницы
+        window.addEventListener('load', function() {
+            startMusic();
+        });
+        
+        // Также запускаем при первом касании (на случай если браузер блокирует автозапуск)
+        document.body.addEventListener('touchstart', function firstTouch() {
+            if (!isPlaying) startMusic();
+            document.body.removeEventListener('touchstart', firstTouch);
         }, { once: true });
         
-        document.addEventListener('touchstart', function touchStart() {
-            if (!musicStarted && !isPlaying) {
-                startMusic();
-            }
-            document.removeEventListener('touchstart', touchStart);
+        document.body.addEventListener('click', function firstClick() {
+            if (!isPlaying) startMusic();
+            document.body.removeEventListener('click', firstClick);
         }, { once: true });
         
         document.addEventListener('visibilitychange', function() {
@@ -1217,11 +1156,10 @@
         }
         buildCalendar();
         
-        // Карта - правильные координаты ресторана DIONIS в Костанае
+        // Карта
         let map = null;
         let mapInitialized = false;
         
-        // Правильные координаты ресторана DIONIS (ул. Текстильщиков 12А, Костанай)
         const restaurantLat = 53.2144;
         const restaurantLng = 63.6246;
         
@@ -1251,34 +1189,7 @@
         
         function copyAddress() {
             navigator.clipboard.writeText('Ресторан "DIONIS", ул. Текстильщиков 12А, Костанай');
-            showToast('Адрес скопирован');
-        }
-        
-        function showToast(message) {
-            const toast = document.getElementById('toastMsg');
-            toast.textContent = message;
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2000);
-        }
-        
-        // Отправка в WhatsApp с готовым текстом
-        function sendToWhatsApp() {
-            const currentUrl = window.location.href;
-            const encodedUrl = encodeURIComponent(currentUrl);
-            const text = `💍 Приглашение на свадьбу Анатолия и Мадины 💍
-
-Здравствуйте! Приглашаем вас разделить с нами этот особенный день.
-
-Все детали праздника по ссылке: ${currentUrl}
-
-❗️ Пожалуйста, никому не пересылайте эту ссылку — кому нужно, мы пришлём сами.
-
-Ждём вас 28 июня 2026 в 15:30!`;
-            
-            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
-            window.open(whatsappUrl, '_blank');
+            alert('Адрес скопирован');
         }
         
         // Анимация при скролле
@@ -1292,7 +1203,7 @@
         }, { threshold: 0.1 });
         animateElements.forEach(el => observer.observe(el));
         
-        // RSVP форма - без всплывающего окна
+        // RSVP форма - без всплывающих окон
         const rsvpForm = document.getElementById('rsvpForm');
         const extraDiv = document.getElementById('extraFields');
         document.querySelectorAll('input[name="attendance"]').forEach(r => {
@@ -1305,12 +1216,12 @@
             e.preventDefault();
             const name = document.getElementById('name').value.trim();
             if (!name) {
-                showToast('Пожалуйста, введите ваше имя');
+                alert('Пожалуйста, введите ваше имя');
                 return;
             }
             const attendance = document.querySelector('input[name="attendance"]:checked')?.value;
             if (!attendance) {
-                showToast('Пожалуйста, выберите вариант ответа');
+                alert('Пожалуйста, выберите вариант ответа');
                 return;
             }
             
@@ -1331,7 +1242,7 @@
                 method: 'POST', mode: 'no-cors', body: JSON.stringify(data)
             });
             
-            showToast('✓ Спасибо! Ваш ответ сохранён');
+            // Никаких уведомлений
             rsvpForm.reset();
             extraDiv.style.display = 'none';
             btn.disabled = false;
