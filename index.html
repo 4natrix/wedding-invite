@@ -1093,7 +1093,7 @@
         setInterval(updateTimer, 1000);
         updateTimer();
         
-        // ========== МУЗЫКА - АВТОЗАПУСК С ПЛАВНЫМ НАРАСТАНИЕМ ЗА 5 СЕКУНД ==========
+        // ========== МУЗЫКА - АВТОЗАПУСК + ПАУЗА В ФОНОВОМ РЕЖИМЕ ==========
         const music = document.getElementById('bgMusic');
         const playBtn = document.getElementById('playPauseBtn');
         let isPlaying = false;
@@ -1106,7 +1106,6 @@
             if (fadeInterval) clearInterval(fadeInterval);
             let vol = 0;
             music.volume = 0;
-            // 5 секунд = 5000мс / 100мс = 50 шагов по 0.014 = от 0 до 0.7
             fadeInterval = setInterval(() => {
                 if (vol < 0.68) {
                     vol += 0.014;
@@ -1150,12 +1149,12 @@
             }
         });
         
-        // АВТОМАТИЧЕСКИЙ ЗАПУСК ПРИ ЗАГРУЗКЕ СТРАНИЦЫ
+        // АВТОМАТИЧЕСКИЙ ЗАПУСК ПРИ ЗАГРУЗКЕ
         window.addEventListener('load', () => {
             startMusic();
         });
         
-        // Если автозапуск не сработал (из-за политики браузера), запускаем при первом любом касании
+        // Если автозапуск не сработал - запускаем при первом касании
         const tryAutoStart = () => {
             if (!isPlaying) {
                 startMusic();
@@ -1165,6 +1164,23 @@
         };
         document.addEventListener('click', tryAutoStart);
         document.addEventListener('touchstart', tryAutoStart);
+        
+        // ========== ОСТАНОВКА МУЗЫКИ В ФОНОВОМ РЕЖИМЕ ==========
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                // Вкладка неактивна - ставим на паузу
+                if (isPlaying) {
+                    music.pause();
+                }
+            } else {
+                // Вернулись на вкладку - возобновляем, если музыка была включена
+                if (isPlaying) {
+                    music.play().catch(e => console.log('Ошибка возобновления'));
+                    // Заново запускаем плавное нарастание
+                    fadeIn();
+                }
+            }
+        });
         
         music.load();
         
