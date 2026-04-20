@@ -463,19 +463,27 @@
             overflow: hidden;
             border: 2px solid var(--gold);
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+            background: #f0f0f0;
         }
         
+        /* Фикс для карты - чтобы не мешала скроллу */
         #weddingMap {
             height: 280px;
             width: 100%;
+            pointer-events: none;
         }
         
+        /* Кнопки карты всё равно кликабельны */
         .map-buttons {
             display: flex;
             gap: 12px;
             justify-content: center;
             margin-top: 20px;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
         }
         
         .map-btn {
@@ -724,6 +732,63 @@
             transform: translateY(-2px);
         }
         
+        /* Рекламный блок */
+        .ad-section {
+            background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-light) 100%);
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 3px solid var(--gold);
+            border-bottom: 3px solid var(--gold);
+        }
+        
+        .ad-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .ad-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        
+        .ad-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .ad-text {
+            color: var(--silver-light);
+            font-size: 1rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .ad-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--gold);
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--emerald);
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .ad-phone:hover {
+            background: var(--gold-light);
+            transform: scale(1.05);
+        }
+        
+        .ad-phone i {
+            font-size: 1.3rem;
+        }
+        
         footer {
             background: var(--emerald);
             color: white;
@@ -782,7 +847,7 @@
         </div>
     </section>
 
-    <!-- Программа дня (обновлённая) -->
+    <!-- Программа дня -->
     <section class="section bg-light">
         <div class="container">
             <h2 class="section-title">Программа дня</h2>
@@ -945,6 +1010,23 @@
         </div>
     </section>
 
+    <!-- Рекламный блок -->
+    <div class="ad-section">
+        <div class="ad-container">
+            <div class="ad-icon">
+                <i class="fas fa-envelope-open-text"></i>
+            </div>
+            <div class="ad-title">Электронное приглашение на вашу свадьбу</div>
+            <div class="ad-text">
+                Понравилось наше приглашение? Хотите такое же для себя или в подарок друзьям/родственникам?<br>
+                Свяжитесь с нами, и мы создадим уникальное электронное приглашение для вашего торжества!
+            </div>
+            <a href="tel:87066542810" class="ad-phone">
+                <i class="fas fa-phone-alt"></i> 8 (706) 654-28-10
+            </a>
+        </div>
+    </div>
+
     <footer>
         <p>С любовью, Мадина ❤ Анатолий • 2026</p>
     </footer>
@@ -971,7 +1053,7 @@
         setInterval(updateTimer, 1000);
         updateTimer();
         
-        // Музыка - ГАРАНТИРОВАННЫЙ АВТОЗАПУСК на всех устройствах
+        // Музыка
         const music = document.getElementById('bgMusic');
         const playBtn = document.getElementById('playPauseBtn');
         const playerDiv = document.getElementById('musicPlayer');
@@ -1005,7 +1087,7 @@
                 playerDiv.classList.remove('paused');
                 fadeIn();
             }).catch(e => {
-                console.log('Автозапуск заблокирован, ждём взаимодействия');
+                console.log('Автозапуск заблокирован');
             });
         }
         
@@ -1022,7 +1104,6 @@
             }
         });
         
-        // Множественные попытки автозапуска
         function attemptAutoStart() {
             if (!autoStartAttempted) {
                 autoStartAttempted = true;
@@ -1030,27 +1111,20 @@
             }
         }
         
-        // Попытка при загрузке страницы
         window.addEventListener('load', attemptAutoStart);
         
-        // Также пробуем при первом любом взаимодействии с документом
         const tryOnInteraction = () => {
             if (!isPlaying) {
                 startMusic();
             }
             document.removeEventListener('touchstart', tryOnInteraction);
             document.removeEventListener('click', tryOnInteraction);
-            document.removeEventListener('scroll', tryOnInteraction);
         };
         
         document.addEventListener('touchstart', tryOnInteraction);
         document.addEventListener('click', tryOnInteraction);
-        document.addEventListener('scroll', tryOnInteraction);
-        
-        // Дополнительная попытка через 1 секунду после загрузки
         setTimeout(attemptAutoStart, 1000);
         
-        // Остановка музыки когда вкладка не активна
         document.addEventListener('visibilitychange', function() {
             if (document.hidden) {
                 if (isPlaying) {
@@ -1070,7 +1144,7 @@
             }
         });
         
-        // Календарь с сердечком
+        // Календарь
         function buildCalendar() {
             const firstDay = new Date(2026, 5, 1);
             let startOffset = firstDay.getDay();
@@ -1090,7 +1164,7 @@
         }
         buildCalendar();
         
-        // Карта
+        // Карта - НЕПОДВИЖНАЯ (pointer-events: none)
         let map = null;
         let mapInitialized = false;
         
