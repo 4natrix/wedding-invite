@@ -139,7 +139,6 @@
             margin-bottom: 20px;
         }
         
-        /* Красивый курсивный шрифт для имён */
         .names-hero {
             font-family: 'Great Vibes', cursive;
             font-size: clamp(3.5rem, 12vw, 6.5rem);
@@ -162,7 +161,7 @@
             font-size: 1.1rem;
         }
         
-        /* Таймер - убрал лишний фон */
+        /* Таймер */
         .timer-wrapper {
             margin: 30px auto;
             display: inline-block;
@@ -239,7 +238,7 @@
             font-weight: 400;
         }
         
-        /* Программа дня */
+        /* Программа дня - шахматный порядок */
         .timeline-program {
             position: relative;
             max-width: 800px;
@@ -301,7 +300,6 @@
             border-radius: 20px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             border-left: 4px solid var(--gold);
-            cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
         }
         
@@ -313,7 +311,7 @@
         .program-time {
             color: var(--gold);
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
         
         .program-name {
@@ -325,14 +323,7 @@
         .program-desc {
             font-size: 0.85rem;
             color: #666;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        
-        .program-item.active .program-desc {
-            max-height: 100px;
-            margin-top: 10px;
+            margin-top: 8px;
         }
         
         @media (max-width: 768px) {
@@ -384,7 +375,6 @@
             font-size: 1.6rem;
         }
         
-        /* Специальная сетка для мужчин: 3 сверху, 1 снизу */
         .color-circles-men {
             display: flex;
             flex-wrap: wrap;
@@ -765,7 +755,7 @@
         </div>
     </div>
     
-    <audio id="bgMusic" loop preload="auto">
+    <audio id="bgMusic" loop preload="auto" crossorigin="anonymous">
         <source src="https://na-zvonochek.ru/_ld/4/435_mot-svadebnaja.mp3" type="audio/mpeg">
     </audio>
 
@@ -778,7 +768,7 @@
             </div>
             <div class="date-hero">
                 <i class="fas fa-calendar-alt" style="color: var(--gold);"></i> 28 ИЮНЯ 2026 &nbsp;|&nbsp;
-                <i class="fas fa-clock" style="color: var(--gold);"></i> СБОР В 16:00
+                <i class="fas fa-clock" style="color: var(--gold);"></i> СБОР В 15:30
             </div>
             <div class="timer-wrapper">
                 <div class="countdown">
@@ -792,57 +782,57 @@
         </div>
     </section>
 
-    <!-- Программа дня -->
+    <!-- Программа дня (обновлённая) -->
     <section class="section bg-light">
         <div class="container">
             <h2 class="section-title">Программа дня</h2>
             <div class="timeline-program">
-                <div class="program-item animate-on-scroll" onclick="toggleProgram(this)">
+                <div class="program-item">
                     <div class="program-dot"></div>
                     <div class="program-card">
-                        <div class="program-time">16:00 - 16:30</div>
+                        <div class="program-time">15:30 - 16:00</div>
                         <div class="program-name">🍷 Сбор гостей</div>
-                        <div class="program-desc">Встреча гостей, welcome-фуршет, живая музыка</div>
+                        <div class="program-desc">Встреча гостей, welcome-фуршет, живая музыка. Проходите, устраивайтесь поудобнее!</div>
                     </div>
                 </div>
-                <div class="program-item animate-on-scroll" onclick="toggleProgram(this)">
+                <div class="program-item">
                     <div class="program-dot"></div>
                     <div class="program-card">
-                        <div class="program-time">16:30 - 17:30</div>
-                        <div class="program-name">💍 Торжественная церемония</div>
-                        <div class="program-desc">Выкуп невесты, обмен клятвами и кольцами</div>
+                        <div class="program-time">16:30</div>
+                        <div class="program-name">🍽️ Первое горячее</div>
+                        <div class="program-desc">Подача первых горячих блюд, начало банкета. Приятного аппетита!</div>
                     </div>
                 </div>
-                <div class="program-item animate-on-scroll" onclick="toggleProgram(this)">
+                <div class="program-item">
                     <div class="program-dot"></div>
                     <div class="program-card">
-                        <div class="program-time">17:30 - 19:00</div>
-                        <div class="program-name">📸 Поздравления и фотосессия</div>
-                        <div class="program-desc">Поздравления от гостей, общая фотосессия</div>
+                        <div class="program-time">18:00</div>
+                        <div class="program-name">💃 Танцевальный перерыв</div>
+                        <div class="program-desc">Музыкальная пауза, зажигательные танцы от гостей и молодоженов</div>
                     </div>
                 </div>
-                <div class="program-item animate-on-scroll" onclick="toggleProgram(this)">
+                <div class="program-item">
                     <div class="program-dot"></div>
                     <div class="program-card">
-                        <div class="program-time">19:00 - 20:30</div>
-                        <div class="program-name">🍽️ Банкет</div>
-                        <div class="program-desc">Первый тост, праздничный ужин, каравай</div>
+                        <div class="program-time">19:00</div>
+                        <div class="program-name">💍 Первый танец молодых</div>
+                        <div class="program-desc">Самый трогательный момент вечера — первый танец Анатолия и Мадины</div>
                     </div>
                 </div>
-                <div class="program-item animate-on-scroll" onclick="toggleProgram(this)">
+                <div class="program-item">
                     <div class="program-dot"></div>
                     <div class="program-card">
-                        <div class="program-time">20:30 - 22:00</div>
-                        <div class="program-name">💃 Танцы и конкурсы</div>
-                        <div class="program-desc">Первый танец молодоженов, дискотека, конкурсы</div>
+                        <div class="program-time">20:20</div>
+                        <div class="program-name">🎂 Свадебный торт</div>
+                        <div class="program-desc">Торжественное появление и разрезание свадебного торта, сладкий стол</div>
                     </div>
                 </div>
-                <div class="program-item animate-on-scroll" onclick="toggleProgram(this)">
+                <div class="program-item">
                     <div class="program-dot"></div>
                     <div class="program-card">
                         <div class="program-time">22:00</div>
-                        <div class="program-name">🎆 Завершение</div>
-                        <div class="program-desc">Финальный танец, фейерверк</div>
+                        <div class="program-name">🎆 Завершение вечера</div>
+                        <div class="program-desc">Финальный танец, праздничный фейерверк, прощание с гостями</div>
                     </div>
                 </div>
             </div>
@@ -962,7 +952,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         // Таймер
-        const weddingDateTime = new Date('2026-06-28T16:00:00').getTime();
+        const weddingDateTime = new Date('2026-06-28T15:30:00').getTime();
         function updateTimer() {
             const now = new Date().getTime();
             const diff = weddingDateTime - now;
@@ -981,12 +971,13 @@
         setInterval(updateTimer, 1000);
         updateTimer();
         
-        // Музыка с плавным нарастанием и АВТОМАТИЧЕСКИМ запуском
+        // Музыка - ГАРАНТИРОВАННЫЙ АВТОЗАПУСК на всех устройствах
         const music = document.getElementById('bgMusic');
         const playBtn = document.getElementById('playPauseBtn');
         const playerDiv = document.getElementById('musicPlayer');
         let isPlaying = false;
         let fadeInterval = null;
+        let autoStartAttempted = false;
         
         music.volume = 0;
         
@@ -1007,14 +998,14 @@
         }
         
         function startMusic() {
+            if (isPlaying) return;
             music.play().then(() => {
                 isPlaying = true;
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 playerDiv.classList.remove('paused');
                 fadeIn();
             }).catch(e => {
-                console.log('Автозапуск заблокирован, нужен клик');
-                // Показываем кнопку, но музыка запустится при клике
+                console.log('Автозапуск заблокирован, ждём взаимодействия');
             });
         }
         
@@ -1031,21 +1022,33 @@
             }
         });
         
-        // АВТОМАТИЧЕСКИЙ ЗАПУСК при загрузке страницы (если браузер разрешит)
-        window.addEventListener('load', () => {
-            startMusic();
-        });
+        // Множественные попытки автозапуска
+        function attemptAutoStart() {
+            if (!autoStartAttempted) {
+                autoStartAttempted = true;
+                startMusic();
+            }
+        }
         
-        // Если автозапуск не сработал (из-за политики браузера), запускаем при первом любом касании
-        const autoStartOnce = () => {
+        // Попытка при загрузке страницы
+        window.addEventListener('load', attemptAutoStart);
+        
+        // Также пробуем при первом любом взаимодействии с документом
+        const tryOnInteraction = () => {
             if (!isPlaying) {
                 startMusic();
             }
-            document.body.removeEventListener('touchstart', autoStartOnce);
-            document.body.removeEventListener('click', autoStartOnce);
+            document.removeEventListener('touchstart', tryOnInteraction);
+            document.removeEventListener('click', tryOnInteraction);
+            document.removeEventListener('scroll', tryOnInteraction);
         };
-        document.body.addEventListener('touchstart', autoStartOnce);
-        document.body.addEventListener('click', autoStartOnce);
+        
+        document.addEventListener('touchstart', tryOnInteraction);
+        document.addEventListener('click', tryOnInteraction);
+        document.addEventListener('scroll', tryOnInteraction);
+        
+        // Дополнительная попытка через 1 секунду после загрузки
+        setTimeout(attemptAutoStart, 1000);
         
         // Остановка музыки когда вкладка не активна
         document.addEventListener('visibilitychange', function() {
@@ -1122,11 +1125,6 @@
             navigator.clipboard.writeText('Ресторан "DIONIS", ул. Текстильщиков 12А, Костанай');
             alert('Адрес скопирован');
         }
-        
-        // Программа дня
-        window.toggleProgram = function(el) {
-            el.classList.toggle('active');
-        };
         
         // Анимация при скролле
         const animateElements = document.querySelectorAll('.animate-on-scroll');
