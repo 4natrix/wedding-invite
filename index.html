@@ -833,8 +833,9 @@
         </button>
     </div>
     
+    <!-- АУДИО С ВАШЕЙ ПЕСНЕЙ -->
     <audio id="bgMusic" loop preload="auto" crossorigin="anonymous">
-        <source src="https://github.com/4natrix/wedding-invite/blob/main/435_mot-svadebnaja%20(2).mp3" type="audio/mpeg">
+        <source src="https://raw.githubusercontent.com/4natrix/wedding-invite/main/435_mot-svadebnaja%20(2).mp3" type="audio/mpeg">
     </audio>
 
     <!-- Hero -->
@@ -1092,7 +1093,7 @@
         setInterval(updateTimer, 1000);
         updateTimer();
         
-        // ========== МУЗЫКА ==========
+        // ========== МУЗЫКА - АВТОЗАПУСК С ПЛАВНЫМ НАРАСТАНИЕМ ЗА 5 СЕКУНД ==========
         const music = document.getElementById('bgMusic');
         const playBtn = document.getElementById('playPauseBtn');
         let isPlaying = false;
@@ -1105,9 +1106,10 @@
             if (fadeInterval) clearInterval(fadeInterval);
             let vol = 0;
             music.volume = 0;
+            // 5 секунд = 5000мс / 100мс = 50 шагов по 0.014 = от 0 до 0.7
             fadeInterval = setInterval(() => {
                 if (vol < 0.68) {
-                    vol += 0.02;
+                    vol += 0.014;
                     music.volume = vol;
                 } else {
                     music.volume = 0.7;
@@ -1124,7 +1126,7 @@
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 fadeIn();
             }).catch(e => {
-                console.log('Ошибка: нужно нажать на значок');
+                console.log('Автозапуск заблокирован, нужен клик');
                 playBtn.innerHTML = '<i class="fas fa-music"></i>';
             });
         }
@@ -1138,6 +1140,7 @@
             music.volume = 0;
         }
         
+        // Клик по плееру
         playBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (isPlaying) {
@@ -1147,19 +1150,21 @@
             }
         });
         
+        // АВТОМАТИЧЕСКИЙ ЗАПУСК ПРИ ЗАГРУЗКЕ СТРАНИЦЫ
         window.addEventListener('load', () => {
             startMusic();
         });
         
-        const tryStart = () => {
+        // Если автозапуск не сработал (из-за политики браузера), запускаем при первом любом касании
+        const tryAutoStart = () => {
             if (!isPlaying) {
                 startMusic();
             }
-            document.removeEventListener('click', tryStart);
-            document.removeEventListener('touchstart', tryStart);
+            document.removeEventListener('click', tryAutoStart);
+            document.removeEventListener('touchstart', tryAutoStart);
         };
-        document.addEventListener('click', tryStart);
-        document.addEventListener('touchstart', tryStart);
+        document.addEventListener('click', tryAutoStart);
+        document.addEventListener('touchstart', tryAutoStart);
         
         music.load();
         
@@ -1226,6 +1231,7 @@
             }, 4000);
         }
         
+        // Анимация при скролле
         const animateElements = document.querySelectorAll('.animate-on-scroll');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
