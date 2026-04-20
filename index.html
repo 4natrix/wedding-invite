@@ -1093,12 +1093,11 @@
         setInterval(updateTimer, 1000);
         updateTimer();
         
-        // ========== МУЗЫКА - РАБОТАЕТ ПРИ КАЖДОМ ЗАХОДЕ ==========
+        // ========== МУЗЫКА - ТОЛЬКО ПО КНОПКЕ ==========
         const music = document.getElementById('bgMusic');
         const playBtn = document.getElementById('playPauseBtn');
         let isPlaying = false;
         let fadeInterval = null;
-        let musicStarted = false;
         
         music.volume = 0;
         music.loop = true;
@@ -1120,15 +1119,13 @@
         }
         
         function startMusic() {
-            if (isPlaying || musicStarted) return;
-            musicStarted = true;
+            if (isPlaying) return;
             music.play().then(() => {
                 isPlaying = true;
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 fadeIn();
             }).catch(e => {
-                console.log('Автозапуск заблокирован');
-                musicStarted = false;
+                console.log('Ошибка при запуске');
                 playBtn.innerHTML = '<i class="fas fa-music"></i>';
             });
         }
@@ -1140,10 +1137,9 @@
             playBtn.innerHTML = '<i class="fas fa-music"></i>';
             if (fadeInterval) clearInterval(fadeInterval);
             music.volume = 0;
-            musicStarted = false;
         }
         
-        // Клик по плееру
+        // ТОЛЬКО ПРИ НАЖАТИИ НА КНОПКУ
         playBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (isPlaying) {
@@ -1153,37 +1149,7 @@
             }
         });
         
-        // Пытаемся запустить музыку при загрузке
-        window.addEventListener('load', () => {
-            startMusic();
-        });
-        
-        // Если не получилось - при первом клике/касании по странице
-        const tryStart = () => {
-            if (!isPlaying && !musicStarted) {
-                startMusic();
-            }
-            document.removeEventListener('click', tryStart);
-            document.removeEventListener('touchstart', tryStart);
-        };
-        document.addEventListener('click', tryStart);
-        document.addEventListener('touchstart', tryStart);
-        
-        // Пауза в фоновом режиме
-        document.addEventListener('visibilitychange', function() {
-            if (document.hidden) {
-                if (isPlaying) {
-                    music.pause();
-                }
-            } else {
-                if (isPlaying) {
-                    music.play().catch(e => console.log('Ошибка возобновления'));
-                    fadeIn();
-                }
-            }
-        });
-        
-        // Принудительно сбрасываем кэш аудио при загрузке страницы
+        // Предзагрузка аудио
         music.load();
         
         // Календарь
