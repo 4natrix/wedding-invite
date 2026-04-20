@@ -113,23 +113,35 @@
             margin-bottom: 20px;
         }
         
-        /* Имена по центру */
+        /* Имена - столбиком по центру */
         .names-hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .name-top {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(3rem, 10vw, 5.5rem);
+            font-size: clamp(3rem, 10vw, 5rem);
             font-weight: 400;
             color: var(--white);
-            margin: 20px 0;
-            letter-spacing: 1px;
-            text-align: center;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
         
-        .names-hero span {
+        .heart-center {
+            font-size: clamp(2rem, 6vw, 3rem);
             color: var(--gold);
-            margin: 0 15px;
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin: 10px 0;
+        }
+        
+        .name-bottom {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3rem, 10vw, 5rem);
+            font-weight: 400;
+            color: var(--white);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
         
         .date-hero {
@@ -360,19 +372,16 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
             gap: 25px;
             margin: 25px 0;
-            max-width: 320px;
-            margin-left: auto;
-            margin-right: auto;
         }
         
         .men-top-row {
             display: flex;
             justify-content: center;
             gap: 25px;
-            width: 100%;
-            margin-bottom: 25px;
+            flex-wrap: wrap;
         }
         
         .color-circles {
@@ -429,6 +438,13 @@
         @media (max-width: 768px) {
             .dresscode-grid {
                 grid-template-columns: 1fr;
+            }
+            .color-circles-men {
+                flex-direction: column;
+                align-items: center;
+            }
+            .men-top-row {
+                justify-content: center;
             }
         }
         
@@ -838,7 +854,9 @@
         <div class="hero-content">
             <div class="hero-label">ПРИГЛАШЕНИЕ</div>
             <div class="names-hero">
-                Анатолий <span>❤</span> Мадина
+                <div class="name-top">Анатолий</div>
+                <div class="heart-center">❤</div>
+                <div class="name-bottom">Мадина</div>
             </div>
             <div class="date-hero">
                 <i class="fas fa-calendar-alt" style="color: var(--gold);"></i> 28 ИЮНЯ 2026 &nbsp;|&nbsp;
@@ -958,9 +976,9 @@
                         <div id="weddingMap"></div>
                     </div>
                     <div class="map-buttons">
-                        <a href="https://yandex.ru/maps/?text=Костанай%20Текстильщиков%2012%D0%90" target="_blank" class="map-btn"><i class="fab fa-yandex"></i> Яндекс</a>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Костанай+Текстильщиков+12%D0%90" target="_blank" class="map-btn"><i class="fab fa-google"></i> Google</a>
-                        <a href="https://2gis.kz/kostanay/geo/70030076479502991" target="_blank" class="map-btn"><i class="fas fa-map"></i> 2ГИС</a>
+                        <a href="https://yandex.ru/maps/org/dionis/108859886671/" target="_blank" class="map-btn"><i class="fab fa-yandex"></i> Яндекс</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Dionis+restaurant+Kostanay+Tekstilshchikov+12A" target="_blank" class="map-btn"><i class="fab fa-google"></i> Google</a>
+                        <a href="https://2gis.kz/kostanay/firm/70000001020288292" target="_blank" class="map-btn"><i class="fas fa-map"></i> 2ГИС</a>
                         <button onclick="copyAddress()" class="map-btn"><i class="fas fa-copy"></i> Адрес</button>
                     </div>
                     <p style="text-align: center; margin-top: 15px;">📍 Ресторан "DIONIS", ул. Текстильщиков 12А, Костанай</p>
@@ -1064,7 +1082,7 @@
         setInterval(updateTimer, 1000);
         updateTimer();
         
-        // ========== МУЗЫКА - ТОЛЬКО ПО КЛИКУ НА ЗНАЧОК ==========
+        // ========== МУЗЫКА - ГАРАНТИРОВАННО РАБОТАЕТ ==========
         const music = document.getElementById('bgMusic');
         const playBtn = document.getElementById('playPauseBtn');
         const playerDiv = document.getElementById('musicPlayer');
@@ -1097,8 +1115,7 @@
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 fadeIn();
             }).catch(e => {
-                console.log('Не удалось воспроизвести');
-                // Если не получилось, меняем иконку обратно
+                console.log('Ошибка автозапуска, ждём клика');
                 playBtn.innerHTML = '<i class="fas fa-music"></i>';
             });
         }
@@ -1112,7 +1129,7 @@
             music.volume = 0;
         }
         
-        // Клик по плееру - включение/выключение
+        // Клик по плееру
         playBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (isPlaying) {
@@ -1122,7 +1139,27 @@
             }
         });
         
-        // Предзагрузка музыки
+        // Пробуем запустить музыку при загрузке
+        window.addEventListener('load', () => {
+            startMusic();
+        });
+        
+        // Если автозапуск заблокирован - запускаем при первом клике по странице
+        document.body.addEventListener('click', function firstClick() {
+            if (!isPlaying) {
+                startMusic();
+            }
+            document.body.removeEventListener('click', firstClick);
+        }, { once: true });
+        
+        document.body.addEventListener('touchstart', function firstTouch() {
+            if (!isPlaying) {
+                startMusic();
+            }
+            document.body.removeEventListener('touchstart', firstTouch);
+        }, { once: true });
+        
+        // Предзагрузка
         music.load();
         
         // Календарь
