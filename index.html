@@ -82,7 +82,7 @@
             position: fixed;
             bottom: 100px;
             right: 25px;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             color: var(--gold);
             padding: 8px 16px;
             border-radius: 30px;
@@ -826,9 +826,9 @@
             <i class="fas fa-music"></i>
         </button>
     </div>
-    <div class="music-hint" id="musicHint">🎵 Нажмите</div>
+    <div class="music-hint" id="musicHint">🎵 Нажмите в любом месте</div>
     
-    <!-- АУДИО С НОВОЙ РАБОЧЕЙ ССЫЛКОЙ -->
+    <!-- АУДИО -->
     <audio id="bgMusic" loop preload="auto" crossorigin="anonymous">
         <source src="https://na-zvonochek.ru/_ld/4/435_mot-svadebnaja.mp3" type="audio/mpeg">
     </audio>
@@ -863,54 +863,12 @@
         <div class="container">
             <h2 class="section-title">Программа дня</h2>
             <div class="timeline-program">
-                <div class="program-item">
-                    <div class="program-dot"></div>
-                    <div class="program-card">
-                        <div class="program-time">15:30 - 16:00</div>
-                        <div class="program-name">📍 Сбор гостей</div>
-                        <div class="program-desc">Посмотрите зону рассадки и проходите к своему столу</div>
-                    </div>
-                </div>
-                <div class="program-item">
-                    <div class="program-dot"></div>
-                    <div class="program-card">
-                        <div class="program-time">16:30</div>
-                        <div class="program-name">🍽️ Первое горячее</div>
-                        <div class="program-desc">Подача первых горячих блюд, начало банкета</div>
-                    </div>
-                </div>
-                <div class="program-item">
-                    <div class="program-dot"></div>
-                    <div class="program-card">
-                        <div class="program-time">18:00</div>
-                        <div class="program-name">💃 Танцевальный перерыв</div>
-                        <div class="program-desc">Музыкальная пауза, зажигательные танцы</div>
-                    </div>
-                </div>
-                <div class="program-item">
-                    <div class="program-dot"></div>
-                    <div class="program-card">
-                        <div class="program-time">19:00</div>
-                        <div class="program-name">💍 Первый танец молодых</div>
-                        <div class="program-desc">Самый трогательный момент вечера</div>
-                    </div>
-                </div>
-                <div class="program-item">
-                    <div class="program-dot"></div>
-                    <div class="program-card">
-                        <div class="program-time">20:20</div>
-                        <div class="program-name">🎂 Свадебный торт</div>
-                        <div class="program-desc">Торжественное разрезание торта</div>
-                    </div>
-                </div>
-                <div class="program-item">
-                    <div class="program-dot"></div>
-                    <div class="program-card">
-                        <div class="program-time">22:00</div>
-                        <div class="program-name">🎉 Завершение вечера</div>
-                        <div class="program-desc">Финальный танец, прощание с гостями</div>
-                    </div>
-                </div>
+                <div class="program-item"><div class="program-dot"></div><div class="program-card"><div class="program-time">15:30 - 16:00</div><div class="program-name">📍 Сбор гостей</div><div class="program-desc">Посмотрите зону рассадки и проходите к своему столу</div></div></div>
+                <div class="program-item"><div class="program-dot"></div><div class="program-card"><div class="program-time">16:30</div><div class="program-name">🍽️ Первое горячее</div><div class="program-desc">Подача первых горячих блюд, начало банкета</div></div></div>
+                <div class="program-item"><div class="program-dot"></div><div class="program-card"><div class="program-time">18:00</div><div class="program-name">💃 Танцевальный перерыв</div><div class="program-desc">Музыкальная пауза, зажигательные танцы</div></div></div>
+                <div class="program-item"><div class="program-dot"></div><div class="program-card"><div class="program-time">19:00</div><div class="program-name">💍 Первый танец молодых</div><div class="program-desc">Самый трогательный момент вечера</div></div></div>
+                <div class="program-item"><div class="program-dot"></div><div class="program-card"><div class="program-time">20:20</div><div class="program-name">🎂 Свадебный торт</div><div class="program-desc">Торжественное разрезание торта</div></div></div>
+                <div class="program-item"><div class="program-dot"></div><div class="program-card"><div class="program-time">22:00</div><div class="program-name">🎉 Завершение вечера</div><div class="program-desc">Финальный танец, прощание с гостями</div></div></div>
             </div>
         </div>
     </section>
@@ -954,9 +912,7 @@
             <div class="info-grid">
                 <div class="animate-on-scroll">
                     <h3 style="text-align: center; color: var(--emerald); margin-bottom: 20px;"><i class="fas fa-map-marker-alt"></i> Как добраться</h3>
-                    <div class="map-wrapper" id="mapWrapper">
-                        <div id="weddingMap"></div>
-                    </div>
+                    <div class="map-wrapper" id="mapWrapper"><div id="weddingMap"></div></div>
                     <div class="map-buttons">
                         <a href="https://yandex.ru/maps/org/dionis/108859886671/" target="_blank" class="map-btn"><i class="fab fa-yandex"></i> Яндекс</a>
                         <a href="https://www.google.com/maps/search/?api=1&query=Ресторан+Dionis+Костанай+Текстильщиков+12А" target="_blank" class="map-btn"><i class="fab fa-google"></i> Google</a>
@@ -969,9 +925,7 @@
                     <h3 style="text-align: center; color: var(--emerald); margin-bottom: 20px;"><i class="fas fa-calendar-alt"></i> Календарь</h3>
                     <div class="calendar-modern">
                         <div class="calendar-month">Июнь 2026</div>
-                        <div class="calendar-weekdays">
-                            <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div>
-                        </div>
+                        <div class="calendar-weekdays"><div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div></div>
                         <div class="calendar-days" id="calendarDays"></div>
                     </div>
                 </div>
@@ -1057,12 +1011,13 @@
         setInterval(updateTimer, 1000);
         updateTimer();
         
-        // ========== МУЗЫКА - ИСПРАВЛЕНА ==========
+        // ========== МУЗЫКА - ЗАПУСК ПО КАСАНИЮ ЭКРАНА ==========
         const music = document.getElementById('bgMusic');
         const playBtn = document.getElementById('playPauseBtn');
         const musicHint = document.getElementById('musicHint');
         let isPlaying = false;
         let fadeInterval = null;
+        let musicStarted = false;
         
         music.volume = 0;
         music.loop = true;
@@ -1084,16 +1039,16 @@
         }
         
         function startMusic() {
-            if (isPlaying) return;
+            if (isPlaying || musicStarted) return;
+            musicStarted = true;
             music.play().then(() => {
                 isPlaying = true;
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                // Прячем подсказку
                 musicHint.classList.add('hide');
                 fadeIn();
             }).catch(e => {
-                console.log('Ошибка:', e);
-                alert('Нажмите на кнопку музыки ещё раз');
+                console.log('Ошибка запуска:', e);
+                musicStarted = false;
             });
         }
         
@@ -1104,11 +1059,11 @@
             playBtn.innerHTML = '<i class="fas fa-music"></i>';
             if (fadeInterval) clearInterval(fadeInterval);
             music.volume = 0;
-            // Показываем подсказку снова, если она была скрыта
+            musicStarted = false;
             musicHint.classList.remove('hide');
         }
         
-        // Клик по кнопке
+        // Кнопка плеера
         playBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (isPlaying) {
@@ -1118,7 +1073,18 @@
             }
         });
         
-        // Загружаем аудио
+        // ЗАПУСК ПРИ ПЕРВОМ КАСАНИИ ЭКРАНА (решение проблемы с iPhone и Android)
+        const startOnFirstTouch = () => {
+            if (!isPlaying && !musicStarted) {
+                startMusic();
+            }
+            document.removeEventListener('touchstart', startOnFirstTouch);
+            document.removeEventListener('click', startOnFirstTouch);
+        };
+        document.addEventListener('touchstart', startOnFirstTouch);
+        document.addEventListener('click', startOnFirstTouch);
+        
+        // Загрузка аудио
         music.load();
         
         // Календарь
@@ -1144,7 +1110,6 @@
         // Карта
         let map = null;
         let mapInitialized = false;
-        
         const restaurantLat = 53.2144;
         const restaurantLng = 63.6246;
         
@@ -1152,22 +1117,16 @@
             if (mapInitialized) return;
             mapInitialized = true;
             map = L.map('weddingMap').setView([restaurantLat, restaurantLng], 17);
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
-            }).addTo(map);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
             L.marker([restaurantLat, restaurantLng]).addTo(map).bindPopup('Ресторан "DIONIS"<br>ул. Текстильщиков 12А, Костанай').openPopup();
             setTimeout(() => { map.invalidateSize(); }, 100);
         }
         
         const mapWrapper = document.getElementById('mapWrapper');
         const mapObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting && !mapInitialized) {
-                initMap();
-                mapObserver.disconnect();
-            }
+            if (entries[0].isIntersecting && !mapInitialized) { initMap(); mapObserver.disconnect(); }
         }, { threshold: 0.1 });
         mapObserver.observe(mapWrapper);
-        
         setTimeout(() => { if (!mapInitialized) initMap(); }, 2000);
         
         function copyAddress() {
@@ -1179,17 +1138,13 @@
             const toast = document.getElementById('toastMsg');
             toast.textContent = message;
             toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 4000);
+            setTimeout(() => { toast.classList.remove('show'); }, 4000);
         }
         
         // Анимация при скролле
         const animateElements = document.querySelectorAll('.animate-on-scroll');
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.1 });
         animateElements.forEach(el => observer.observe(el));
         
@@ -1197,28 +1152,18 @@
         const rsvpForm = document.getElementById('rsvpForm');
         const extraDiv = document.getElementById('extraFields');
         document.querySelectorAll('input[name="attendance"]').forEach(r => {
-            r.addEventListener('change', (e) => {
-                extraDiv.style.display = e.target.value === 'yes' ? 'block' : 'none';
-            });
+            r.addEventListener('change', (e) => { extraDiv.style.display = e.target.value === 'yes' ? 'block' : 'none'; });
         });
         
         rsvpForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = document.getElementById('name').value.trim();
-            if (!name) {
-                showToast('Введите ваше имя');
-                return;
-            }
+            if (!name) { showToast('Введите ваше имя'); return; }
             const attendance = document.querySelector('input[name="attendance"]:checked')?.value;
-            if (!attendance) {
-                showToast('Выберите вариант ответа');
-                return;
-            }
+            if (!attendance) { showToast('Выберите вариант ответа'); return; }
             
             const selectedDrinks = [];
-            document.querySelectorAll('#drinksGrid input[type="checkbox"]:checked').forEach(cb => {
-                selectedDrinks.push(cb.value);
-            });
+            document.querySelectorAll('#drinksGrid input[type="checkbox"]:checked').forEach(cb => { selectedDrinks.push(cb.value); });
             const drinksText = selectedDrinks.join(', ');
             const comment = document.getElementById('comment').value;
             const data = { name, attendance, drinks: drinksText, comment, timestamp: new Date().toISOString() };
@@ -1226,11 +1171,9 @@
             const btn = rsvpForm.querySelector('.submit-btn');
             btn.disabled = true;
             btn.innerText = 'Отправка...';
-            
             await fetch('https://script.google.com/macros/s/AKfycbzeqBk244PsOpZhUPE9kjcuaRHYjRGxFMJWcCYpSEU581oMfeeCcHi-EiFPnBtnyPp6/exec', {
                 method: 'POST', mode: 'no-cors', body: JSON.stringify(data)
             });
-            
             showToast('✓ Спасибо! Ответ сохранён');
             rsvpForm.reset();
             extraDiv.style.display = 'none';
