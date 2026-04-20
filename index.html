@@ -37,35 +37,37 @@
             overflow-x: hidden;
         }
         
-        /* Музыкальный плеер - улучшенный */
+        /* Музыкальный плеер */
         .music-player {
             position: fixed;
             bottom: 25px;
             right: 25px;
             z-index: 1000;
-            background: rgba(11, 59, 36, 0.95);
+            background: rgba(11, 59, 36, 0.9);
             backdrop-filter: blur(8px);
-            border-radius: 30px;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
             border: 2px solid var(--gold);
             cursor: pointer;
             box-shadow: 0 5px 20px rgba(0,0,0,0.3);
             transition: all 0.3s;
-            overflow: hidden;
         }
         
         .music-player:hover {
-            transform: scale(1.02);
+            transform: scale(1.05);
             background: rgba(11, 59, 36, 1);
         }
         
         .play-pause-btn {
             background: transparent;
             border: none;
-            width: 56px;
-            height: 56px;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -75,37 +77,11 @@
             transition: all 0.2s;
         }
         
-        .volume-slider {
-            width: 80px;
-            padding: 5px 10px 10px 10px;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .music-player:hover .volume-slider {
-            display: flex;
-        }
-        
-        .volume-slider input {
-            width: 100%;
-            cursor: pointer;
-            background: var(--gold);
-            height: 3px;
-            border-radius: 3px;
-        }
-        
-        .volume-slider i {
-            color: var(--gold);
-            font-size: 0.7rem;
-        }
-        
         /* Hero секция */
         .hero {
             min-height: 100vh;
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), 
-                        url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2070') no-repeat center center/cover;
+                        url('5.jpeg') no-repeat center center/cover;
             background-size: cover;
             display: flex;
             align-items: center;
@@ -115,8 +91,8 @@
         }
         
         .hero-content {
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(4px);
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(2px);
             padding: 50px 40px;
             border-radius: 30px;
             border: 2px solid var(--gold);
@@ -137,6 +113,7 @@
             margin-bottom: 20px;
         }
         
+        /* Имена - столбиком по центру */
         .names-hero {
             display: flex;
             flex-direction: column;
@@ -145,7 +122,7 @@
             margin: 20px 0;
         }
         
-        .name-top, .name-bottom {
+        .name-top {
             font-family: 'Great Vibes', cursive;
             font-size: clamp(3rem, 10vw, 5rem);
             font-weight: 400;
@@ -157,12 +134,14 @@
             font-size: clamp(2rem, 6vw, 3rem);
             color: var(--gold);
             margin: 10px 0;
-            animation: heartbeat 1.5s ease infinite;
         }
         
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        .name-bottom {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3rem, 10vw, 5rem);
+            font-weight: 400;
+            color: var(--white);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
         
         .date-hero {
@@ -252,7 +231,7 @@
             font-weight: 400;
         }
         
-        /* Программа дня */
+        /* Программа дня - шахматный порядок */
         .timeline-program {
             position: relative;
             max-width: 800px;
@@ -364,7 +343,7 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 40px;
             margin-top: 30px;
-            max-width: 900px;
+            max-width: 1000px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -389,43 +368,54 @@
             font-size: 1.6rem;
         }
         
-        .color-circles {
+        /* Новый стиль для мужского дресс-кода - 4 кружка в ряд */
+        .men-colors {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            align-items: center;
+            gap: 20px;
             flex-wrap: wrap;
             margin: 25px 0;
         }
         
-        .color-circle {
+        .women-colors {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+        
+        .color-item {
             text-align: center;
             animation: fadeInScale 0.5s ease backwards;
         }
         
-        .color-circle:nth-child(1) { animation-delay: 0.1s; }
-        .color-circle:nth-child(2) { animation-delay: 0.2s; }
-        .color-circle:nth-child(3) { animation-delay: 0.3s; }
-        .color-circle:nth-child(4) { animation-delay: 0.4s; }
+        .color-item:nth-child(1) { animation-delay: 0.1s; }
+        .color-item:nth-child(2) { animation-delay: 0.2s; }
+        .color-item:nth-child(3) { animation-delay: 0.3s; }
+        .color-item:nth-child(4) { animation-delay: 0.4s; }
         
         @keyframes fadeInScale {
             from { opacity: 0; transform: scale(0.8); }
             to { opacity: 1; transform: scale(1); }
         }
         
-        .circle {
-            width: 65px;
-            height: 65px;
+        .color-circle {
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
-            margin-bottom: 10px;
+            margin: 0 auto 10px;
             border: 2px solid var(--gold);
             transition: transform 0.3s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
         
-        .circle:hover {
+        .color-circle:hover {
             transform: scale(1.1);
         }
         
-        .circle-label {
+        .color-label {
             font-size: 0.8rem;
             color: #555;
             font-weight: 500;
@@ -443,6 +433,10 @@
         @media (max-width: 768px) {
             .dresscode-grid {
                 grid-template-columns: 1fr;
+            }
+            .color-circle {
+                width: 60px;
+                height: 60px;
             }
         }
         
@@ -498,7 +492,7 @@
             transform: translateY(-2px);
         }
         
-        /* Календарь */
+        /* Красивый календарь */
         .calendar-modern {
             background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
             border-radius: 28px;
@@ -557,7 +551,7 @@
             color: var(--emerald);
             font-weight: bold;
             position: relative;
-            animation: pulse 1.5s ease infinite;
+            animation: pulse 1s ease infinite;
         }
         
         .cal-day.highlight::after {
@@ -569,7 +563,7 @@
         }
         
         @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
             50% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
         }
         
@@ -789,6 +783,8 @@
             padding: 30px;
         }
         
+        .hidden { display: none; }
+        
         .animate-on-scroll {
             opacity: 0;
             transform: translateY(30px);
@@ -839,15 +835,10 @@
         <button class="play-pause-btn" id="playPauseBtn">
             <i class="fas fa-music"></i>
         </button>
-        <div class="volume-slider">
-            <i class="fas fa-volume-down"></i>
-            <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5">
-            <i class="fas fa-volume-up"></i>
-        </div>
     </div>
     
     <audio id="bgMusic" loop preload="auto" crossorigin="anonymous">
-        <source src="https://cdn.pixabay.com/download/audio/2022/05/16/audio_21d7d9ab66.mp3?filename=wedding-song-128592.mp3" type="audio/mpeg">
+        <source src="https://na-zvonochek.ru/_ld/4/435_mot-svadebnaja.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Hero -->
@@ -885,15 +876,15 @@
                     <div class="program-card">
                         <div class="program-time">15:30 - 16:00</div>
                         <div class="program-name">📍 Сбор гостей</div>
-                        <div class="program-desc">Встреча гостей, welcome-drink, живая музыка</div>
+                        <div class="program-desc">Посмотрите зону рассадки и проходите к своему столу</div>
                     </div>
                 </div>
                 <div class="program-item">
                     <div class="program-dot"></div>
                     <div class="program-card">
                         <div class="program-time">16:30</div>
-                        <div class="program-name">🍽️ Начало банкета</div>
-                        <div class="program-desc">Торжественное открытие, первое поздравление молодоженов</div>
+                        <div class="program-name">🍽️ Первое горячее</div>
+                        <div class="program-desc">Подача первых горячих блюд, начало банкета. Приятного аппетита!</div>
                     </div>
                 </div>
                 <div class="program-item">
@@ -901,14 +892,14 @@
                     <div class="program-card">
                         <div class="program-time">18:00</div>
                         <div class="program-name">💃 Танцевальный перерыв</div>
-                        <div class="program-desc">Музыкальная пауза, зажигательные танцы от гостей</div>
+                        <div class="program-desc">Музыкальная пауза, зажигательные танцы от гостей и молодоженов</div>
                     </div>
                 </div>
                 <div class="program-item">
                     <div class="program-dot"></div>
                     <div class="program-card">
                         <div class="program-time">19:00</div>
-                        <div class="program-name">💍 Первый танец</div>
+                        <div class="program-name">💍 Первый танец молодых</div>
                         <div class="program-desc">Самый трогательный момент вечера — первый танец Анатолия и Мадины</div>
                     </div>
                 </div>
@@ -917,7 +908,7 @@
                     <div class="program-card">
                         <div class="program-time">20:20</div>
                         <div class="program-name">🎂 Свадебный торт</div>
-                        <div class="program-desc">Торжественное появление и разрезание свадебного торта</div>
+                        <div class="program-desc">Торжественное появление и разрезание свадебного торта, сладкий стол</div>
                     </div>
                 </div>
                 <div class="program-item">
@@ -925,37 +916,61 @@
                     <div class="program-card">
                         <div class="program-time">22:00</div>
                         <div class="program-name">🎉 Завершение вечера</div>
-                        <div class="program-desc">Финальный танец, фейерверк, тёплые слова благодарности</div>
+                        <div class="program-desc">Финальный танец, тёплые слова благодарности, прощание с гостями</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Дресс-код (исправлен) -->
+    <!-- Дресс-код -->
     <section class="section">
         <div class="container">
             <h2 class="section-title">Дресс-код</h2>
             <div class="dresscode-grid">
                 <div class="dresscode-card animate-on-scroll">
                     <h3><i class="fas fa-venus"></i> Для женщин</h3>
-                    <div class="color-circles">
-                        <div class="color-circle"><div class="circle" style="background: #0B3B24;"></div><div class="circle-label">Изумрудный</div></div>
-                        <div class="color-circle"><div class="circle" style="background: #D4AF37;"></div><div class="circle-label">Золотой</div></div>
-                        <div class="color-circle"><div class="circle" style="background: #C0C0C0;"></div><div class="circle-label">Серебристый</div></div>
-                        <div class="color-circle"><div class="circle" style="background: #F5E6D3;"></div><div class="circle-label">Шампань</div></div>
+                    <div class="women-colors">
+                        <div class="color-item">
+                            <div class="color-circle" style="background: #0B3B24;"></div>
+                            <div class="color-label">Изумрудный</div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-circle" style="background: #D4AF37;"></div>
+                            <div class="color-label">Золотой</div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-circle" style="background: #C0C0C0;"></div>
+                            <div class="color-label">Серебристый</div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-circle" style="background: #F5E6D3;"></div>
+                            <div class="color-label">Шампань</div>
+                        </div>
                     </div>
-                    <p>Вечерние платья в пол или миди, элегантные костюмы. Туфли на каблуке или изящные балетки. Допускаются стразы и легкий блеск.</p>
+                    <p>Вечерние платья, элегантные костюмы. Туфли на каблуке или изящные балетки.</p>
                 </div>
                 <div class="dresscode-card animate-on-scroll">
                     <h3><i class="fas fa-mars"></i> Для мужчин</h3>
-                    <div class="color-circles">
-                        <div class="color-circle"><div class="circle" style="background: #0B3B24;"></div><div class="circle-label">Изумрудный</div></div>
-                        <div class="color-circle"><div class="circle" style="background: #2F4F4F;"></div><div class="circle-label">Тёмно-зелёный</div></div>
-                        <div class="color-circle"><div class="circle" style="background: #808080;"></div><div class="circle-label">Серый</div></div>
-                        <div class="color-circle"><div class="circle" style="background: #222222;"></div><div class="circle-label">Чёрный</div></div>
+                    <div class="men-colors">
+                        <div class="color-item">
+                            <div class="color-circle" style="background: #0B3B24;"></div>
+                            <div class="color-label">Изумрудный</div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-circle" style="background: #2F4F4F;"></div>
+                            <div class="color-label">Тёмно-зелёный</div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-circle" style="background: #808080;"></div>
+                            <div class="color-label">Серый</div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-circle" style="background: #222222;"></div>
+                            <div class="color-label">Чёрный</div>
+                        </div>
                     </div>
-                    <p>Классические костюмы, пиджаки. Рубашка предпочтительно белая или пастельных тонов. Галстук или бабочка в цветах дресс-кода.</p>
+                    <p>Костюмы, пиджаки, галстуки или бабочки в указанных тонах. Белая рубашка приветствуется.</p>
                 </div>
             </div>
             <div class="dresscode-note" style="max-width: 600px; margin: 25px auto 0; text-align: center;">
@@ -1084,19 +1099,36 @@
         // ========== МУЗЫКА - ГАРАНТИРОВАННО РАБОТАЕТ ==========
         const music = document.getElementById('bgMusic');
         const playBtn = document.getElementById('playPauseBtn');
-        const volumeSlider = document.getElementById('volumeControl');
         let isPlaying = false;
+        let fadeInterval = null;
         
-        music.volume = 0.5;
+        music.volume = 0;
         music.loop = true;
+        
+        function fadeIn() {
+            if (fadeInterval) clearInterval(fadeInterval);
+            let vol = 0;
+            music.volume = 0;
+            fadeInterval = setInterval(() => {
+                if (vol < 0.68) {
+                    vol += 0.02;
+                    music.volume = vol;
+                } else {
+                    music.volume = 0.7;
+                    clearInterval(fadeInterval);
+                    fadeInterval = null;
+                }
+            }, 100);
+        }
         
         function startMusic() {
             if (isPlaying) return;
             music.play().then(() => {
                 isPlaying = true;
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                fadeIn();
             }).catch(e => {
-                console.log('Автозапуск заблокирован, нужен клик');
+                console.log('Ошибка: нужно нажать на значок');
                 playBtn.innerHTML = '<i class="fas fa-music"></i>';
             });
         }
@@ -1106,6 +1138,8 @@
             music.pause();
             isPlaying = false;
             playBtn.innerHTML = '<i class="fas fa-music"></i>';
+            if (fadeInterval) clearInterval(fadeInterval);
+            music.volume = 0;
         }
         
         // Клик по плееру
@@ -1118,30 +1152,23 @@
             }
         });
         
-        // Регулировка громкости
-        volumeSlider.addEventListener('input', (e) => {
-            music.volume = e.target.value;
-        });
-        
-        // Пробуем запустить музыку при загрузке
+        // Пробуем запустить при загрузке
         window.addEventListener('load', () => {
             startMusic();
         });
         
-        // Если автозапуск заблокирован - запускаем при первом клике по странице
-        document.body.addEventListener('click', function firstClick() {
+        // Если не получилось - при первом клике по странице
+        const tryStart = () => {
             if (!isPlaying) {
                 startMusic();
             }
-            document.body.removeEventListener('click', firstClick);
-        }, { once: true });
+            document.removeEventListener('click', tryStart);
+            document.removeEventListener('touchstart', tryStart);
+        };
+        document.addEventListener('click', tryStart);
+        document.addEventListener('touchstart', tryStart);
         
-        document.body.addEventListener('touchstart', function firstTouch() {
-            if (!isPlaying) {
-                startMusic();
-            }
-            document.body.removeEventListener('touchstart', firstTouch);
-        }, { once: true });
+        music.load();
         
         // Календарь
         function buildCalendar() {
