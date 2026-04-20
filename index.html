@@ -43,11 +43,11 @@
             bottom: 25px;
             right: 25px;
             z-index: 1000;
-            background: rgba(11, 59, 36, 0.9);
+            background: rgba(11, 59, 36, 0.95);
             backdrop-filter: blur(8px);
             border-radius: 50%;
-            width: 56px;
-            height: 56px;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -73,8 +73,27 @@
             justify-content: center;
             cursor: pointer;
             color: var(--gold);
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             transition: all 0.2s;
+        }
+        
+        .music-hint {
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            background: rgba(0,0,0,0.7);
+            color: var(--gold);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            z-index: 999;
+            white-space: nowrap;
+            animation: pulse 1s ease infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
         }
         
         /* Hero секция */
@@ -113,7 +132,6 @@
             margin-bottom: 20px;
         }
         
-        /* Имена - столбиком по центру */
         .names-hero {
             display: flex;
             flex-direction: column;
@@ -151,7 +169,6 @@
             text-align: center;
         }
         
-        /* Таймер */
         .timer-wrapper {
             margin: 30px auto;
             display: inline-block;
@@ -208,7 +225,6 @@
             transform: translateY(-2px);
         }
         
-        /* Секции */
         .section {
             padding: 80px 20px;
         }
@@ -231,7 +247,6 @@
             font-weight: 400;
         }
         
-        /* Программа дня - шахматный порядок */
         .timeline-program {
             position: relative;
             max-width: 800px;
@@ -276,7 +291,6 @@
             border: 3px solid var(--emerald);
             border-radius: 50%;
             z-index: 2;
-            transition: transform 0.3s;
         }
         
         .program-item:nth-child(odd) .program-dot {
@@ -293,12 +307,11 @@
             border-radius: 20px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             border-left: 4px solid var(--gold);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s;
         }
         
         .program-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
         }
         
         .program-time {
@@ -337,7 +350,6 @@
             }
         }
         
-        /* Дресс-код */
         .dresscode-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -368,7 +380,6 @@
             font-size: 1.6rem;
         }
         
-        /* Цветные кружки с одинаковым расстоянием */
         .colors-container {
             display: flex;
             justify-content: center;
@@ -381,17 +392,6 @@
         .color-item {
             text-align: center;
             flex: 0 0 auto;
-            animation: fadeInScale 0.5s ease backwards;
-        }
-        
-        .color-item:nth-child(1) { animation-delay: 0.1s; }
-        .color-item:nth-child(2) { animation-delay: 0.2s; }
-        .color-item:nth-child(3) { animation-delay: 0.3s; }
-        .color-item:nth-child(4) { animation-delay: 0.4s; }
-        
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
         }
         
         .color-circle {
@@ -436,7 +436,6 @@
             }
         }
         
-        /* Карта и календарь */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -448,8 +447,6 @@
             overflow: hidden;
             border: 2px solid var(--gold);
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: relative;
-            z-index: 1;
             background: #f0f0f0;
         }
         
@@ -465,8 +462,6 @@
             justify-content: center;
             margin-top: 20px;
             flex-wrap: wrap;
-            position: relative;
-            z-index: 2;
         }
         
         .map-btn {
@@ -488,7 +483,6 @@
             transform: translateY(-2px);
         }
         
-        /* Красивый календарь */
         .calendar-modern {
             background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
             border-radius: 28px;
@@ -546,7 +540,6 @@
             background: linear-gradient(135deg, var(--gold), var(--gold-light));
             color: var(--emerald);
             font-weight: bold;
-            position: relative;
             animation: pulse 1s ease infinite;
         }
         
@@ -558,12 +551,6 @@
             font-size: 12px;
         }
         
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-            50% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
-        }
-        
-        /* WhatsApp */
         .whatsapp-row {
             display: flex;
             justify-content: center;
@@ -589,7 +576,6 @@
         .wa-button:hover {
             background: #25D366;
             color: white;
-            transform: translateY(-2px);
         }
         
         .wa-button:hover i {
@@ -599,10 +585,8 @@
         .wa-button i {
             font-size: 1.6rem;
             color: #25D366;
-            transition: 0.3s;
         }
         
-        /* RSVP форма */
         .rsvp-card {
             max-width: 600px;
             margin: 0 auto;
@@ -619,7 +603,6 @@
             border: 1px solid #ddd;
             border-radius: 16px;
             font-size: 1rem;
-            transition: all 0.3s;
         }
         
         .form-input:focus {
@@ -663,7 +646,6 @@
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s;
-            border: 1px solid transparent;
         }
         
         .drink-checkbox:hover {
@@ -715,7 +697,6 @@
             transform: translateY(-2px);
         }
         
-        /* Рекламный блок */
         .ad-section {
             background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-light) 100%);
             padding: 50px 20px;
@@ -768,18 +749,12 @@
             transform: scale(1.05);
         }
         
-        .ad-phone i {
-            font-size: 1.3rem;
-        }
-        
         footer {
             background: var(--emerald);
             color: white;
             text-align: center;
             padding: 30px;
         }
-        
-        .hidden { display: none; }
         
         .animate-on-scroll {
             opacity: 0;
@@ -792,7 +767,6 @@
             transform: translateY(0);
         }
         
-        /* Всплывающее уведомление */
         .toast-notification {
             position: fixed;
             bottom: 30px;
@@ -821,6 +795,11 @@
                 font-size: 0.85rem;
                 padding: 10px 18px;
             }
+            .music-hint {
+                bottom: 95px;
+                right: 20px;
+                font-size: 0.6rem;
+            }
         }
     </style>
 </head>
@@ -832,8 +811,9 @@
             <i class="fas fa-music"></i>
         </button>
     </div>
+    <div class="music-hint" id="musicHint">🎵 Нажми на кнопку</div>
     
-    <!-- АУДИО С ВАШЕЙ ПЕСНЕЙ -->
+    <!-- АУДИО - ИСПРАВЛЕННАЯ ССЫЛКА -->
     <audio id="bgMusic" loop preload="auto" crossorigin="anonymous">
         <source src="https://raw.githubusercontent.com/4natrix/wedding-invite/main/435_mot-svadebnaja%20(2).mp3" type="audio/mpeg">
     </audio>
@@ -881,7 +861,7 @@
                     <div class="program-card">
                         <div class="program-time">16:30</div>
                         <div class="program-name">🍽️ Первое горячее</div>
-                        <div class="program-desc">Подача первых горячих блюд, начало банкета. Приятного аппетита!</div>
+                        <div class="program-desc">Подача первых горячих блюд, начало банкета</div>
                     </div>
                 </div>
                 <div class="program-item">
@@ -889,7 +869,7 @@
                     <div class="program-card">
                         <div class="program-time">18:00</div>
                         <div class="program-name">💃 Танцевальный перерыв</div>
-                        <div class="program-desc">Музыкальная пауза, зажигательные танцы от гостей и молодоженов</div>
+                        <div class="program-desc">Музыкальная пауза, зажигательные танцы</div>
                     </div>
                 </div>
                 <div class="program-item">
@@ -897,7 +877,7 @@
                     <div class="program-card">
                         <div class="program-time">19:00</div>
                         <div class="program-name">💍 Первый танец молодых</div>
-                        <div class="program-desc">Самый трогательный момент вечера — первый танец Анатолия и Мадины</div>
+                        <div class="program-desc">Самый трогательный момент вечера</div>
                     </div>
                 </div>
                 <div class="program-item">
@@ -905,7 +885,7 @@
                     <div class="program-card">
                         <div class="program-time">20:20</div>
                         <div class="program-name">🎂 Свадебный торт</div>
-                        <div class="program-desc">Торжественное появление и разрезание свадебного торта, сладкий стол</div>
+                        <div class="program-desc">Торжественное разрезание торта</div>
                     </div>
                 </div>
                 <div class="program-item">
@@ -913,7 +893,7 @@
                     <div class="program-card">
                         <div class="program-time">22:00</div>
                         <div class="program-name">🎉 Завершение вечера</div>
-                        <div class="program-desc">Финальный танец, тёплые слова благодарности, прощание с гостями</div>
+                        <div class="program-desc">Финальный танец, прощание с гостями</div>
                     </div>
                 </div>
             </div>
@@ -928,51 +908,27 @@
                 <div class="dresscode-card animate-on-scroll">
                     <h3><i class="fas fa-venus"></i> Для женщин</h3>
                     <div class="colors-container">
-                        <div class="color-item">
-                            <div class="color-circle" style="background: #0B3B24;"></div>
-                            <div class="color-label">Изумрудный</div>
-                        </div>
-                        <div class="color-item">
-                            <div class="color-circle" style="background: #D4AF37;"></div>
-                            <div class="color-label">Золотой</div>
-                        </div>
-                        <div class="color-item">
-                            <div class="color-circle" style="background: #C0C0C0;"></div>
-                            <div class="color-label">Серебристый</div>
-                        </div>
-                        <div class="color-item">
-                            <div class="color-circle" style="background: #F5E6D3;"></div>
-                            <div class="color-label">Шампань</div>
-                        </div>
+                        <div class="color-item"><div class="color-circle" style="background: #0B3B24;"></div><div class="color-label">Изумрудный</div></div>
+                        <div class="color-item"><div class="color-circle" style="background: #D4AF37;"></div><div class="color-label">Золотой</div></div>
+                        <div class="color-item"><div class="color-circle" style="background: #C0C0C0;"></div><div class="color-label">Серебристый</div></div>
+                        <div class="color-item"><div class="color-circle" style="background: #F5E6D3;"></div><div class="color-label">Шампань</div></div>
                     </div>
                     <p>Вечерние платья, элегантные костюмы. Туфли на каблуке или изящные балетки.</p>
                 </div>
                 <div class="dresscode-card animate-on-scroll">
                     <h3><i class="fas fa-mars"></i> Для мужчин</h3>
                     <div class="colors-container">
-                        <div class="color-item">
-                            <div class="color-circle" style="background: #0B3B24;"></div>
-                            <div class="color-label">Изумрудный</div>
-                        </div>
-                        <div class="color-item">
-                            <div class="color-circle" style="background: #2F4F4F;"></div>
-                            <div class="color-label">Тёмно-зелёный</div>
-                        </div>
-                        <div class="color-item">
-                            <div class="color-circle" style="background: #808080;"></div>
-                            <div class="color-label">Серый</div>
-                        </div>
-                        <div class="color-item">
-                            <div class="color-circle" style="background: #222222;"></div>
-                            <div class="color-label">Чёрный</div>
-                        </div>
+                        <div class="color-item"><div class="color-circle" style="background: #0B3B24;"></div><div class="color-label">Изумрудный</div></div>
+                        <div class="color-item"><div class="color-circle" style="background: #2F4F4F;"></div><div class="color-label">Тёмно-зелёный</div></div>
+                        <div class="color-item"><div class="color-circle" style="background: #808080;"></div><div class="color-label">Серый</div></div>
+                        <div class="color-item"><div class="color-circle" style="background: #222222;"></div><div class="color-label">Чёрный</div></div>
                     </div>
-                    <p>Костюмы, пиджаки, галстуки или бабочки в указанных тонах. Белая рубашка приветствуется.</p>
+                    <p>Костюмы, пиджаки, галстуки или бабочки. Белая рубашка приветствуется.</p>
                 </div>
             </div>
-            <div class="dresscode-note" style="max-width: 600px; margin: 25px auto 0; text-align: center;">
+            <div class="dresscode-note">
                 <i class="fas fa-ban" style="color: var(--gold); margin-right: 8px;"></i>
-                <strong>Пожалуйста, воздержитесь от спортивного стиля (джинсы, кеды, футболки).</strong> Белый цвет — только для невесты.
+                <strong>Пожалуйста, без спортивного стиля (джинсы, кеды, футболки).</strong> Белый цвет — только для невесты.
             </div>
         </div>
     </section>
@@ -1010,7 +966,7 @@
 
     <!-- WhatsApp -->
     <section class="section">
-        <div class="container" style="text-align: center;">
+        <div class="container">
             <h2 class="section-title">Связь с нами</h2>
             <div class="whatsapp-row">
                 <a href="https://wa.me/77768248650" target="_blank" class="wa-button"><i class="fab fa-whatsapp"></i> Мадина: +7 (776) 824-86-50</a>
@@ -1031,7 +987,7 @@
                         <label><input type="radio" name="attendance" value="no"> ❌ Не смогу</label>
                     </div>
                     <div id="extraFields" style="display: none;">
-                        <div class="drinks-title"><i class="fas fa-glass-cheers"></i> Предпочитаемые напитки (можно выбрать несколько)</div>
+                        <div class="drinks-title"><i class="fas fa-glass-cheers"></i> Предпочитаемые напитки</div>
                         <div class="drinks-grid" id="drinksGrid">
                             <label class="drink-checkbox"><input type="checkbox" value="Водка"> <i class="fas fa-wine-bottle"></i> <span>Водка</span></label>
                             <label class="drink-checkbox"><input type="checkbox" value="Вино"> <i class="fas fa-wine-glass-alt"></i> <span>Вино</span></label>
@@ -1039,8 +995,8 @@
                             <label class="drink-checkbox"><input type="checkbox" value="Коньяк"> <i class="fas fa-glass-cheers"></i> <span>Коньяк</span></label>
                             <label class="drink-checkbox"><input type="checkbox" value="Безалкогольное"> <i class="fas fa-apple-alt"></i> <span>Безалкогольное</span></label>
                         </div>
-                        <div class="drink-note"><i class="fas fa-info-circle"></i> Вы можете отметить несколько вариантов</div>
-                        <input type="text" id="comment" class="form-input" placeholder="Пожелания, аллергии или особые предпочтения...">
+                        <div class="drink-note"><i class="fas fa-info-circle"></i> Можно выбрать несколько</div>
+                        <input type="text" id="comment" class="form-input" placeholder="Пожелания, аллергии...">
                     </div>
                     <button type="submit" class="submit-btn">ОТПРАВИТЬ</button>
                 </form>
@@ -1048,20 +1004,13 @@
         </div>
     </section>
 
-    <!-- Рекламный блок -->
+    <!-- Реклама -->
     <div class="ad-section">
         <div class="ad-container">
-            <div class="ad-icon">
-                <i class="fas fa-envelope-open-text"></i>
-            </div>
+            <div class="ad-icon"><i class="fas fa-envelope-open-text"></i></div>
             <div class="ad-title">Электронное приглашение на вашу свадьбу</div>
-            <div class="ad-text">
-                Понравилось наше приглашение? Хотите такое же для себя или в подарок друзьям/родственникам?<br>
-                Свяжитесь с нами, и мы создадим уникальное электронное приглашение для вашего торжества!
-            </div>
-            <a href="tel:87066542810" class="ad-phone">
-                <i class="fas fa-phone-alt"></i> 8 (706) 654-28-10
-            </a>
+            <div class="ad-text">Понравилось наше приглашение? Закажите такое же для себя или в подарок!<br>Свяжитесь с нами.</div>
+            <a href="tel:87066542810" class="ad-phone"><i class="fas fa-phone-alt"></i> 8 (706) 654-28-10</a>
         </div>
     </div>
 
@@ -1093,9 +1042,10 @@
         setInterval(updateTimer, 1000);
         updateTimer();
         
-        // ========== МУЗЫКА - ТОЛЬКО ПО КНОПКЕ ==========
+        // ========== МУЗЫКА - ПОЧИНЕННАЯ ==========
         const music = document.getElementById('bgMusic');
         const playBtn = document.getElementById('playPauseBtn');
+        const musicHint = document.getElementById('musicHint');
         let isPlaying = false;
         let fadeInterval = null;
         
@@ -1123,10 +1073,12 @@
             music.play().then(() => {
                 isPlaying = true;
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                musicHint.style.opacity = '0';
+                setTimeout(() => { musicHint.style.display = 'none'; }, 500);
                 fadeIn();
             }).catch(e => {
-                console.log('Ошибка при запуске');
-                playBtn.innerHTML = '<i class="fas fa-music"></i>';
+                console.log('Ошибка:', e);
+                alert('Нажмите на кнопку музыки ещё раз');
             });
         }
         
@@ -1139,7 +1091,7 @@
             music.volume = 0;
         }
         
-        // ТОЛЬКО ПРИ НАЖАТИИ НА КНОПКУ
+        // Клик по кнопке
         playBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (isPlaying) {
@@ -1149,7 +1101,7 @@
             }
         });
         
-        // Предзагрузка аудио
+        // Перезагружаем аудио чтобы точно работало
         music.load();
         
         // Календарь
@@ -1237,12 +1189,12 @@
             e.preventDefault();
             const name = document.getElementById('name').value.trim();
             if (!name) {
-                showToast('Пожалуйста, введите ваше имя');
+                showToast('Введите ваше имя');
                 return;
             }
             const attendance = document.querySelector('input[name="attendance"]:checked')?.value;
             if (!attendance) {
-                showToast('Пожалуйста, выберите вариант ответа');
+                showToast('Выберите вариант ответа');
                 return;
             }
             
@@ -1262,7 +1214,7 @@
                 method: 'POST', mode: 'no-cors', body: JSON.stringify(data)
             });
             
-            showToast('✓ Спасибо! Ваш ответ сохранён');
+            showToast('✓ Спасибо! Ответ сохранён');
             rsvpForm.reset();
             extraDiv.style.display = 'none';
             btn.disabled = false;
