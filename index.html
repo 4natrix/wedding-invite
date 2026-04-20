@@ -1093,12 +1093,11 @@
         setInterval(updateTimer, 1000);
         updateTimer();
         
-        // ========== МУЗЫКА - ДЛЯ iPhone (ЗАПУСК ПО КАСАНИЮ) ==========
+        // ========== МУЗЫКА - РАБОТАЕТ НА ВСЕХ УСТРОЙСТВАХ ==========
         const music = document.getElementById('bgMusic');
         const playBtn = document.getElementById('playPauseBtn');
         let isPlaying = false;
         let fadeInterval = null;
-        let musicStarted = false;
         
         music.volume = 0;
         music.loop = true;
@@ -1120,15 +1119,13 @@
         }
         
         function startMusic() {
-            if (isPlaying || musicStarted) return;
-            musicStarted = true;
+            if (isPlaying) return;
             music.play().then(() => {
                 isPlaying = true;
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 fadeIn();
             }).catch(e => {
-                console.log('Не удалось запустить музыку');
-                musicStarted = false;
+                console.log('Автозапуск заблокирован, нужен клик');
                 playBtn.innerHTML = '<i class="fas fa-music"></i>';
             });
         }
@@ -1140,7 +1137,6 @@
             playBtn.innerHTML = '<i class="fas fa-music"></i>';
             if (fadeInterval) clearInterval(fadeInterval);
             music.volume = 0;
-            musicStarted = false;
         }
         
         // Клик по плееру
@@ -1153,18 +1149,23 @@
             }
         });
         
-        // ДЛЯ iPhone: запуск при первом касании экрана
-        const startOnFirstTouch = () => {
-            if (!isPlaying && !musicStarted) {
+        // Запуск музыки при загрузке страницы
+        window.addEventListener('load', () => {
+            startMusic();
+        });
+        
+        // Если автозапуск не сработал - запускаем при первом касании/клике
+        const tryStart = () => {
+            if (!isPlaying) {
                 startMusic();
             }
-            document.removeEventListener('touchstart', startOnFirstTouch);
-            document.removeEventListener('click', startOnFirstTouch);
+            document.removeEventListener('click', tryStart);
+            document.removeEventListener('touchstart', tryStart);
         };
-        document.addEventListener('touchstart', startOnFirstTouch);
-        document.addEventListener('click', startOnFirstTouch);
+        document.addEventListener('click', tryStart);
+        document.addEventListener('touchstart', tryStart);
         
-        // Пауза когда вкладка неактивна
+        // Пауза в фоновом режиме
         document.addEventListener('visibilitychange', function() {
             if (document.hidden) {
                 if (isPlaying) {
