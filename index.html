@@ -368,26 +368,19 @@
             font-size: 1.6rem;
         }
         
-        /* Новый стиль для мужского дресс-кода - 4 кружка в ряд */
-        .men-colors {
+        /* Цветные кружки с одинаковым расстоянием */
+        .colors-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin: 25px 0;
-        }
-        
-        .women-colors {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
+            gap: 30px;
             flex-wrap: wrap;
             margin: 25px 0;
         }
         
         .color-item {
             text-align: center;
+            flex: 0 0 auto;
             animation: fadeInScale 0.5s ease backwards;
         }
         
@@ -437,6 +430,9 @@
             .color-circle {
                 width: 60px;
                 height: 60px;
+            }
+            .colors-container {
+                gap: 20px;
             }
         }
         
@@ -930,7 +926,7 @@
             <div class="dresscode-grid">
                 <div class="dresscode-card animate-on-scroll">
                     <h3><i class="fas fa-venus"></i> Для женщин</h3>
-                    <div class="women-colors">
+                    <div class="colors-container">
                         <div class="color-item">
                             <div class="color-circle" style="background: #0B3B24;"></div>
                             <div class="color-label">Изумрудный</div>
@@ -952,7 +948,7 @@
                 </div>
                 <div class="dresscode-card animate-on-scroll">
                     <h3><i class="fas fa-mars"></i> Для мужчин</h3>
-                    <div class="men-colors">
+                    <div class="colors-container">
                         <div class="color-item">
                             <div class="color-circle" style="background: #0B3B24;"></div>
                             <div class="color-label">Изумрудный</div>
@@ -991,8 +987,8 @@
                     </div>
                     <div class="map-buttons">
                         <a href="https://yandex.ru/maps/org/dionis/108859886671/" target="_blank" class="map-btn"><i class="fab fa-yandex"></i> Яндекс</a>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Dionis+restaurant+Kostanay+Tekstilshchikov+12A" target="_blank" class="map-btn"><i class="fab fa-google"></i> Google</a>
-                        <a href="https://2gis.kz/kostanay/firm/70000001020288292" target="_blank" class="map-btn"><i class="fas fa-map"></i> 2ГИС</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Ресторан+Dionis+Костанай+Текстильщиков+12А" target="_blank" class="map-btn"><i class="fab fa-google"></i> Google</a>
+                        <a href="https://2gis.kz/kostanay/search/Текстильщиков%2012%D0%90" target="_blank" class="map-btn"><i class="fas fa-map"></i> 2ГИС</a>
                         <button onclick="copyAddress()" class="map-btn"><i class="fas fa-copy"></i> Адрес</button>
                     </div>
                     <p style="text-align: center; margin-top: 15px;">📍 Ресторан "DIONIS", ул. Текстильщиков 12А, Костанай</p>
@@ -1096,7 +1092,7 @@
         setInterval(updateTimer, 1000);
         updateTimer();
         
-        // ========== МУЗЫКА - ГАРАНТИРОВАННО РАБОТАЕТ ==========
+        // ========== МУЗЫКА ==========
         const music = document.getElementById('bgMusic');
         const playBtn = document.getElementById('playPauseBtn');
         let isPlaying = false;
@@ -1142,7 +1138,6 @@
             music.volume = 0;
         }
         
-        // Клик по плееру
         playBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (isPlaying) {
@@ -1152,12 +1147,10 @@
             }
         });
         
-        // Пробуем запустить при загрузке
         window.addEventListener('load', () => {
             startMusic();
         });
         
-        // Если не получилось - при первом клике по странице
         const tryStart = () => {
             if (!isPlaying) {
                 startMusic();
@@ -1233,7 +1226,6 @@
             }, 4000);
         }
         
-        // Анимация при скролле
         const animateElements = document.querySelectorAll('.animate-on-scroll');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
