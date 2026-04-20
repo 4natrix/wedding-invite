@@ -789,6 +789,34 @@
             font-size: 1.3rem;
         }
         
+        /* Кнопка копирования ссылки */
+        .copy-link-section {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--white);
+            border-top: 1px solid var(--silver);
+        }
+        
+        .copy-link-btn {
+            background: var(--emerald);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        
+        .copy-link-btn:hover {
+            background: var(--gold);
+            color: var(--emerald);
+            transform: translateY(-2px);
+        }
+        
         footer {
             background: var(--emerald);
             color: white;
@@ -1010,6 +1038,14 @@
         </div>
     </section>
 
+    <!-- Кнопка копирования ссылки -->
+    <div class="copy-link-section">
+        <button class="copy-link-btn" onclick="copyLinkWithText()">
+            <i class="fas fa-share-alt"></i> Скопировать приглашение со ссылкой
+        </button>
+        <p style="font-size: 0.8rem; color: #888; margin-top: 12px;">Нажмите, чтобы скопировать текст приглашения и ссылку</p>
+    </div>
+
     <!-- Рекламный блок -->
     <div class="ad-section">
         <div class="ad-container">
@@ -1053,13 +1089,13 @@
         setInterval(updateTimer, 1000);
         updateTimer();
         
-        // Музыка
+        // Музыка - включается при прокрутке
         const music = document.getElementById('bgMusic');
         const playBtn = document.getElementById('playPauseBtn');
         const playerDiv = document.getElementById('musicPlayer');
         let isPlaying = false;
         let fadeInterval = null;
-        let autoStartAttempted = false;
+        let musicStarted = false;
         
         music.volume = 0;
         
@@ -1080,7 +1116,8 @@
         }
         
         function startMusic() {
-            if (isPlaying) return;
+            if (isPlaying || musicStarted) return;
+            musicStarted = true;
             music.play().then(() => {
                 isPlaying = true;
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
@@ -1088,6 +1125,7 @@
                 fadeIn();
             }).catch(e => {
                 console.log('Автозапуск заблокирован');
+                musicStarted = false;
             });
         }
         
@@ -1099,31 +1137,27 @@
                 playerDiv.classList.add('paused');
                 if (fadeInterval) clearInterval(fadeInterval);
                 music.volume = 0;
+                musicStarted = false;
             } else {
                 startMusic();
             }
         });
         
-        function attemptAutoStart() {
-            if (!autoStartAttempted) {
-                autoStartAttempted = true;
+        // Включаем музыку при первом скролле
+        window.addEventListener('scroll', function scrollStart() {
+            if (!musicStarted && !isPlaying) {
                 startMusic();
             }
-        }
+            window.removeEventListener('scroll', scrollStart);
+        }, { once: true });
         
-        window.addEventListener('load', attemptAutoStart);
-        
-        const tryOnInteraction = () => {
-            if (!isPlaying) {
+        // Также включаем при первом касании (для мобильных)
+        document.addEventListener('touchstart', function touchStart() {
+            if (!musicStarted && !isPlaying) {
                 startMusic();
             }
-            document.removeEventListener('touchstart', tryOnInteraction);
-            document.removeEventListener('click', tryOnInteraction);
-        };
-        
-        document.addEventListener('touchstart', tryOnInteraction);
-        document.addEventListener('click', tryOnInteraction);
-        setTimeout(attemptAutoStart, 1000);
+            document.removeEventListener('touchstart', touchStart);
+        }, { once: true });
         
         document.addEventListener('visibilitychange', function() {
             if (document.hidden) {
@@ -1164,7 +1198,7 @@
         }
         buildCalendar();
         
-        // Карта - НЕПОДВИЖНАЯ (pointer-events: none)
+        // Карта
         let map = null;
         let mapInitialized = false;
         
@@ -1198,6 +1232,26 @@
         function copyAddress() {
             navigator.clipboard.writeText('Ресторан "DIONIS", ул. Текстильщиков 12А, Костанай');
             alert('Адрес скопирован');
+        }
+        
+        // Копирование ссылки с текстом приглашения
+        function copyLinkWithText() {
+            const currentUrl = window.location.href;
+            const inviteText = `Здравствуйте! Мы с радостью хотим поделиться с вами важной новостью — совсем скоро состоится наш свадебный день. Будем счастливы разделить этот особенный момент вместе с вами.  
+
+Для вас мы подготовили приглашение по ссылке ниже, где указаны все детали праздника, а также дресс-код вечера.
+
+Пожалуйста, откройте приглашение и обязательно подтвердите своё участие до 15 мая, так как заранее формируются рассадка гостей и бронирование мест в ресторане. В приглашении можно удобно оставить ответ о вашем присутствии.  
+
+Будем счастливы видеть вас рядом в этот важный день!
+
+${currentUrl}`;
+            
+            navigator.clipboard.writeText(inviteText).then(() => {
+                alert('✅ Текст приглашения и ссылка скопированы!\n\nТеперь вы можете вставить их в WhatsApp, Telegram или любое другое приложение.');
+            }).catch(() => {
+                alert('Не удалось скопировать. Попробуйте скопировать ссылку вручную.');
+            });
         }
         
         // Анимация при скролле
