@@ -1093,11 +1093,12 @@
         setInterval(updateTimer, 1000);
         updateTimer();
         
-        // ========== МУЗЫКА - РАБОТАЕТ НА ВСЕХ УСТРОЙСТВАХ ==========
+        // ========== МУЗЫКА - РАБОТАЕТ ПРИ КАЖДОМ ЗАХОДЕ ==========
         const music = document.getElementById('bgMusic');
         const playBtn = document.getElementById('playPauseBtn');
         let isPlaying = false;
         let fadeInterval = null;
+        let musicStarted = false;
         
         music.volume = 0;
         music.loop = true;
@@ -1119,13 +1120,15 @@
         }
         
         function startMusic() {
-            if (isPlaying) return;
+            if (isPlaying || musicStarted) return;
+            musicStarted = true;
             music.play().then(() => {
                 isPlaying = true;
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 fadeIn();
             }).catch(e => {
-                console.log('Автозапуск заблокирован, нужен клик');
+                console.log('Автозапуск заблокирован');
+                musicStarted = false;
                 playBtn.innerHTML = '<i class="fas fa-music"></i>';
             });
         }
@@ -1137,6 +1140,7 @@
             playBtn.innerHTML = '<i class="fas fa-music"></i>';
             if (fadeInterval) clearInterval(fadeInterval);
             music.volume = 0;
+            musicStarted = false;
         }
         
         // Клик по плееру
@@ -1149,14 +1153,14 @@
             }
         });
         
-        // Запуск музыки при загрузке страницы
+        // Пытаемся запустить музыку при загрузке
         window.addEventListener('load', () => {
             startMusic();
         });
         
-        // Если автозапуск не сработал - запускаем при первом касании/клике
+        // Если не получилось - при первом клике/касании по странице
         const tryStart = () => {
-            if (!isPlaying) {
+            if (!isPlaying && !musicStarted) {
                 startMusic();
             }
             document.removeEventListener('click', tryStart);
@@ -1179,6 +1183,7 @@
             }
         });
         
+        // Принудительно сбрасываем кэш аудио при загрузке страницы
         music.load();
         
         // Календарь
